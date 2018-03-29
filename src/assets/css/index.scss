@@ -1,0 +1,43 @@
+@function fmt ($val) {
+    @return ($val/200) +rem;
+}
+.container{
+    height: 100vh;
+}
+.content{
+    width: 100%;
+    height: 100%;
+    background: url(../assets/images/bak.png) repeat;
+    padding-top: fmt(420);
+    p:first-of-type{
+         width: 100%;
+         text-align: center;
+         font:fmt(26)/fmt(60) Microsoft Yahei;
+         font-weight: bold;
+         color: #fff;
+         letter-spacing: fmt(8);
+         margin-bottom: fmt(30);
+    }
+    p{
+        width: 100%;
+        text-align: center;
+        font:fmt(32)/fmt(60) Microsoft Yahei;
+        color: #fff;
+        font-weight: 100;
+    }
+    .btn1{
+        list-style: none;
+        text-decoration: none;
+        display: inline-block;
+        width: fmt(320);
+        height: fmt(88);
+        outline: none;
+        border-radius: fmt(100);
+        background-color: rgba(12, 180, 206, 1);
+        color: rgba(255, 255, 255, 1);
+        text-align: center;
+        font:fmt(28)/fmt(88) Microsoft Yahei;;
+        border: fmt(2) solid rgba(63, 200, 221, 1);
+        margin-left: fmt(200);
+    }
+}

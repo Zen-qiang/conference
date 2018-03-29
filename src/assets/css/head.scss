@@ -1,0 +1,88 @@
+@function fmt ($val) {
+    @return ($val/200) +rem;
+}
+#mynav {
+    width: 100%;
+    height: fmt(100);
+    background: #fff;
+    position: relative;
+}
+#mynav {
+    .logo{
+        position: absolute;
+        top: fmt(10);
+        left: fmt(8);
+        overflow: hidden;
+    }
+    #btn1{
+        position: absolute; 
+        width: fmt(66);
+        height: fmt(66);
+        top:fmt(30);
+        right: fmt(16);
+        img{
+            position: absolute;
+            width: fmt(46);
+            height: fmt(46);
+            top: 0;
+            padding: 0;
+        }
+    }
+    .slide-enter-active, .slide-leave-active {
+        transition: all .3s;
+      }
+    .slide-enter, .slide-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        transform: translateY(-100%);
+    }
+    .hide{
+        width: 100%;
+        height: fmt(1400);
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: url(../assets/images/bak.png) repeat;
+        background-size: 100% fmt(456);
+    }
+}
+.hide{
+    .first{
+        width: 100%;
+        height: fmt(100);
+        background: #fff;
+    }
+    .first{
+        span{
+            position: absolute;
+            width: fmt(66);
+            height: fmt(66);
+            top:fmt(0);
+            right: fmt(10);
+            color: #BBB;
+            font-size: fmt(60);
+        }
+    }
+    ul{
+        width: 100%;
+        height: fmt(810);
+        background: #181818;
+        font:fmt(28)/fmt(100) 微软雅黑;
+        overflow: hidden;
+        padding: 0 fmt(20);
+        li{
+            width: 100%;
+            height: fmt(100);
+            color:#8c8c8c;
+            border-bottom:fmt(2) dashed rgb(59, 57, 57);
+            img{
+                float: right;
+                margin-top: fmt(38);
+            }
+        }
+        li:last-child{
+            border: none;
+        }
+    }
+
+}
+
+

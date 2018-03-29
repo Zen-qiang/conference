@@ -1,0 +1,21 @@
+@function fmt ($val) {
+    @return ($val/200) +rem;
+}
+.container{
+    width: 100%;
+    background: #f2f2f2;
+    display: flex;
+    .left{
+        width: fmt(200);
+        padding: fmt(20) 0 0 fmt(24);
+        img{
+            width: fmt(140);
+            height: fmt(180);
+
+        }
+    }
+    .right{
+        
+    }
+}
+
