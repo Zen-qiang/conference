@@ -1,6 +1,7 @@
 <template>
-  <div class="container">
-    <my-nav></my-nav>
+<!-- <transition name='slide'> -->
+  <div class="mask_container" :class="{'active' : flag}">
+    <!-- <my-nav></my-nav> -->
     <div class="content">
        <p>方便智能一键化的会务管理系统</p>
        <p>报名、审核、嘉宾证制作、签到、<br/>
@@ -9,17 +10,29 @@
           会务管理一条龙服务。<br/>
        </p>
        <!-- <input type="btn" value="立即体验"> -->
-       <router-link class="btn1" :to="{ path: '/meetings' }">立即体验</router-link>
+       <div class="btn1" @click="$router.push({'name': 'Meetings'})">立即体验</div>
     </div>
   </div>
+<!-- </transition> -->
+  
 </template>
 
 <script>
-import myNav from '../components/Header.vue'
+// import myNav from '../components/Header.vue'
 export default {
-  components: {
-    myNav
+  // components: {
+  //   myNav
+  // },
+  data () {
+    return {
+      flag: false
+    }
   }
+  // methods: {
+  //   meet () {
+  //     this.flag = true
+  //   }
+  // }
 }
 </script>
 

@@ -5,7 +5,8 @@
     width: 100%;
     height: fmt(100);
     background: #fff;
-    position: relative;
+    position: fixed;
+    z-index: 10;
 }
 #mynav {
     .logo{

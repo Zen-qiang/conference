@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Index from '@/pages/index'
 import Meetings from '@/pages/meetings'
+import Details from '@/pages/details'
 
 Vue.use(Router)
 
@@ -26,6 +27,11 @@ export default new Router({
       path: '/meetings',
       name: 'Meetings',
       component: Meetings
+    },
+    {
+      path: '/details',
+      name: 'Details',
+      component: Details
     }
   ]
 })

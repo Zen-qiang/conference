@@ -1,21 +1,72 @@
 @function fmt ($val) {
     @return ($val/200) +rem;
 }
-.container{
-    width: 100%;
+.meetings_container{
+    position: relative;
+    height: 100%;
     background: #f2f2f2;
-    display: flex;
-    .left{
-        width: fmt(200);
-        padding: fmt(20) 0 0 fmt(24);
-        img{
-            width: fmt(140);
-            height: fmt(180);
-
+    // overflow: hidden;
+    .text{
+        position: absolute;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        z-index: 9;
+        background: #f2f2f2;
+    }
+    .content{
+        padding-top: fmt(100);
+        overflow: hidden;
+        .left{
+            width: fmt(200);
+            float: left;
+            padding: fmt(28) 0 0 fmt(24);
+            img{
+                width: fmt(140);
+                height: fmt(180);
+                box-shadow: fmt(4) fmt(4) fmt(2) #ddd;
+            }
+        }
+        .right{
+            float: left;
+            width: fmt(548);
+            padding: fmt(60) 0 fmt(24) 0;
+            img{
+                width: fmt(520);
+            }
+            h2{
+                font:fmt(32)/fmt(40) Microsoft Yahei;
+                margin-top: fmt(-20);
+            }
+            p:first-of-type{
+                font:fmt(20)/fmt(60) Microsoft Yahei;
+                color: #939393;
+                margin-top: fmt(8);
+                span{
+                    display: inline-block;
+                    width: fmt(20);
+                    height: fmt(20);
+                    border-radius: fmt(10);
+                    background: #5dce58;
+                }
+            }
+            p:last-of-type{
+                font:fmt(24)/fmt(44) Microsoft Yahei;
+                color: #939393;
+                margin-right: fmt(30);
+                padding: 0 0 fmt(40) 0;
+                text-align:justify;
+                border-bottom:1px solid #ddd;
+            }
         }
     }
-    .right{
-        
+    .content2{
+        padding: 0 0 fmt(40) 0;
+        p:last-of-type{
+            border: none !important;
+        }
     }
+    
+    
 }
 
