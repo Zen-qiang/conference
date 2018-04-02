@@ -19,7 +19,7 @@
                   <span>时间</span>
                   <span>2018年 2月28日 16:00-21:00</span>
               </li>
-               <li>
+               <li @click="go()">
                   <span>地址</span>
                   <span>浦东曹路体育馆浦东北路123号</span>
                   <span><img src="../assets/images/address.png" alt=""></span>
@@ -49,7 +49,7 @@
               <p>此次阿迪达斯魅&黑2018秋冬新品延续了品牌产品一贯的优秀品质与颜值，不管是鞋类还是服装类，在设计上都推陈出新，搭配上更注重整体理念，将材质、织法、剪裁、配色等特点融入服饰的款式中，鞋类产品新BOUNCE、BOOST与CLOUDFOAM缓震材质的嵌入，为羽毛球运动的每一步移动提供更好的能量传递与推动，使阿迪达斯羽毛球系列产品的鞋底</p>
           </div>
 
-          <div class="btn2">
+          <div class="btn2" @click="go()">
               <img src="../assets/images/shenqing.png" alt="">
               <p>申请报名</p>
           </div>
@@ -62,6 +62,11 @@ export default{
   data () {
     return {
       a: 8
+    }
+  },
+  methods: {
+    go () {
+      this.$router.push({'name': 'Sqbm'})
     }
   }
 }
