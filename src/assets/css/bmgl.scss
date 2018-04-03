@@ -1,0 +1,25 @@
+@function fmt ($val) {
+  @return ($val/200) +rem;
+}
+// .active1{
+//   color: #00aac8 !important;
+//   border-color: #7acad6 !important;
+// }
+
+.vux-tab .vux-tab-item.vux-tab-selected{
+  color: #333;
+}
+.bmgl_container{
+  border-top: fmt(2) solid #ccc;
+  width: 100%;
+  height: 100%;
+  background: #f2f2f2;
+  margin-top: fmt(100);
+  .box1{
+    width: 100%;
+    height: fmt(370);
+    background: #fff;
+    margin-top: fmt(20);
+
+  }
+}

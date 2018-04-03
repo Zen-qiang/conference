@@ -1,3 +1,110 @@
 @function fmt ($val) {
     @return ($val/200) +rem;
 }
+.vux-slider > .vux-swiper > .vux-swiper-item > a > .vux-swiper-desc {
+    // background:transparent !important;
+    visibility: hidden !important;
+}
+.vux-slider > .vux-indicator,
+.vux-slider .vux-indicator-right{
+    bottom:fmt(-72) !important;
+}
+
+.zsgl_container{
+    width: 100%;
+    height: 100%;
+    padding-top: fmt(100);
+    background: #f2f2f2;
+    .swi{
+        position: relative;
+        width: 100%;
+        height: fmt(340); 
+    }
+    .address{
+        width: 100%;
+        height: fmt(130);
+        background: #fff;
+        border-bottom:1px solid #eee;
+        padding: 0 fmt(32) 0 fmt(24);
+        overflow: hidden;
+        margin-top: fmt(-10);
+        margin-bottom: fmt(20);
+        span{
+            float: left;
+            font:fmt(32)/fmt(150) Microsoft Yahei;
+            color: #474747;
+        }
+        img{
+            float: right;
+            margin-top: fmt(56);
+        }
+    }
+    .box1{
+        width: 100%;
+        height: fmt(100);
+        background: #fff;
+        border-top:1px solid #eee;
+        border-bottom:1px solid #eee;
+        font:fmt(28)/fmt(100) Microsoft Yahei;
+        padding-left: fmt(25);
+        position: relative;
+        span{
+            float: left;
+        }
+        span:first-of-type{
+            color: #595959;
+        }
+        span:nth-of-type(2){
+            position: absolute;
+            color: #333;
+            top: 0;
+            left: fmt(160);
+            font-size: fmt(10);
+            letter-spacing: fmt(4);
+            color: #5c5c5c;
+            i{
+                color: red;
+                font-style: normal;
+            }
+        }
+        span:nth-of-type(3){
+            position: absolute;
+            top: fmt(20);
+            right: fmt(140);
+            img{
+                width: fmt(170);
+                height: fmt(50);
+            }
+        }
+        span:nth-of-type(4){
+            position: absolute;
+            right: fmt(54);
+            top: 0;
+            color: #a0a0a0;
+        }
+        span:nth-of-type(5){
+            position: absolute;
+            right: fmt(20);
+            top: 0;
+            img{
+                width: fmt(16);
+                height: fmt(16);
+            }
+        }
+    }
+    .box2{
+        background: #fff;
+        width: 100%;
+        height: fmt(300);
+        padding: fmt(20);
+        p:first-child{ 
+            font:fmt(28)/fmt(60) Microsoft Yahei;
+            color: #595959;
+        }
+        p:last-child{ 
+            font:fmt(28)/fmt(60) Microsoft Yahei;
+            color: #929292;
+            text-align: justify
+        }
+    }
+} 

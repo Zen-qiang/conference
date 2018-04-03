@@ -8,6 +8,9 @@ import Sqbm from '@/pages/sqbm'
 import Dbm from '@/pages/dbm'
 import Bmcg from '@/pages/bmcg'
 import Zsgl from '@/pages/zsgl'
+import Rygl from '@/pages/rygl'
+import Map from '@/pages/map'
+import Bmgl from '@/pages/bmgl'
 
 Vue.use(Router)
 
@@ -56,6 +59,21 @@ export default new Router({
       path: '/zsgl',
       name: 'Zsgl',
       component: Zsgl
+    },
+    {
+      path: '/rygl',
+      name: 'Rygl',
+      component: Rygl
+    },
+    {
+      path: '/map',
+      name: 'Map',
+      component: Map
+    },
+    {
+      path: '/bmgl',
+      name: 'Bmgl',
+      component: Bmgl
     }
   ]
 })

@@ -9,12 +9,12 @@
                 <li><img src="../assets/images/erweima.jpg" alt=""></li>
              </ul> 
            </li>
-           <!-- 1.报名管理跳转 -->
-           <li class="outli2" @click="">
+           <li class="outli2" >
                <span>报名信息</span>
                <span>10人</span>
            </li>
-           <li class="outli3">
+           <!-- 1.报名管理跳转 -->
+           <li class="outli3" @click="$router.push({'name' : 'Bmgl'})">
                <span><img src="../assets/images/headpic4.jpg" alt=""></span>
                <span><img src="../assets/images/jiantou.png" alt=""></span>
            </li>
