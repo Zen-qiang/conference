@@ -1,0 +1,11 @@
+@function fmt ($val) {
+  @return ($val/200) +rem;
+}
+.tjry_container{
+  width: 100%;
+  background: #f2f2f2;
+  .content{
+    width: 100%;
+    background: #fff;
+  }
+}

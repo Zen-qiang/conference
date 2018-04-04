@@ -15,11 +15,83 @@
   height: 100%;
   background: #f2f2f2;
   margin-top: fmt(100);
-  .box1{
+  padding-bottom: fmt(324);
+  overflow: hidden;
+  .box{
     width: 100%;
-    height: fmt(370);
+    height: fmt(390);
+    position: relative;
     background: #fff;
     margin-top: fmt(20);
+    overflow: hidden;
+    .left{
+      float: left;
+      width: fmt(220);
+      height: fmt(280);
+      overflow: hidden;
+      img{
+        width: fmt(180);
+        margin: fmt(28) 0 0 fmt(20);
+      }
+    }
+    .right{
+      float: left;
+        width: fmt(500);
+        height: fmt(280);
+        padding: fmt(28) 0 0 fmt(20);
+        overflow: hidden;
+        p{
+           font:fmt(24)/fmt(40) Microsoft Yahei;
+           color: #b4b4b4;
+        }
+        p:first-child{
+          font:fmt(28)/fmt(50) Microsoft Yahei;
+          color:#525252;
+        }
+    }
+    .phone{
+      position: absolute;
+      top: fmt(24);
+      right: fmt(32);
+      width: fmt(60);
+      height: fmt(32);
+      font:fmt(20)/fmt(32) Microsoft Yahei;
+      text-align: center;
+      background: #f1f1f1;
+      color: #525252;
+    }
+    .xian{
+      width: 100%;
+      height: fmt(2);
+      background: #eee;
+      position: absolute;
+      left: 0;
+      top: fmt(298);
+    }
+    .xia{
+      width: 100%;
+      height: fmt(88);
+      overflow: hidden;
+      padding: 0 fmt(20);
+      span:first-child{
+        float: left;
+        width: fmt(100);
+        height: fmt(88);
+        font:fmt(20)/fmt(124) Microsoft Yahei;
+        color:#44c2d8;
+      }
+      span:last-child{
+        float: right;
+        width: fmt(120);
+        height: fmt(40);
+        border: fmt(2) solid #efefef;
+        font:fmt(20)/fmt(40)  Microsoft Yahei;
+        color: #b7b7b7;
+        border-radius: fmt(4);
+        text-align: center;
+        margin-top: fmt(40);
+      }
+    }
 
   }
 }

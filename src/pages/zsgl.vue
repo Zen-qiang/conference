@@ -1,7 +1,12 @@
 <template>
    <div class="zsgl_container">
        <div class="swi">
-          <swiper :list="lists" auto style="width:100%;margin:0 auto;"   dots-class="custom-bottom" dots-position="center" show-desc-mask="false"></swiper>
+          <swiper
+          style="width:100%;margin:0 auto;"
+            :list="lists" auto
+            dots-position="center"
+            :show-desc-mask="false"
+          ></swiper>
        </div>
 
        <div class="address" @click="$router.push({'name' : 'Map'})">

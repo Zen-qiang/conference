@@ -1,0 +1,189 @@
+@function fmt ($val) {
+  @return ($val/200) +rem;
+}
+
+.xcgl_container{
+  width: 100%;
+  height: 100%;
+  border-top:fmt(2) solid #eee;
+  margin-top: fmt(100);
+  background: #f2f2f2;
+  padding-bottom: fmt(500);
+  overflow: hidden;
+  ul{
+    width: 100%;
+    height: fmt(90);
+    background: #fff;
+    border-bottom: fmt(2) solid #eee;
+    position: relative;
+    li{
+      float: left;
+      position: relative;
+      width: 35%;
+      font:fmt(24)/fmt(90) Microsoft Yahei;
+      color:#737373;
+      text-align: right !important;
+    }
+    li.active1::after{
+       content: '';
+       position: absolute;
+       width: fmt(110);
+       height: fmt(4);
+       left: fmt(158);
+       bottom: 0;
+       background: #00aac9;
+    }
+    .pic{
+      width: fmt(36);
+      position: absolute;
+      top: fmt(24);
+      right: fmt(30);
+    }
+  }
+  .divTab{
+    width: 100%;
+    background: #f2f2f2;
+    overflow: hidden;
+    .box{
+      width: fmt(688);
+      height: fmt(300);
+      background: #fff;
+      border: fmt(2) solid #ddd;
+      border-radius:fmt(16);
+      margin: fmt(24) 0 0 fmt(30);
+      .content{
+        width: 100%;
+        height: fmt(220);
+        border-bottom: fmt(2) dashed #a7a7a7;
+        .left{
+        float: left;
+        width: fmt(160);
+        height: fmt(204);
+        padding-bottom: fmt(40);
+        position: relative;
+        overflow: hidden;
+        img{
+          width: fmt(118);
+          position: absolute;
+          left: fmt(32);
+          top: fmt(44);
+        }
+      }
+      .center{
+        float: left;
+        width: fmt(320);
+        height: fmt(204);
+        position: relative;
+        overflow: hidden;
+        padding: fmt(60) 0 0 fmt(20);
+        p{
+          color:#333;
+        }
+        p:first-of-type{
+           font:fmt(24)/fmt(50) Microsoft Yahei;
+           padding-left: fmt(44);
+        }
+        p:nth-of-type(2){
+          width: fmt(260);
+          height: fmt(4);
+          background: #6dd36a;
+        }
+        img{
+          position: absolute;
+          left: fmt(264);
+          top: fmt(96);
+        }
+        p:last-of-type{
+          font:fmt(20)/fmt(44) Microsoft Yahei;
+          padding-left: fmt(40);
+        }
+      }
+      .right{
+        float: left;
+        width: fmt(200);
+        height: fmt(204);
+        position: relative;
+        overflow: hidden;
+        padding: fmt(20) fmt(34) 0 0;
+        p{
+          text-align: right;
+        }
+        p:first-child, p:nth-child(3){
+          font:fmt(30)/fmt(50) Microsoft Yahei;
+          color:#333;
+        }
+        p:nth-child(3){
+          margin-top: fmt(10);
+        }
+        p:nth-child(2), p:last-child{
+          font:fmt(20)/fmt(30) Microsoft Yahei;
+          color:#999;
+        }
+
+      }
+      }
+      .xia{
+        width: 100%;
+        padding: fmt(20) fmt(24) 0 fmt(24);
+        position: relative;
+        // font:fmt(28)/fmt(70) Microsoft Yahei;
+        span{
+          float: left;
+        }
+        span:first-of-type{
+          color: #929292;
+          font:fmt(28)/fmt(40) Microsoft Yahei;
+        }
+        span:nth-of-type(2){
+          font-size: fmt(10);
+          letter-spacing: fmt(4);
+          color: #5c5c5c;
+          font:fmt(20)/fmt(40) Microsoft Yahei;
+          i{
+              color: #e63832;
+              font-style: normal;
+            }
+          }
+        span:nth-of-type(3){
+          position: absolute;
+          top: fmt(-146);
+          right: fmt(140);
+          img{
+              width: fmt(160);
+              height: fmt(50);
+          }
+        }
+        span:last-of-type{
+          font:fmt(20)/fmt(70) Microsoft Yahei;
+          position: absolute;
+          right: fmt(54);
+          top: 0;
+          color: #a0a0a0;
+        }
+      }
+    
+      
+    }
+
+  }
+  .divTab2{
+     height: 100%;
+     padding-bottom: fmt(318);
+     .center{
+       p:nth-child(2){
+         background: #e63832 !important;
+       }
+       p:nth-child(3){
+         width: 0;
+         height: 0;
+         border: fmt(8) solid #e63832 ;
+         border-top-color: transparent;
+         border-left-color: transparent;
+         position: absolute;
+         left: fmt(20);
+         top: fmt(96);
+
+       }
+     }
+  }
+}

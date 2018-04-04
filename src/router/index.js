@@ -11,6 +11,8 @@ import Zsgl from '@/pages/zsgl'
 import Rygl from '@/pages/rygl'
 import Map from '@/pages/map'
 import Bmgl from '@/pages/bmgl'
+import Xcgl from '@/pages/xcgl'
+import Tjry from '@/pages/tjry'
 
 Vue.use(Router)
 
@@ -74,6 +76,16 @@ export default new Router({
       path: '/bmgl',
       name: 'Bmgl',
       component: Bmgl
+    },
+    {
+      path: '/xcgl',
+      name: 'Xcgl',
+      component: Xcgl
+    },
+    {
+      path: '/tjry',
+      name: 'Tjry',
+      component: Tjry
     }
   ]
 })
