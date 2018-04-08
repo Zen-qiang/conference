@@ -13,6 +13,7 @@ import Map from '@/pages/map'
 import Bmgl from '@/pages/bmgl'
 import Xcgl from '@/pages/xcgl'
 import Tjry from '@/pages/tjry'
+import Tjxc from '@/pages/tjxc'
 
 Vue.use(Router)
 
@@ -86,6 +87,11 @@ export default new Router({
       path: '/tjry',
       name: 'Tjry',
       component: Tjry
+    },
+    {
+      path: '/tjxc',
+      name: 'Tjxc',
+      component: Tjxc
     }
   ]
 })

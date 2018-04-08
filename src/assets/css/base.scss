@@ -24,3 +24,54 @@
 ul, ol, li {
   list-style: none;
 }
+// 添加行程
+.tjxc_container {
+  // font:14px/50px Microsoft Yahei;
+  // color: #333;
+  .tab-swiper{
+    margin-top: -10px;
+  }
+  .vux-slider {
+    height: 550px;
+  }
+  .weui-label{
+    font:14px/44px Microsoft Yahei;
+    color: #333;
+  }
+  .weui-switch{
+    margin-top: 10px;
+  }
+  .vux-label{
+    font:14px/22px Microsoft Yahei;
+  }
+  .weui-select{
+    position: relative;
+    width: 100px;
+    height: 32px;
+    transform: translateX(140%);
+    font:14px/32px Microsoft Yahei;
+    color: #888;
+    padding-left: 10px !important;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+   
+  }
+
+  .weui-cell_select .weui-cell__bd:after{
+      content: '';
+      width: 0;
+      height: 0;
+      z-index: 5;
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      border :5px solid transparent ;
+      border-left-color: #333 !important;
+      transform: rotate(90deg);
+  }
+  .weui-cell__ft{
+    font:14px/24px Microsoft Yahei;
+    color: #333;
+  }
+  
+}
