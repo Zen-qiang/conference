@@ -12,8 +12,40 @@
             <span id='up' @click='up()'>&times;</span>
         </div>
         <ul>
-            <li v-for="value in arr">
+            <!-- <li v-for="value in arr">
                 {{value}}
+                <img src="../assets/images/jiantou.png" alt="">
+            </li> -->
+            <li class="lis" @click="go1()">
+                首页
+                <img src="../assets/images/jiantou.png" alt="">
+            </li>
+            <li class="lis" @click="go2()">
+                所有会务
+                <img src="../assets/images/jiantou.png" alt="">
+            </li>
+            <li class="lis" @click="go3()">
+                报名管理
+                <img src="../assets/images/jiantou.png" alt="">
+            </li>
+            <li class="lis">
+                派车管理
+                <img src="../assets/images/jiantou.png" alt="">
+            </li>
+            <li class="lis">
+                用餐管理
+                <img src="../assets/images/jiantou.png" alt="">
+            </li>
+            <li class="lis">
+                住宿中心
+                <img src="../assets/images/jiantou.png" alt="">
+            </li>
+            <li class="lis">
+                证件管理
+                <img src="../assets/images/jiantou.png" alt="">
+            </li>
+            <li class="lis">
+                用户中心
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
         </ul>
@@ -48,6 +80,18 @@ export default {
       }
     },
     up: function () {
+      this.open = !this.open
+    },
+    go1: function () {
+      this.$router.push({'name': 'Index'})
+      this.open = !this.open
+    },
+    go2: function () {
+      this.$router.push({'name': 'Meetings'})
+      this.open = !this.open
+    },
+    go3: function () {
+      this.$router.push({'name': 'Report'})
       this.open = !this.open
     }
   }

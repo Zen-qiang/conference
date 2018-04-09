@@ -20,7 +20,7 @@
            </li>
        </ul>
         <!-- 2.行程管理跳转 -->
-        <p class="anpai" @click="">安排我的行程</p>
+        <p class="anpai" @click="$router.push({'name' : 'Addroute'})">安排我的行程</p>
    </div>
 </template>
 

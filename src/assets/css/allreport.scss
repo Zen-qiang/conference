@@ -1,0 +1,161 @@
+@function fmt ($val) {
+  @return ($val/200) +rem;
+}
+.allreport_container{
+  width: 100%;
+  height: 100%;
+  background: #f2f2f2;
+  margin-top: fmt(100);
+  padding-top: fmt(20);
+  padding-bottom: fmt(94);
+  overflow: hidden;
+  .btn1{
+    width: fmt(690);
+    height: fmt(100);
+    position: relative;
+    background: #edfcff;
+    border: fmt(2) dashed #0cb4ce;
+    border-radius: fmt(50);
+    margin-left: fmt(30);
+    img{
+      position: absolute;
+      left: fmt(246);
+      top: fmt(40);
+    }
+    span{
+      font:fmt(28)/fmt(50) Microsoft Yahei;
+      position: absolute;
+      left: fmt(300);
+      top: fmt(28);
+    }
+  }
+  ul{
+    width: 100%;
+    background: #fff;
+    overflow: hidden;
+    border-top: fmt(2) solid #eee;
+    margin-top: fmt(20);
+    li:first-child{
+      width: 100%;
+      height: fmt(100);
+      padding: 0 fmt(36) 0 fmt(30);
+      span:first-child{
+        float: left;
+        font:fmt(28)/fmt(100) Microsoft Yahei;
+        color: #333;
+      }
+      span:last-child{
+        float: right;
+        font:fmt(28)/fmt(100) Microsoft Yahei;
+        color: #0cb4ce;
+      }
+    }
+    li{
+      width: 100%;
+      height: fmt(180);
+      border-bottom: fmt(2) solid #eee;
+      position: relative;
+      overflow: hidden;
+      img{
+        width: fmt(112);
+        position: absolute;
+        top: fmt(32);
+        left: fmt(30);
+      }
+      .left{
+        width: fmt(400);
+        position: absolute;
+        top: fmt(32);
+        left: fmt(170);
+        p:first-child{
+          font:fmt(28)/fmt(48) Microsoft Yahei;
+          color: #333;
+          span{
+            font:fmt(24)/fmt(48) Microsoft Yahei;
+            color: #333;
+          }
+        }
+        p:nth-of-type(2),  p:nth-of-type(3){
+          font:fmt(20)/fmt(40) Microsoft Yahei;
+          color: #c6c6c6;
+        }
+      }
+      div.right{
+        position: absolute;
+        top: fmt(36);
+        right: fmt(30);
+        width: fmt(120);
+        p:first-child{
+          float: right;
+          font:fmt(24)/fmt(50) Microsoft Yahei;
+          color: #b1b1b1;
+        }
+        p:last-child{
+          float: right;
+          font:fmt(24)/fmt(50) Microsoft Yahei;
+          color: #5bc5d8;
+        }
+      }
+    }
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: all .2s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0.7;
+  }
+  div.mask1{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: rgba(0,0,0,.6);
+    .content{
+       width: fmt(420);
+       height: fmt(280);
+       background: #fff;
+       border-radius: fmt(20);
+       position: absolute;
+       top: fmt(430);
+       left: fmt(160);
+       padding: fmt(60) fmt(60) fmt(30) fmt(60);
+       img{
+         position: absolute;
+         left: fmt(170);
+         top: fmt(60);
+       }
+       p:first-of-type{
+         width: 100%;
+         font:fmt(24)/fmt(68) Microsoft Yahei;
+         text-align: center;
+         margin-top: fmt(100);
+       }
+       p:last-of-type{
+         width: fmt(300);
+         height: fmt(4);
+         border-radius: fmt(2);
+         background: #ddd;
+         position: relative;
+         span:first-child{
+           position: absolute;
+           left: 0;
+           top: 0;
+           width: fmt(200);
+           height: fmt(4);
+           background: #0cb4ce;
+         }
+         sapn:last-child{
+           position: absolute;
+           top: 0;
+           right: 0;
+           display: inline-block;
+           width: fmt(100);
+           height: fmt(4);
+         }
+       }
+    }
+  }
+}

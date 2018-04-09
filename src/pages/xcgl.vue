@@ -26,7 +26,7 @@
             <p>预计到达 08:50</p>
           </div>
        </div>
-        <div class="xia">
+        <div class="xia" @click="$router.push({'name' : 'Checkothers'})">
          <span>其他成员 &nbsp;</span>
          <span><i>{{a}}</i>人</span>
          <span><img src="../assets/images/headpic.jpg" alt=""></span>
@@ -79,7 +79,7 @@
             <p>预计离开 14:20</p>
           </div>
        </div>
-        <div class="xia">
+        <div class="xia" @click="$router.push({'name' : 'Checkothers'})">
          <span>其他成员 &nbsp;</span>
          <span><i>{{a}}</i>人</span>
          <span><img src="../assets/images/headpic14.png" alt=""></span>

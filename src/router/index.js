@@ -14,6 +14,11 @@ import Bmgl from '@/pages/bmgl'
 import Xcgl from '@/pages/xcgl'
 import Tjry from '@/pages/tjry'
 import Tjxc from '@/pages/tjxc'
+import Checkothers from '@/pages/checkothers'
+import Addroute from '@/pages/addroute'
+import Report from '@/pages/report'
+import Reported from '@/pages/reported'
+import Allreport from '@/pages/Allreport'
 
 Vue.use(Router)
 
@@ -92,6 +97,31 @@ export default new Router({
       path: '/tjxc',
       name: 'Tjxc',
       component: Tjxc
+    },
+    {
+      path: '/checkothers',
+      name: 'Checkothers',
+      component: Checkothers
+    },
+    {
+      path: '/addroute',
+      name: 'Addroute',
+      component: Addroute
+    },
+    {
+      path: '/report',
+      name: 'Report',
+      component: Report
+    },
+    {
+      path: '/reported',
+      name: 'Reported',
+      component: Reported
+    },
+    {
+      path: '/allreport',
+      name: 'Allreport',
+      component: Allreport
     }
   ]
 })

@@ -71,7 +71,7 @@
         font:fmt(28)/fmt(100) 微软雅黑;
         overflow: hidden;
         padding: 0 fmt(20);
-        li{
+        .lis{
             width: 100%;
             height: fmt(100);
             color:#8c8c8c;
@@ -81,7 +81,7 @@
                 margin-top: fmt(38);
             }
         }
-        li:last-child{
+        .lis:last-child{
             border: none;
         }
     }
