@@ -29,7 +29,6 @@
 
          <swiper-item>
           <div class="tab-swiper vux-center">
-            <div class="tab-swiper vux-center">
             <group>
               <x-switch title="自行解决" style="color:#ababab"></x-switch>
               <selector title="交通类型" :options="list3" v-model="defaultValue"></selector>
@@ -43,7 +42,6 @@
               <span><img src="../assets/images/headpic.jpg" alt=""></span>
             </div>
             <p class="end" @click="$router.push({'name' : 'Xcgl'})">完成</p>
-          </div>
           </div>
         </swiper-item>
       </swiper> 

@@ -28,7 +28,7 @@
                 报名管理
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
-            <li class="lis">
+            <li class="lis" @click="go4()">
                 派车管理
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
@@ -92,6 +92,10 @@ export default {
     },
     go3: function () {
       this.$router.push({'name': 'Report'})
+      this.open = !this.open
+    },
+    go4: function () {
+      this.$router.push({'name': 'Drivercenter'})
       this.open = !this.open
     }
   }

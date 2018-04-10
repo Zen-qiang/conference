@@ -19,6 +19,11 @@ import Addroute from '@/pages/addroute'
 import Report from '@/pages/report'
 import Reported from '@/pages/reported'
 import Allreport from '@/pages/Allreport'
+import Drivercenter from '@/pages/drivercenter'
+import Driveredit from '@/pages/driveredit'
+import Driverfinish from '@/pages/driverfinish'
+import Driveroperate from '@/pages/driveroperate'
+import Drivershift from '@/pages/drivershift'
 
 Vue.use(Router)
 
@@ -122,6 +127,31 @@ export default new Router({
       path: '/allreport',
       name: 'Allreport',
       component: Allreport
+    },
+    {
+      path: '/drivercenter',
+      name: 'Drivercenter',
+      component: Drivercenter
+    },
+    {
+      path: '/driveredit',
+      name: 'Driveredit',
+      component: Driveredit
+    },
+    {
+      path: '/driverfinish',
+      name: 'Driverfinish',
+      component: Driverfinish
+    },
+    {
+      path: '/driveroperate',
+      name: 'Driveroperate',
+      component: Driveroperate
+    },
+    {
+      path: '/drivershift',
+      name: 'Drivershift',
+      component: Drivershift
     }
   ]
 })

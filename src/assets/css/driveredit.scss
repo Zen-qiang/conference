@@ -1,0 +1,96 @@
+@function fmt ($val) {
+  @return ($val/200) +rem;
+}
+.driveredit_container{
+  width: 100%;
+  height: 100vh;
+  background: #f2f2f2;
+  padding-top: fmt(100);
+  .first{
+    width: 100%;
+    height: fmt(100);
+    background: #fff;
+    overflow: hidden;
+    padding: 0 fmt(30);
+    border-bottom: fmt(2) solid #eee;
+    span:first-of-type{
+      float: left;
+      font:fmt(32)/fmt(100) Microsoft Yahei;
+      color: #333;
+    }
+    .cancel{
+      float: right;
+      font:fmt(28)/fmt(100) Microsoft Yahei;
+      color: #0cb4ce;
+    }
+  }
+  ul{
+    width: 100%;
+    background: #fff;
+    overflow: hidden;
+    margin-top: fmt(20);
+    li:first-child{
+      position: relative;
+      width: 100%;
+      height: fmt(176);
+      span:first-child{
+        position: absolute;
+        top: 0;
+        left: fmt(30);
+        font:fmt(28)/fmt(176) Microsoft Yahei;
+        color: #a9a9a9;
+      }
+      span:nth-child(2){
+        img{
+          position: absolute;
+          top: fmt(30);
+          left: fmt(0);
+        } 
+      }
+      span:nth-child(3){
+        img{
+          position: absolute;
+          top: fmt(78);
+          right: fmt(36);
+        }   
+      }
+    }
+    li{
+      width: 100%;
+      width: fmt(100);
+      height: fmt(100);
+      position: relative;
+      border-bottom: fmt(2) solid #eee;
+      span:first-child{
+        // float: right;
+        position: absolute;
+        width: fmt(140);
+        height: 100%;
+        top: 0;
+        left: fmt(30);
+        font:fmt(28)/fmt(100) Microsoft Yahei;
+        color: #a9a9a9;
+      }
+      span:nth-child(2){
+        position: absolute;
+        width: fmt(260);
+        height: 100%;
+        top: 0;
+        left: fmt(188);
+        font:fmt(28)/fmt(100) Microsoft Yahei;
+        color: #333;
+      }
+    }
+  }
+  .save{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: fmt(84);
+    background: #0cb4ce;
+    font:fmt(28)/fmt(84) Microsoft Yahei;
+    text-align: center;
+    color: #fff;
+  }
+}
