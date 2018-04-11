@@ -1,0 +1,47 @@
+@function fmt ($val) {
+  @return ($val/200) +rem;
+}
+.certificate_container{
+  width: 100%;
+  height: 100vh;
+  padding-top: fmt(160);
+  background: #f2f2f2;
+  overflow: hidden;
+  .content{
+    width: fmt(564);
+    height: fmt(860);
+    background: #fff;
+    position: relative;
+    margin-left: fmt(90);
+    border: fmt(2) solid #ddd;
+    img:nth-of-type(2){
+      position: absolute;
+      left: fmt(190);
+      top: fmt(240);
+    }
+    p:first-of-type{
+      margin-top: fmt(54);
+      text-align: center;
+      font:fmt(32)/fmt(50) Microsoft Yahei;
+      color: #0cb4ce;
+    }
+    p:nth-of-type(2){
+      text-align: center;
+      font:fmt(28)/fmt(50) Microsoft Yahei;
+      color: #333;
+    }
+    img:nth-of-type(3){
+      margin: fmt(38) 0 0 fmt(170);
+    }
+  }
+  .btn1{
+    width: fmt(320);
+    height: fmt(100);
+    background: #0cb4ce;
+    margin: fmt(50) 0 0 fmt(212);
+    border-radius: fmt(50);
+    font:fmt(30)/fmt(100) Microsoft Yahei;
+    text-align: center;
+    color: #fff;
+  }
+}

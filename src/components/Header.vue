@@ -32,19 +32,19 @@
                 派车管理
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
-            <li class="lis">
+            <li class="lis" @click="go5()">
                 用餐管理
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
-            <li class="lis">
+            <li class="lis" @click="go6()">
                 住宿中心
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
-            <li class="lis">
+            <li class="lis" @click="go7()">
                 证件管理
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
-            <li class="lis">
+            <li class="lis" @click="go8()">
                 用户中心
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
@@ -96,6 +96,18 @@ export default {
     },
     go4: function () {
       this.$router.push({'name': 'Drivercenter'})
+      this.open = !this.open
+    },
+    go5: function () {
+      this.$router.push({'name': 'Dining'})
+      this.open = !this.open
+    },
+    go7: function () {
+      this.$router.push({'name': 'Certificate'})
+      this.open = !this.open
+    },
+    go8: function () {
+      this.$router.push({'name': 'Personalcenter'})
       this.open = !this.open
     }
   }

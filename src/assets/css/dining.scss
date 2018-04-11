@@ -1,0 +1,65 @@
+@function fmt ($val) {
+  @return ($val/200) +rem;
+}
+.vux-tab-selected{
+  color: #333 !important;
+}
+.col1{
+  color: #c2c2c2; 
+}
+.col2{
+  color: #e8e8e8; 
+}
+.col3{
+  color: #5e5e5e; 
+}
+.col4{
+  color: #b9b9b9; 
+}
+.dining_container{
+  width: 100%;
+  height: 100vh;
+  padding-top: fmt(100);
+  background: #f2f2f2;
+  overflow: hidden;
+  ul{
+    width: 100%;
+    background: #f2f2f2;
+    overflow: hidden;
+    li{
+      width: fmt(690);
+      height: fmt(254);
+      margin: fmt(24) 0 0 fmt(30);
+      background: #fff;
+      position: relative;
+      color: #333;
+      p:first-of-type{
+        position: absolute;
+        top: fmt(24);
+        left: fmt(320);
+        font:fmt(28)/fmt(50) Microsoft Yahei;
+      }
+      p:nth-of-type(2){
+        font:fmt(20)/fmt(34) Microsoft Yahei;
+        position: absolute;
+        top: fmt(74);
+        left: fmt(320);
+      }
+      p:nth-of-type(3){
+        font:fmt(20)/fmt(40) Microsoft Yahei;
+        position: absolute;
+        top: fmt(154);
+        left: fmt(320);
+      }
+    }
+    li:first-child{
+      border-bottom: fmt(8) solid #b7e9f0;               
+    }
+    li:nth-child(2){
+      border-bottom: fmt(8) solid #5ece56                                   ;               
+    }
+    li:nth-child(3){
+      border-bottom: fmt(8) solid #ea4042;               
+    }
+  }
+}

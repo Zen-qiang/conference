@@ -24,6 +24,12 @@ import Driveredit from '@/pages/driveredit'
 import Driverfinish from '@/pages/driverfinish'
 import Driveroperate from '@/pages/driveroperate'
 import Drivershift from '@/pages/drivershift'
+import Dining from '@/pages/dining'
+import Diningdetail from '@/pages/diningdetail'
+import Diningscan from '@/pages/diningscan'
+import Dininglist from '@/pages/dininglist'
+import Certificate from '@/pages/certificate'
+import Personalcenter from '@/pages/personalcenter'
 
 Vue.use(Router)
 
@@ -152,6 +158,36 @@ export default new Router({
       path: '/drivershift',
       name: 'Drivershift',
       component: Drivershift
+    },
+    {
+      path: '/dining',
+      name: 'Dining',
+      component: Dining
+    },
+    {
+      path: '/diningdetail',
+      name: 'Diningdetail',
+      component: Diningdetail
+    },
+    {
+      path: '/diningscan',
+      name: 'Diningscan',
+      component: Diningscan
+    },
+    {
+      path: '/dininglist',
+      name: 'Dininglist',
+      component: Dininglist
+    },
+    {
+      path: '/certificate',
+      name: 'Certificate',
+      component: Certificate
+    },
+    {
+      path: '/personalcenter',
+      name: 'Personalcenter',
+      component: Personalcenter
     }
   ]
 })
