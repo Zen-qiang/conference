@@ -75,12 +75,153 @@ ul, ol, li {
   }
   
 }
+//人员管理
+.rygl_container{
+  li:first-of-type{
+    .weui-cells{
+      margin-top: -1px;
+      height: 71px;
+      border: none;
+    }
+    .weui-cells:before{
+      border-top: none !important;
+    }
+  }
+  li:nth-child(2),li:nth-child(3),li:nth-child(4),li:nth-child(5){
+    .weui-cells{
+      margin-top: -1px;
+      height: 51px;
+      border: none;
+    }
+    .weui-select{
+      top: 10px;
+    }
+    .weui-cell_select .weui-cell__bd:after{
+      top:28px;
+    }
+  }
+  li:nth-child(4){
+    .weui-select{
+      // border-color: #bebebe;
+      color: #bebebe;
+    }
+    .weui-cell_select .weui-cell__bd:after{
+      border-left-color: #bebebe;
+    }
+  }
+  .weui-select{
+    position: absolute;
+    left: 80px;
+    top: 20px;
+    width: 72px;
+    height: 30px;
+    transform: translateX(140%);
+    font:12px/28px Microsoft Yahei;
+    color: #888;
+    padding-left: 10px !important;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+   
+  }
 
+  .weui-cell_select .weui-cell__bd:after{
+      content: '';
+      width: 0;
+      height: 0;
+      z-index: 5;
+      position: absolute;
+      top: 38px;
+      right: 112px;
+      border :4px solid transparent ;
+      border-left-color: #898989;
+      transform: rotate(90deg);
+  }
+}
+//班次扫描用户
 .drivershift_container{
   .vux-slider{
     height:fmt(730) !important;
   }
   .vux-swiper{
     height:fmt(730) !important;
+  }
+}
+
+@function fmt ($val) {
+  @return ($val/200) +rem;
+}
+//个人中心
+.personalcenter_container{
+  .vux-timeline-item{
+    padding-right: fmt(30);
+  }
+  .vux-timeline-item-content{
+    padding: fmt(10) 0 0 0;
+    margin-left: fmt(74);
+    padding: fmt(16) 0;
+    border-bottom: fmt(2) solid #eee;
+  }
+  // .vux-timeline-item-content:last-of-type{
+  //   border-bottom: none;
+  // }
+  .vux-timeline-item-color{
+    margin-top: fmt(8);
+    background: #ddd;
+    border-radius: fmt(30);
+    overflow: hidden;
+  }
+  .vux-timeline-item-head-first{
+    width: fmt(30);
+    height: fmt(30);
+    background: #5dce58;
+    border: fmt(4) solid #ccf0cd;
+    left: fmt(-4);
+  }
+  .vux-timeline-item-tail{
+    background: #ddd;
+    top: fmt(20);
+  }
+  [class^="weui-icon-"], [class*=" weui-icon-"]{
+    display: none;
+  }
+  li:last-of-type{
+    .vux-timeline-item-content{
+      border-bottom: none;
+    }
+  }
+}
+//住宿管理
+.zsgl_container{
+  .inline-calendar{
+    padding: fmt(20) fmt(36);
+  }
+  .calendar-header{
+    height: fmt(80);
+  }
+  .vux-next-icon,.vux-prev-icon{
+    width: fmt(16);
+    height: fmt(16);
+    border-color: #0cbece;
+  }
+  .calendar-title{
+    font:fmt(22)/fmt(60) Microsoft Yahei;
+    transform:translateY(-44px);
+  }
+  .week{
+    font:fmt(20)/fmt(60) Microsoft Yahei;
+    color: #cacaca;
+  }
+  .inline-calendar-demo {
+    background: rgba(255,255,255,0.9);
+  }
+  .vux-calendar-each-date{
+    font:fmt(20)/fmt(50) Microsoft Yahei;
+  }
+  .inline-calendar td.current > span.vux-calendar-each-date{
+    background: #e94142;
+  }
+  .inline-calendar td.is-today, .inline-calendar td.is-today.is-disabled{
+    color: #e53837;
+   
   }
 }

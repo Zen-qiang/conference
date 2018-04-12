@@ -19,7 +19,7 @@
               <cell title="到达时间" value="12月20日 周三 08：50"></cell>
               <cell title="班次号" value="中国航空CA32C2"></cell>
             </group>
-            <div class="last">
+            <div class="last" @click="$router.push({'name' : 'Checkothers'})">
               <span>同行人员</span>
               <span><img src="../assets/images/headpic.jpg" alt=""></span>
             </div>
@@ -37,7 +37,7 @@
               <cell title="到达时间" value="12月27日 周二 11：50"></cell>
               <cell title="班次号" value="中国航空CA32C2"></cell>
             </group>
-            <div class="last">
+            <div class="last" @click="$router.push({'name' : 'Checkothers'})">
               <span>同行人员</span>
               <span><img src="../assets/images/headpic.jpg" alt=""></span>
             </div>

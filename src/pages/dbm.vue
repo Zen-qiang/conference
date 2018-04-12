@@ -8,7 +8,7 @@
    <ul>
        <li>
            <span>姓名</span>
-           <span>柳清风</span>
+           <span><input type="text" value='柳清风'></span>
        </li>
         <li>
             <span>照片</span>
@@ -17,11 +17,11 @@
         </li>
         <li>
             <span>手机</span>
-            <span class="hui">15026818561</span>
+            <span class="hui"><input type="text" value='15026818561'></span>
         </li>
         <li>
             <span>身份证</span>
-            <span>310115199119267415</span>
+            <span><input type="text" value='310115199119267415'></span>
         </li>
         <li>
             <span>性别</span>
@@ -30,15 +30,15 @@
         </li>
          <li>
             <span>酒店名</span>
-            <span>上海四季酒店陆家嘴店</span>
+            <span><input type="text" value="上海四季酒店陆家嘴店"></span>
         </li>
         <li>
             <span>房间类型</span>
-            <span>商务标间</span>
+            <span><input type="text" value="商务标间"></span>
         </li>
         <li>
             <span>房间序号</span>
-            <span>310</span>
+            <span><input type="text" value="310"></span>
         </li>
    </ul>
    <p class="end" @click="$router.push({'name' : 'Sqbm'})">完成</p>

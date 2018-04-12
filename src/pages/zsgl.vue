@@ -13,8 +13,33 @@
          <span>上海全季酒店</span>
          <img src="../assets/images/address.png" alt="">
        </div>
-       <div class="cal">
 
+       <div class="cal">
+          <inline-calendar
+            ref="calendar"
+            @on-change="onChange"
+            @on-view-change="onViewChange"
+            class="inline-calendar-demo"
+            :show.sync="show"
+            v-model="value"
+            start-date="2016-04-01"
+            end-date="2018-05-30"
+            :range="range"
+            :show-last-month="showLastMonth"
+            :show-next-month="showNextMonth"
+            :highlight-weekend="highlightWeekend"
+            :return-six-rows="return6Rows"
+            :hide-header="hideHeader"
+            :hide-week-list="hideWeekList"
+            :replace-text-list="replaceTextList"
+            :weeks-list="weeksList"
+            :render-function="buildSlotFn"
+            :disable-past="disablePast"
+            :disable-future="disableFuture"
+            :disable-weekend="disableWeekend"
+            :disable-date-function="disableDateFunction">
+          </inline-calendar>
+ 
        </div>
        <div class="box1">
          <span>入住信息</span>
@@ -31,12 +56,13 @@
 </template>
 
 <script>
-import { Group, Calendar, Swiper } from 'vux'
+import { Group, Calendar, Swiper, InlineCalendar } from 'vux'
 export default {
   components: {
     Group,
     Calendar,
-    Swiper
+    Swiper,
+    InlineCalendar
   },
   data () {
     return {
@@ -54,7 +80,39 @@ export default {
           url: 'javascript:',
           img: 'http://placeholder.qiniudn.com/800x300/8AEEB1/ffffff'
         }
-      ]
+      ],
+      show: true,
+      value: '',
+      listValue: '',
+      range: false,
+      showLastMonth: false,
+      showNextMonth: false,
+      highlightWeekend: false,
+      return6Rows: true,
+      hideHeader: false,
+      hideWeekList: false,
+      replaceTextList: {},
+      replace: false,
+      changeWeeksList: false,
+      weeksList: [],
+      useCustomFn: false,
+      buildSlotFn: () => '',
+      disablePast: false,
+      disableFuture: false,
+      disableWeekend: false,
+      disableDateFunction (date) {
+        if (date.formatedDate === '2017-10-16') {
+          return true
+        }
+      }
+    }
+  },
+  methods: {
+    onChange (val) {
+      console.log('on-change', val)
+    },
+    onViewChange (val, count) {
+      console.log('on view change', val, count)
     }
   }
 }

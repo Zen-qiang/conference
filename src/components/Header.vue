@@ -102,6 +102,10 @@ export default {
       this.$router.push({'name': 'Dining'})
       this.open = !this.open
     },
+    go6: function () {
+      this.$router.push({'name': 'Zsgl'})
+      this.open = !this.open
+    },
     go7: function () {
       this.$router.push({'name': 'Certificate'})
       this.open = !this.open

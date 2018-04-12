@@ -13,7 +13,12 @@
 .col3{
   color: #0cb4ce;
 }
-
+.col4{
+  color: #8ee28d;
+}
+.col5{
+  color: #ddd;
+}
 .vux-tab{
   position: relative;
   .icon1{
@@ -55,12 +60,12 @@
       font-weight: lighter;
     }
   }
-  ul{
+  .list{
     width: 100%;
     height: fmt(540);
     background: #f2f2f2;
     overflow: hidden;
-    li{
+    .inner{
       width: 100%;
       height: fmt(264);
       background: #fff;
@@ -121,8 +126,21 @@
       }
     }
   }
+  .list1{
+    height: fmt(290);
+  }
   .details_container{
     padding-top: fmt(8);
   }
-  
+  .vux-timeline{
+    padding: fmt(20) 0 fmt(30) fmt(30);
+    background: #fff;
+  }
+  .recent{
+    font:fmt(24)/fmt(40) Microsoft Yahei;
+  }
+  .recent1{
+    font:fmt(16)/fmt(40) Microsoft Yahei;
+  }
+ 
 }

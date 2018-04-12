@@ -52,18 +52,27 @@
     li:first-child{
       width: 100%;
       height: fmt(140);
+      position: relative;
       span:first-of-type{
-        margin-top: fmt(-130);
+        width: fmt(24);
+        height: fmt(24);
+        position: absolute;
+        top: fmt(60);
+        left: 0;
       }
       span:nth-of-type(2){
-        margin: fmt(-100) 0 0 fmt(20);
+        position: absolute;
+        top: fmt(24);
+        left: fmt(40);
         img{
           width: fmt(88);
           height: fmt(88);
         }
       }
       span:nth-of-type(3){
-        margin: 0 0 0 fmt(16);
+        position: absolute;
+        top: 0;
+        left: fmt(150);
         font:fmt(24)/fmt(140) Microsoft Yahei;
         color: #898989;
       }
@@ -79,21 +88,41 @@
         color: #898989;
       }
   }
+  span.active{
+    background: url(../assets/images/xuanzhong.png);
+  }
+  span.normal{
+    border: fmt(2) solid #eee;
+    background: #fff;
+  }
+  li:first-child,li:nth-child(2),li:nth-child(3),li:nth-child(5){
+    span:first-of-type.active{
+      background: url(../assets/images/xuanzhong.png);
+    }
+  }
   li:nth-child(2),li:nth-child(3),li:nth-child(4),li:nth-child(5){
     width: 100%;
     height: fmt(100);
     span:first-of-type{
-      margin-top: fmt(-150);
+      width: fmt(24);
+      height: fmt(24);
+      position: absolute;
+      top: fmt(44);
+      left: 0;
     }
     span:nth-of-type(2){
-      margin: fmt(-140) 0 0 fmt(20);
+      position: absolute;
+      top: fmt(24);
+      left: fmt(52);
       img{
         width: fmt(50);
         height: fmt(50);
       }
     }
     span:nth-of-type(3){
-      margin: 0 0 0 fmt(16);
+      position: absolute;
+      top: 0;
+      left: fmt(128);
       font:fmt(24)/fmt(100) Microsoft Yahei;
       color: #898989;
     }
@@ -105,7 +134,9 @@
        border: fmt(2) solid #eee;
        border-radius:fmt(2);
        color: #c2c2c2;
-       margin: fmt(36) 0 0 fmt(16);
+       position: absolute;
+       top: fmt(36);
+       left: fmt(288);
     }
     p{
       float: right;
@@ -125,7 +156,9 @@
       width: fmt(24);
       height: fmt(24);
       border: fmt(2) solid #efefef;
-      margin-top: fmt(36);
+      position: absolute;
+      top: fmt(40);
+      left: 0;
     }
     span{
       color: #bebebe !important;

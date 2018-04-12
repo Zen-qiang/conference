@@ -31,7 +31,7 @@
            <p>手机：15026818561</p>
            <p>房间类型：标间</p>
          </div>
-         <div class="right">
+         <div class="right" @click="print()">
            <p>打印吊牌</p>
          </div>
        </li>   
@@ -42,7 +42,7 @@
            <p>手机：15026818561</p>
            <p>房间类型：标间</p>
          </div>
-         <div class="right">
+         <div class="right" @click="print()">
            <p>打印吊牌</p>
          </div>
        </li>   

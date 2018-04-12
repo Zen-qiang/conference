@@ -1,7 +1,7 @@
 <template>
    <div class="bmgl_container">
      <tab :line-width="2" custom-bar-width="60px" bar-active-color="#00aac8">
-      <tab-item  selected>全部状态</tab-item>
+      <tab-item  selected>已报道</tab-item>
       <tab-item>所有客户</tab-item>
     </tab> 
     
