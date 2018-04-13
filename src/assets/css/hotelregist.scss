@@ -23,13 +23,13 @@
       }
       img{
         float: right;
-        margin-right: fmt(30);
-        width: fmt(12);
+        margin: fmt(40) fmt(30) 0 0;
+        width: fmt(20);
       }
-      span:last-of-type{
+      span:nth-of-type(2){
         float: right;
         color: #0cb4ce;
-        margin-right: fmt(60);
+        margin-right: fmt(20);
       }
     }
   }

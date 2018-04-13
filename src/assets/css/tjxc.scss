@@ -1,12 +1,16 @@
 @function fmt ($val) {
   @return ($val/200) +rem;
 }
+.vux-slider{
+  height: fmt(1144);
+}
 .vux-tab .vux-tab-item.vux-tab-selected{
   color: #333 !important;
 }
 .tjxc_container{
   width: 100%;
   background: #f2f2f2;
+  // height: 100vh;
   // border-top:fmt(2) solid #ddd;
   margin-top: fmt(100);
   overflow: hidden;

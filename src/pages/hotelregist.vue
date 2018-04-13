@@ -1,12 +1,12 @@
 <template>
   <div class="hotelregist_container">
     <ul>
-      <li>
+      <li @click="$router.push({'name' : 'Hotellist1'})">
         <span>已报道用户清单</span>
         <img src="../assets/images/jiantou.png" alt="">
         <span>60</span>
       </li>
-      <li>
+      <li @click="$router.push({'name' : 'Hotellist2'})">
         <span>房间安排</span>
         <img src="../assets/images/jiantou.png" alt="">
       </li>

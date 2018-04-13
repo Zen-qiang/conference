@@ -57,10 +57,10 @@
     }
     li{
       width: 100%;
-      width: fmt(100);
       height: fmt(100);
       position: relative;
       border-bottom: fmt(2) solid #eee;
+      // overflow: hidden;
       span:first-child{
         // float: right;
         position: absolute;

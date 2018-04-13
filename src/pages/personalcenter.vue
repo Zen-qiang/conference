@@ -58,7 +58,7 @@
           <div class="tab-swiper vux-center">
             <div class="list list1">
               <div class="inner">
-                <div class="first">
+                <div class="first" @click="$router.push({'name' : 'Hotelregist'})">
                   <span>adidas春季魅&黑系列上海订货会</span>
                   <span>进行中</span>
                   <span></span>

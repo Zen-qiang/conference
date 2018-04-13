@@ -5,7 +5,7 @@
     </div>
     <ul>
       <li>
-        <img src="../assets/images/car1.png" alt="">
+        <img src="../assets/images/car1.png" alt="" @click="$router.push({'name' : 'Cars'})">
       </li>
       <li>
         <span>宝骏1 17豪华商务车</span>

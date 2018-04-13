@@ -30,6 +30,10 @@ import Diningscan from '@/pages/diningscan'
 import Dininglist from '@/pages/dininglist'
 import Certificate from '@/pages/certificate'
 import Personalcenter from '@/pages/personalcenter'
+import Hotelregist from '@/pages/hotelregist'
+import Hotellist1 from '@/pages/hotellist1'
+import Hotellist2 from '@/pages/hotellist2'
+import Cars from '@/pages/cars'
 
 Vue.use(Router)
 
@@ -188,6 +192,26 @@ export default new Router({
       path: '/personalcenter',
       name: 'Personalcenter',
       component: Personalcenter
+    },
+    {
+      path: '/hotelregist',
+      name: 'Hotelregist',
+      component: Hotelregist
+    },
+    {
+      path: '/hotellist1',
+      name: 'Hotellist1',
+      component: Hotellist1
+    },
+    {
+      path: '/hotellist2',
+      name: 'Hotellist2',
+      component: Hotellist2
+    },
+    {
+      path: '/cars',
+      name: 'Cars',
+      component: Cars
     }
   ]
 })

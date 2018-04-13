@@ -14,7 +14,7 @@
         </tab-item> 
         <span class="icon1">5</span> 
         <span class="icon2">1</span>
-    </tab>
+      </tab>
       <swiper v-model="index"  :show-dots="false" height="730px">
         <swiper-item>
           <div class="tab-swiper vux-center">
