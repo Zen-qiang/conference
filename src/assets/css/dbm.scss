@@ -57,6 +57,10 @@
                     border: none;
                     outline: none;
                     color: #333;
+                    input::-webkit-input-placeholder {
+                        color: #999;
+                        font-size: fmt(28);
+                    }
                 }
             }
         }

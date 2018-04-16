@@ -15,11 +15,16 @@
             </li>
             <li>
                 <span>经销商</span>
-                <span>南通鸿祥贸易有限公司</span>
+                <span><input type="text" placeholder="请输入公司名称"></span>
             </li>
             <li>
                 <span>姓名</span>
-                <span>柳清风</span>
+                <span><input type="text" placeholder="请输入姓名"></span>
+            </li>
+            <li>
+                <group>
+                     <selector title="岗位" :options="list1" v-model="defaultValue1"></selector>
+                </group>
             </li>
             <li>
                 <span>照片</span>
@@ -28,16 +33,19 @@
             </li>
             <li>
                 <span>手机</span>
-                <span class="hui">15026818561</span>
+                <span class="hui"><input type="text" placeholder="请输入手机号码"></span>
             </li>
             <li>
                 <span>身份证</span>
-                <span>310115199119267415</span>
+                <span><input type="text" placeholder="请输入身份证号码"></span>
             </li>
-            <li>
-                <span>性别</span>
+            <li class="cel2">
+                <!-- <span>性别</span>
                 <span>男 <img src="../assets/images/nan.png" alt=""></span>
-                <span><img src="../assets/images/jiantou.png" alt=""></span>
+                <span><img src="../assets/images/jiantou.png" alt=""></span> -->
+                <group>
+                    <selector title="性别" :options="list" v-model="defaultValue"></selector>
+                </group>
             </li>
         </ul>
         <!-- 1.酒店信息跳转 -->
@@ -64,9 +72,9 @@
         <ul>
             <li>
                 <span class="hui">代报名成员</span>
-                <span class="hui">2</span>
+                <span class="hui">{{a}}</span>
             </li>
-            <li>
+            <!-- <li>
                 <div class="close"><img src="../assets/images/cha.png" alt=""></div>
                 <div class="box">
                   <span><img src="../assets/images/headpic2.jpg" alt=""></span>
@@ -102,7 +110,7 @@
                   </div>
                     
                 </div>
-            </li>
+            </li> -->
         </ul>
          <!-- 4.报名成功跳转 -->
         <p class="apply" @click="$router.push({'name': 'Bmcg'})">提交报名</p>
@@ -110,7 +118,22 @@
 </template>
 
 <script>
-
+import { Group, Selector } from 'vux'
+export default {
+  components: {
+    Group,
+    Selector
+  },
+  data () {
+    return {
+      a: 0,
+      defaultValue: 'nan',
+      list: [{key: 'nan', value: '男'}, {key: 'nv', value: '女'}],
+      defaultValue1: 'jl',
+      list1: [{key: 'jl', value: '经理'}, {key: 'zj', value: '总监'}]
+    }
+  }
+}
 </script>
 
 <style lang="sass" scoped>

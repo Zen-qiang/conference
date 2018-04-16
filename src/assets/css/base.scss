@@ -24,10 +24,48 @@
 ul, ol, li {
   list-style: none;
 }
+//申请报名
+.sqbm_container, .dbm_container{
+  .cel2{
+    .weui-cell__hd{
+      width: 316px;
+    }
+  }
+  .weui-cells{
+    height: 49px;
+    margin: 0;
+  }
+  .weui-cells:before, .weui-cells:after{
+    display: none;
+  }
+   .vux-selector{
+    width: 100%;
+    padding-left: 0 !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+   }
+   .weui-cells{
+    font-size: 14px !important;
+   }
+   .weui-cell__hd{
+     width: 300px;
+   }
+   .weui-cell__bd{
+     width: 100px;
+   }
+  .weui-select{
+    text-align: right !important;
+  }
+}
+.dbm_container{
+  .weui-cell__hd{
+    width: 314px;
+  }
+}
 // 添加行程
 .tjxc_container {
-  // font:14px/50px Microsoft Yahei;
-  // color: #333;
   .tab-swiper{
     margin-top: -10px;
   }
@@ -191,7 +229,7 @@ ul, ol, li {
   }
 }
 //住宿管理
-.zsgl_container{
+.zsgl_container, .zsgl1_container{
   .inline-calendar{
     padding: fmt(20) fmt(36);
   }
@@ -223,5 +261,22 @@ ul, ol, li {
   .inline-calendar td.is-today, .inline-calendar td.is-today.is-disabled{
     color: #e53837;
    
+  }
+}
+.v-transfer-dom{
+  .vux-popup-header-right{
+    color: #0cb4ce !important;
+  }
+}
+.zsgl1_container{
+  .weui-cells{
+    margin-top: 0 !important;
+  }
+  .weui-cells:after{
+    border: 1px solid #ddd !important;
+  }
+  .vux-label{
+    font-size: 14px;
+    color: #333;
   }
 }

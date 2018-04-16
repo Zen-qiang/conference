@@ -8,6 +8,7 @@ import Sqbm from '@/pages/sqbm'
 import Dbm from '@/pages/dbm'
 import Bmcg from '@/pages/bmcg'
 import Zsgl from '@/pages/zsgl'
+import Zsgl1 from '@/pages/zsgl1'
 import Rygl from '@/pages/rygl'
 import Map from '@/pages/map'
 import Bmgl from '@/pages/bmgl'
@@ -82,6 +83,11 @@ export default new Router({
       path: '/zsgl',
       name: 'Zsgl',
       component: Zsgl
+    },
+    {
+      path: '/zsgl1',
+      name: 'Zsgl1',
+      component: Zsgl1
     },
     {
       path: '/rygl',

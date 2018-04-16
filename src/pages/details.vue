@@ -40,7 +40,7 @@
               </li>
                <li>
                   <span>报名状态</span>
-                  <span>已提交</span>
+                  <span class="red">未提交</span>
               </li>
           </ul>
 

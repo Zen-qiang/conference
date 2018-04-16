@@ -46,6 +46,17 @@
                 float: left;
                 font:fmt(28)/fmt(100) Microsoft Yahei;
                 color: #333;
+                input{
+                    width: 100%;
+                    height: fmt(80);
+                    border: none;
+                    text-align: right;
+                    outline: none;
+                }
+                input::-webkit-input-placeholder {
+                    color: #999;
+                    font-size: fmt(28);
+                }
             }
         }
         li:first-of-type{
@@ -67,14 +78,14 @@
                 color: #ed7574;
             }   
         }
-        li:nth-of-type(2), li:nth-of-type(3), li:nth-of-type(5), li:nth-of-type(6){
+        li:nth-of-type(2), li:nth-of-type(3), li:nth-of-type(6), li:nth-of-type(7){
             span:last-of-type{
                 position: absolute;
                 top: 0;
                 right: fmt(20);
             }
         }
-        li:nth-of-type(4){
+        li:nth-of-type(5){
             span:nth-of-type(2){
                 position: absolute;
                 top: 0;

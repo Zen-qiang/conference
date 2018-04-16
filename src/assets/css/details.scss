@@ -1,6 +1,9 @@
 @function fmt ($val) {
     @return ($val/200) +rem;
 }
+.red{
+    color: #e85e53 !important;
+}
 .details_container {
     width: 100%;
     height: 100%;
