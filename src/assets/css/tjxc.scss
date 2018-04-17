@@ -29,6 +29,7 @@
     position: relative;
     border-top: fmt(2) solid #eee;
     border-bottom: fmt(2) solid #eee;
+    overflow: hidden;
     span:first-of-type{
       position: absolute;
       top: fmt(20);

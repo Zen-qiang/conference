@@ -39,19 +39,20 @@
             :disable-weekend="disableWeekend"
             :disable-date-function="disableDateFunction">
           </inline-calendar>
- 
-       </div>
+          <input type="btn" value="安排入住" @click="$router.push({'name' : 'Rygl'})">
+       </div> 
        <div class="box1">
          <span>入住信息</span>
          <span><i>{{a}}</i>/10人</span>
-          <span><img src="../assets/images/headpic.jpg" alt="" @click="$router.push({'name': 'Rygl'})"></span>
+          <!-- <span><img src="../assets/images/headpic.jpg" alt="" @click="$router.push({'name': 'Rygl'})"></span>
           <span @click="$router.push({'name': 'Rygl'})">more</span>
-          <span><img src="../assets/images/jiantou.png" alt=""></span>
+          <span><img src="../assets/images/jiantou.png" alt=""></span> -->
        </div>
        <div class="box2">
          <p>住宿备注</p>
          <p>本次住宿由XX集团提供，感觉对方立即给肌肤带来感觉了发达国家独领风队你卡数量单价你大夫克罗米芬队价你大夫克罗米芬队你卡数量单价你大夫克罗米芬队你卡数量单价你大夫克罗米芬队你卡数量单价你大夫克罗米芬队你卡</p>
        </div>
+
    </div>
 </template>
 
@@ -66,23 +67,23 @@ export default {
   },
   data () {
     return {
-      a: 7,
+      a: 0,
       lists: [
         {
           url: 'javascript:',
-          img: '/static/image/adidas1.jpg'
+          img: '/static/image/lb1.jpg'
         },
         {
           url: 'javascript:',
-          img: 'http://placeholder.qiniudn.com/800x300/FFEF7D/ffffff'
+          img: '/static/image/lb2.jpg'
         },
         {
           url: 'javascript:',
-          img: 'http://placeholder.qiniudn.com/800x300/8AEEB1/ffffff'
+          img: '/static/image/bo3.jpg'
         }
       ],
       show: true,
-      value: '',
+      value: [],
       listValue: '',
       range: false,
       showLastMonth: false,
@@ -110,6 +111,9 @@ export default {
   methods: {
     onChange (val) {
       console.log('on-change', val)
+      if (this.value.length === 3) {
+        this.value.shift()
+      }
     },
     onViewChange (val, count) {
       console.log('on view change', val, count)

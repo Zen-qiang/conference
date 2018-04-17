@@ -6,6 +6,7 @@ import Meetings from '@/pages/meetings'
 import Details from '@/pages/details'
 import Sqbm from '@/pages/sqbm'
 import Dbm from '@/pages/dbm'
+import Dbm1 from '@/pages/dbm1'
 import Bmcg from '@/pages/bmcg'
 import Zsgl from '@/pages/zsgl'
 import Zsgl1 from '@/pages/zsgl1'
@@ -35,6 +36,7 @@ import Hotelregist from '@/pages/hotelregist'
 import Hotellist1 from '@/pages/hotellist1'
 import Hotellist2 from '@/pages/hotellist2'
 import Cars from '@/pages/cars'
+import Login from '@/pages/login'
 
 Vue.use(Router)
 
@@ -73,6 +75,11 @@ export default new Router({
       path: '/dbm',
       name: 'Dbm',
       component: Dbm
+    },
+    {
+      path: '/dbm1',
+      name: 'Dbm1',
+      component: Dbm1
     },
     {
       path: '/bmcg',
@@ -218,6 +225,11 @@ export default new Router({
       path: '/cars',
       name: 'Cars',
       component: Cars
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]
 })

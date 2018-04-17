@@ -12,12 +12,12 @@
         <swiper-item>
           <div class="tab-swiper vux-center">
             <group>
-              <x-switch title="自行解决" style="color:#ababab"></x-switch>
-              <selector title="交通类型" :options="list3" v-model="defaultValue"></selector>
-              <cell title="到达城市" value="上海"></cell>
-              <selector title="到达地点" :options="list4" v-model="defaultValue1"></selector>
-              <cell title="到达时间" value="12月20日 周三 08：50"></cell>
-              <cell title="班次号" value="中国航空CA32C2"></cell>
+              <x-switch title="自行解决" style="color:#ababab" prevent-default v-model="value2" @on-click="onClick()"></x-switch>
+              <selector title="交通类型" :options="list3" v-model="defaultValue" v-show="!value2"></selector>
+              <cell title="到达城市" value="上海" v-show="!value2"></cell>
+              <selector title="到达地点" :options="list4" v-model="defaultValue1" v-show="!value2"></selector>
+              <cell title="到达时间" value="12月20日 周三 08：50" v-show="!value2"></cell>
+              <cell title="班次号" value="中国航空CA32C2" v-show="!value2"></cell>
             </group>
             <div class="last" @click="$router.push({'name' : 'Checkothers'})">
               <span>同行人员</span>
@@ -30,18 +30,18 @@
          <swiper-item>
           <div class="tab-swiper vux-center">
             <group>
-              <x-switch title="自行解决" style="color:#ababab"></x-switch>
-              <selector title="交通类型" :options="list3" v-model="defaultValue"></selector>
-              <cell title="到达城市" value="广州"></cell>
-              <selector title="到达地点" :options="list4" v-model="defaultValue1"></selector>
-              <cell title="到达时间" value="12月27日 周二 11：50"></cell>
-              <cell title="班次号" value="中国航空CA32C2"></cell>
+              <x-switch title="自行解决" style="color:#ababab" prevent-default v-model="value2" @on-click="onClick()"></x-switch>
+              <selector title="交通类型" :options="list3" v-model="defaultValue" v-show="!value2"></selector>
+              <cell title="到达城市" value="广州" v-show="!value2" ></cell>
+              <selector title="到达地点" :options="list4" v-model="defaultValue1" v-show="!value2"></selector>
+              <cell title="到达时间" value="12月27日 周二 11：50" v-show="!value2"></cell>
+              <cell title="班次号" value="中国航空CA32C2" v-show="!value2"></cell>
             </group>
             <div class="last" @click="$router.push({'name' : 'Checkothers'})">
               <span>同行人员</span>
               <span><img src="../assets/images/headpic.jpg" alt=""></span>
             </div>
-            <p class="end" @click="$router.push({'name' : 'Xcgl'})">完成</p>
+            <p class="end" @click="$router.push({'name' : 'Xcgl'})" >完成</p>
           </div>
         </swiper-item>
       </swiper> 
@@ -71,7 +71,14 @@ export default {
       defaultValue: 'fj',
       list3: [{key: 'fj', value: '飞机'}, {key: 'dc', value: '动车'}],
       defaultValue1: 'pd',
-      list4: [{key: 'pd', value: '浦东南站'}, {key: 'hq', value: '虹桥火车站'}]
+      list4: [{key: 'pd', value: '浦东南站'}, {key: 'hq', value: '虹桥火车站'}],
+      value2: false
+    }
+  },
+  methods: {
+    onClick: function () {
+      this.value2 = !this.value2
+      console.log(this.value2)
     }
   }
 }

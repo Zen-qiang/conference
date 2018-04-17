@@ -29,7 +29,26 @@ ul, ol, li {
   .cel2{
     .weui-cell__hd{
       width: 316px;
-    }
+    }  
+  }
+  ul:first-of-type{
+    li:nth-of-type(2), li:nth-of-type(3), li:nth-of-type(6), li:nth-of-type(7){
+      .weui-cell{
+        padding-left: 0 !important;
+      }
+      .weui-cell__hd{
+        width: 100px;
+      }
+      .weui-label, .weui-input{
+        line-height: 30px;
+      }
+      [class^="weui-icon-"], [class*=" weui-icon-"]{
+        font-size:10px !important;
+      }
+      .weui-icon-warn:before{
+        width: 10px;
+      }
+  }
   }
   .weui-cells{
     height: 49px;
@@ -58,6 +77,7 @@ ul, ol, li {
   .weui-select{
     text-align: right !important;
   }
+  
 }
 .dbm_container{
   .weui-cell__hd{

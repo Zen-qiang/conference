@@ -3,7 +3,7 @@
     <div class="content">
       <p class="first">
         <span>成员信息</span>
-        <span @click="$router.push({'name' : 'Dbm'})">增加</span>
+        <span @click="$router.push({'name' : 'Dbm1'})">增加</span>
       </p>
       <div class="main">
         <ul>

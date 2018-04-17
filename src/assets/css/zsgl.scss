@@ -27,7 +27,7 @@
         border-bottom:1px solid #eee;
         padding: 0 fmt(32) 0 fmt(24);
         overflow: hidden;
-        margin-top: fmt(-10);
+        margin-top: fmt(-8);
         margin-bottom: fmt(20);
         span{
             float: left;
@@ -44,7 +44,7 @@
         height: fmt(100);
         background: #fff;
         border-top:1px solid #eee;
-        border-bottom:1px solid #eee;
+        // border-bottom:1px solid #eee;
         font:fmt(28)/fmt(100) Microsoft Yahei;
         padding-left: fmt(25);
         position: relative;
@@ -96,8 +96,9 @@
     .box2{
         background: #fff;
         width: 100%;
-        height: fmt(300);
+        overflow: hidden;
         padding: fmt(20);
+        border-bottom: fmt(2) solid #ddd;
         p:first-child{ 
             font:fmt(28)/fmt(60) Microsoft Yahei;
             color: #595959;
@@ -108,4 +109,27 @@
             text-align: justify
         }
     }
+    .cal{
+        width: 100%;
+        background: #fff;
+        padding-bottom: fmt(140);
+        overflow: hidden;
+        position: relative;
+        border-bottom: fmt(2) solid #ddd;
+        input[type='btn']{
+            width: fmt(300);
+            height: fmt(100);
+            background: #0cb4ce;
+            color: #fff;
+            font:fmt(30)/fmt(100) Microsoft Yahei;
+            text-align: center;
+            border: none;
+            outline: none;
+            border-radius: fmt(50);
+            position: absolute;
+            left: fmt(220);
+            right: fmt(50);
+          }
+    }
+    
 } 
