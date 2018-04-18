@@ -1,7 +1,7 @@
 <template>
 <div id='mynav'>
     <img class='logo' src='../assets/images/logo.png' alt="">
-    <div id="btn1" @click="down()">
+    <div id="btn1" @click="down" ref='btn1' v-show="userRole">
       <img src='../assets/images/list.png' alt="">
     </div>
     <!-- 点击显示 -->
@@ -9,7 +9,7 @@
     <div class="hide" v-show="open">
         <div class="first">
             <img class='logo' src='../assets/images/logo.png' alt="">
-            <span id='up' @click='up()'>&times;</span>
+            <span id='up' @click='open = !open'>&times;</span>
         </div>
         <ul>
             <!-- <li v-for="value in arr">
@@ -57,6 +57,9 @@
 
 <script>
 export default {
+  // props: {
+
+  // },
   data () {
     return {
       arr: [
@@ -72,14 +75,15 @@ export default {
       open: false
     }
   },
+  computed: {
+    userRole: function () {
+      return this.$store.state.currentUser.role
+    }
+  },
+  created () {
+  },
   methods: {
     down: function () {
-      this.open = !this.open
-      if (this.open === true) {
-        // document.getElementsByClassName('.hide').style.transform = ''
-      }
-    },
-    up: function () {
       this.open = !this.open
     },
     go1: function () {
@@ -90,20 +94,45 @@ export default {
       this.$router.push({'name': 'Meetings'})
       this.open = !this.open
     },
+    // 报名管理
     go3: function () {
-      this.$router.push({'name': 'Report'})
+      if (this.userRole === 'admin') {
+        this.$router.push({'name': 'Report'})
+      } else {
+        this.$router.push({'name': ''})
+      }
       this.open = !this.open
     },
+    // 派车管理
     go4: function () {
-      this.$router.push({'name': 'Drivercenter'})
+      if (this.userRole === 'admin') {
+        this.$router.push({'name': 'Drivercenter'})
+      } else {
+        this.$router.push({'name': 'Cars'})
+      }
       this.open = !this.open
     },
+    // 用餐管理
     go5: function () {
-      this.$router.push({'name': 'Dining'})
+      console.log(this.$store.state.currentUser.role)
+      console.log(this.userRole)
+      if (this.userRole === 'admin') {
+        this.$router.push({'name': 'Dining1'})
+        console.log(1111111111)
+      } else {
+        this.$router.push({'name': 'Dining'})
+        console.log(222222222222)
+      }
       this.open = !this.open
     },
+    // 住宿管理
     go6: function () {
-      this.$router.push({'name': 'Zsgl1'})
+      console.log(this.$store.state.currentUser.role)
+      if (this.userRole === 'admin') {
+        this.$router.push({'name': 'Hotelregist'})
+      } else {
+        this.$router.push({'name': 'Zsgl1'})
+      }
       this.open = !this.open
     },
     go7: function () {
@@ -117,7 +146,6 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
 @import "../assets/css/head.scss";
 </style>

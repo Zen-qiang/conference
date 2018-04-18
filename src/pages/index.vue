@@ -10,7 +10,7 @@
           会务管理一条龙服务。<br/>
        </p>
        <!-- <input type="btn" value="立即体验"> -->
-       <div class="btn1" @click="$router.push({'name': 'Meetings'})">立即体验</div>
+       <div class="btn1" @click="$router.push({'name': 'Login'})" v-show="!userRole">立即登录</div>
     </div>
   </div>
 <!-- </transition> -->
@@ -18,21 +18,18 @@
 </template>
 
 <script>
-// import myNav from '../components/Header.vue'
+
 export default {
-  // components: {
-  //   myNav
-  // },
   data () {
     return {
       flag: false
     }
+  },
+  computed: {
+    userRole: function () {
+      return this.$store.state.currentUser.role
+    }
   }
-  // methods: {
-  //   meet () {
-  //     this.flag = true
-  //   }
-  // }
 }
 </script>
 
