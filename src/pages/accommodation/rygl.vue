@@ -1,7 +1,7 @@
 <template>
   <div class="rygl_container">
     <div class="first">
-       <span>全选</span>
+       <span @click="a=!a">全选</span>
        <span @click="$router.push({'name': 'Zsgl'})">上海全季酒店（陆家嘴店）</span> 
     </div>
     <div class="second">
@@ -10,7 +10,7 @@
     <ul>
       <li>
         <group>
-          <span class="active"></span>
+          <span :class="{active: !a,normal: true}" @click="chooseOrder($event)"></span>
           <span><img src="../../assets/images/headpic5.png" alt=""></span>
           <span>刘铁柱 &nbsp;&nbsp;男 <img src="../../assets/images/nan.png" alt=""></span>
           <selector :options="list" v-model="defaultValue"></selector>
@@ -20,7 +20,7 @@
       </li>
       <li>
         <group>
-          <span :class="{active: true,normal: false}"></span>
+          <span :class="{active: !a,normal: true}" @click="chooseOrder($event)"></span>
           <span><img src="../../assets/images/headpic6.png" alt=""></span>
           <span>柳清风 &nbsp;男 <img src="../../assets/images/nan.png" alt=""></span>
           <span>代</span>
@@ -30,7 +30,7 @@
       </li>
       <li>
          <group>
-            <span class="active"></span>
+            <span :class="{active: !a,normal: true}" @click="chooseOrder($event)"></span>
             <span><img src="../../assets/images/headpic7.png" alt=""></span>
             <span>柳清风 &nbsp;男 <img src="../../assets/images/nv.png" alt=""></span>
             <span>代</span>
@@ -40,7 +40,7 @@
       </li>
       <li>
          <group>
-          <span class="normal"></span>
+          <span :class="{active: !a,normal: true}" @click="chooseOrder($event)"></span>
           <span><img src="../../assets/images/headpic8.png" alt=""></span>
           <span>柳清风 &nbsp;男 <img src="../../assets/images/nv.png" alt=""></span>
           <span>代</span>
@@ -50,7 +50,7 @@
       </li>
       <li>
          <group>
-            <span class="active"></span>
+            <span :class="{active: !a,normal: true}" @click="chooseOrder($event)"></span>
             <span><img src="../../assets/images/headpic9.png" alt=""></span>
             <span>柳清风 &nbsp;男 <img src="../../assets/images/nan.png" alt=""></span>
             <span>代</span>
@@ -76,12 +76,24 @@ export default {
   },
   data () {
     return {
+      a: true,
       defaultValue: 'bj',
       defaultValue1: 'bj',
       defaultValue2: 'bj',
       defaultValue3: 'bj',
       defaultValue4: 'bj',
       list: [{key: 'bj', value: '标间1'}, {key: 'dc', value: '大床2'}, {key: 'tf', value: '套房3'}, {key: 'sc', value: '水床4'}]
+    }
+  },
+  methods: {
+    chooseOrder: function (e) {
+      if (e.target.className.indexOf('active') === -1) {
+        e.target.classList.add('active')
+        e.target.classList.remove('normal')
+      } else {
+        e.target.classList.remove('active')
+        e.target.classList.add('normal')
+      }
     }
   }
 }

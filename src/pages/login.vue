@@ -1,17 +1,30 @@
 <template>
   <div class="login_container">
     <img src="../assets/images/logo2.png" alt="" class="logo">
-    <input type="text" placeholder="请输入账号" v-model="value1" ref="input1" @focus="onFocus1" @blur="onBlur1">
-    <img src="../assets/images/icon01.png" alt="">
-    <input type="password" placeholder="请输入密码" v-model="value2" ref="input2" @focus="onFocus2" @blur="onBlur2">
-    <img src="../assets/images/icon2.png" alt="">
-    <input type="btn" value="登录" @click="check">
+    <div class="box1">
+      <label ref="input1">
+        <span></span>
+        <input type="text" placeholder="请输入账号" v-model="value1" @focus="onFocus1" @blur="onBlur1">
+        <span ref="aaa" v-show="value1 !== ''"  @click="click1"></span>
+      </label>
+      
+    </div>
+    <div class="box2">
+      <label ref="input2">
+        <span></span>
+        <input type="password" placeholder="请输入密码" v-model="value2"  @focus="onFocus2" @blur="onBlur2">
+        <span ref="bbb" v-show="value2 !== ''" @click="click2"></span>
+      </label>
+      
+    </div>
+    
+    <input type="button" value="登录" @click="check">
     <div class="bottom">
       <img src="../assets/images/english.png" alt="">
       <p>English</p>
     </div>
-    <img src="../assets/images/cuo.png" alt="" ref="aaa" v-show="value1 !== ''" @click="click1">
-    <img src="../assets/images/cuo.png" alt="" ref="bbb" v-show="value2 !== ''" @click="click2">
+    
+  
   </div>
 </template>
 

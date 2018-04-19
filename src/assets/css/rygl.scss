@@ -91,6 +91,9 @@
   span.active{
     background: url(../../assets/images/xuanzhong.png);
   }
+  span.active.normal{
+    background: url(../../assets/images/xuanzhong.png);
+  }
   span.normal{
     border: fmt(2) solid #eee;
     background: #fff;

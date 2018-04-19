@@ -51,8 +51,8 @@
             position: absolute;
             top: 0;
             left: fmt(24);
-            
-          }
+           }
+           
           p{
             position: absolute;
             left: fmt(56);
@@ -77,7 +77,7 @@
         li.active img{
           border:fmt(2) solid #0cb4ce;
         }
-        li.normal.active::after{
+        li.normal::after{
             content:'';
             // opacity: .6;
             width: fmt(36);

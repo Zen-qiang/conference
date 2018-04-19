@@ -40,7 +40,7 @@ ul, ol, li {
         width: 100px;
       }
       .weui-label, .weui-input{
-        line-height: 30px;
+        line-height: fmt(40);
       }
       [class^="weui-icon-"], [class*=" weui-icon-"]{
         font-size:10px !important;
@@ -250,6 +250,12 @@ ul, ol, li {
 }
 //住宿管理
 .zsgl_container, .zsgl1_container{
+  .vux-slider > .vux-indicator, .vux-slider .vux-indicator-right{
+    bottom: -30px !important;
+  }
+  .vux-slider > .vux-indicator > a > .vux-icon-dot.active, .vux-slider .vux-indicator-right > a > .vux-icon-dot.active{
+    background: #0cb4ce !important;
+  }
   .inline-calendar{
     padding: fmt(20) fmt(36);
   }

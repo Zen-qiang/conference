@@ -3,6 +3,7 @@
 }
 .active{
   box-shadow: 0 0 fmt(20) #c5e6fe;
+  // box-shadow: 0 0 fmt(20) red;
 }
 .normal{
   box-shadow: none;
@@ -15,42 +16,68 @@
   .logo{
     margin: fmt(200) 0 0 fmt(180);
   }
-  input{
-    width: fmt(560);
+  .box1, .box2{
     height: fmt(100);
+    position: relative;
+    // top: fmt(-80);
+    // overflow: hidden;
+    label {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      border-radius: fmt(50);
+      border: fmt(2) solid #496b89;
+      width: fmt(560);
+      margin: auto;
+      background: #fff;
+    }
+    input {
+      flex: auto;
+      outline: none;
+      border: none;
+      background: none;
+      font-size: fmt(28);
+    }
+    span:first-of-type{
+      flex: 0 0 fmt(80);
+      height: fmt(60);
+    }
+    span:nth-of-type(2){
+      flex: 0 0 fmt(100);
+      height: fmt(50);
+      background: url(../assets/images/cuo.png) no-repeat center;
+      background-size: 34%;
+    }
+  }
+  .box1{
+    span:first-of-type{
+      background: url(../assets/images/icon01.png) no-repeat center;
+      background-size: 60%;
+    }
+  }
+  .box2{
+    margin-top: fmt(30);
+    span:first-of-type{
+      background: url(../assets/images/icon2.png) no-repeat center;
+      background-size: 60%;
+    }
+  }
+  
+  input[type="button"]{
+    width: fmt(560);
+    position: relative;
+    transform: translateY(fmt(-80));
     border-radius: fmt(50);
+    border: none;
     outline: none;
-    border: fmt(2) solid #496b89;
-    padding-left: fmt(100);
-    margin-left: fmt(100);
-    font:fmt(30)/fmt(100) Microsoft Yahei;
-  }
-  input[type="text"]{
-    transform: translateY(fmt(-100));
-  }
-  input[type="password"]{
-    transform: translateY(fmt(-224));
-  }
-  input[type="btn"]{
-    padding-left: 0;
-    transform: translateY(fmt(-340));
+    margin-left: fmt(90);
+    padding: 0;
+    line-height: fmt(100);
     text-align: center;
     background: #002c56;
     color: #fff;
     letter-spacing: fmt(4);
-  }
-  img:nth-of-type(2){
-    position: absolute;
-    width: fmt(52);
-    left: fmt(130);
-    top: fmt(388);
-
-  }
-  img:nth-of-type(3){
-    position: absolute;
-    width: fmt(52);
-    left: fmt(130);
-    top: fmt(528);
+    font-size: fmt(28);
   }
   .bottom{
     width: fmt(180);
@@ -67,19 +94,5 @@
       float: right;
       font:fmt(32)/fmt(44) Arial;
     }
-  }
-  img:nth-of-type(4){
-    width: fmt(36);
-    position: absolute;
-    top: fmt(394);
-    right: fmt(128);
-    // display: none;
-  }
-  img:nth-of-type(5){
-    width: fmt(36);
-    position: absolute;
-    top: fmt(534);
-    right: fmt(128);
-    // display: none;
   }
 }

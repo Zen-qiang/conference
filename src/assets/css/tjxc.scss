@@ -9,10 +9,10 @@
 }
 .tjxc_container{
   width: 100%;
+  position: relative;
   background: #f2f2f2;
-  // height: 100vh;
   // border-top:fmt(2) solid #ddd;
-  margin-top: fmt(100);
+  padding-top: fmt(100);
   overflow: hidden;
   .vux-x-switch{
     height: fmt(100) !important;
@@ -51,10 +51,10 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: fmt(80);
+    height: fmt(100);
     background: #0cb4ce;
     color: #fff;
-    font:fmt(30)/fmt(80) Microsoft Yahei;
+    font:fmt(30)/fmt(100) Microsoft Yahei;
     text-align: center;
   }
 }

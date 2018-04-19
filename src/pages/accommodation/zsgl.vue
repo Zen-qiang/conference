@@ -39,7 +39,7 @@
             :disable-weekend="disableWeekend"
             :disable-date-function="disableDateFunction">
           </inline-calendar>
-          <input type="btn" value="安排入住" @click="$router.push({'name' : 'Rygl'})">
+          <input type="button" value="安排入住" @click="$router.push({'name' : 'Rygl'})">
        </div> 
        <div class="box1">
          <span>入住信息</span>

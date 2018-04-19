@@ -146,9 +146,15 @@
           }
         span:nth-of-type(3){
           position: absolute;
-          top: fmt(-146);
+          width: fmt(160);
+          height: fmt(60);
+          overflow: hidden;
+          top: fmt(16);
           right: fmt(140);
           img{
+            position: absolute;
+            top: 0;
+            left: 0;
               width: fmt(160);
               height: fmt(50);
           }

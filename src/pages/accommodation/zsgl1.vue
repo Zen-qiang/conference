@@ -24,7 +24,7 @@
             :disable-weekend="disableWeekend"
             :disable-date-function="disableDateFunction">
           </inline-calendar>
-    <input type="btn" value="筛选酒店">
+    <input type="button" value="筛选酒店">
     </div>
 
     <ul class="extra">

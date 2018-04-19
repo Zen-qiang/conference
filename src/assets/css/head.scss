@@ -10,7 +10,7 @@
     top: 0;
     z-index: 10;
     border-bottom: fmt(2) solid #eee;
-    overflow: hidden;
+    // overflow: hidden;
 }
 #mynav {
     .logo{
@@ -61,7 +61,7 @@
             position: absolute;
             width: fmt(66);
             height: fmt(66);
-            top:fmt(0);
+            top:fmt(10);
             right: fmt(10);
             color: #BBB;
             font-size: fmt(60);
