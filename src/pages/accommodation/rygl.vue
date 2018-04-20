@@ -13,8 +13,9 @@
           <span :class="{active: !a,normal: true}" @click="chooseOrder($event)"></span>
           <span><img src="../../assets/images/headpic5.png" alt=""></span>
           <span>刘铁柱 &nbsp;&nbsp;男 <img src="../../assets/images/nan.png" alt=""></span>
-          <selector :options="list" v-model="defaultValue"></selector>
-          <p>同房同序</p>
+          <selector :options="list" v-model="defaultValue" class="s1"></selector>
+          <selector :options="list1" v-model="defaultValue5" class="s2"></selector>
+          <!-- <p>同房同序</p> -->
       </group> 
         
       </li>
@@ -24,8 +25,9 @@
           <span><img src="../../assets/images/headpic6.png" alt=""></span>
           <span>柳清风 &nbsp;男 <img src="../../assets/images/nan.png" alt=""></span>
           <span>代</span>
-          <selector :options="list" v-model="defaultValue1"></selector>
-          <p>同房同序</p>
+          <selector :options="list" v-model="defaultValue1" class="s1"></selector>
+          <selector :options="list1" v-model="defaultValue6" class="s2"></selector>
+          <!-- <p>同房同序</p> -->
         </group> 
       </li>
       <li>
@@ -34,8 +36,9 @@
             <span><img src="../../assets/images/headpic7.png" alt=""></span>
             <span>柳清风 &nbsp;男 <img src="../../assets/images/nv.png" alt=""></span>
             <span>代</span>
-            <selector :options="list" v-model="defaultValue2"></selector>
-            <p>同房同序</p>
+            <selector :options="list" v-model="defaultValue2" class="s1"></selector>
+            <selector :options="list1" v-model="defaultValue7" class="s2"></selector>
+            <!-- <p>同房同序</p> -->
         </group> 
       </li>
       <li>
@@ -44,8 +47,9 @@
           <span><img src="../../assets/images/headpic8.png" alt=""></span>
           <span>柳清风 &nbsp;男 <img src="../../assets/images/nv.png" alt=""></span>
           <span>代</span>
-          <selector :options="list" v-model="defaultValue3"></selector>
-          <p>同房同序</p>
+          <selector :options="list" v-model="defaultValue3" class="s1"></selector>
+          <selector :options="list1" v-model="defaultValue8" class="s2"></selector>
+          <!-- <p>同房同序</p> -->
         </group> 
       </li>
       <li>
@@ -54,8 +58,9 @@
             <span><img src="../../assets/images/headpic9.png" alt=""></span>
             <span>柳清风 &nbsp;男 <img src="../../assets/images/nan.png" alt=""></span>
             <span>代</span>
-            <selector :options="list" v-model="defaultValue4"></selector>
-            <p>同房同序</p>
+            <selector :options="list" v-model="defaultValue4" class="s1"></selector>
+            <selector :options="list1" v-model="defaultValue9" class="s2"></selector>
+            <!-- <p>同房同序</p> -->
         </group> 
       </li>
     </ul>
@@ -82,7 +87,13 @@ export default {
       defaultValue2: 'bj',
       defaultValue3: 'bj',
       defaultValue4: 'bj',
-      list: [{key: 'bj', value: '标间1'}, {key: 'dc', value: '大床2'}, {key: 'tf', value: '套房3'}, {key: 'sc', value: '水床4'}]
+      defaultValue5: 'one',
+      defaultValue6: 'one',
+      defaultValue7: 'one',
+      defaultValue8: 'one',
+      defaultValue9: 'one',
+      list: [{key: 'bj', value: '标间1'}, {key: 'dc', value: '大床2'}, {key: 'tf', value: '套房3'}, {key: 'sc', value: '水床4'}],
+      list1: [{key: 'one', value: '序号1'}, {key: 'two', value: '序号2'}, {key: 'three', value: '序号3'}, {key: 'four', value: '序号4'}, {key: 'five', value: '序号5'}]
     }
   },
   methods: {

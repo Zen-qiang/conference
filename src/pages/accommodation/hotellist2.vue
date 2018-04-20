@@ -44,12 +44,50 @@
            
          <swiper-item>
           <div class="tab-swiper vux-center">
-            
+            <ul>
+              <li>
+                <img src="../../assets/images/headpic16.png" alt="">
+                <div class="left">
+                  <p>徐晓灵 <span>南通鸿祥贸易有限公司</span></p>
+                  <p>手机：15026818561</p>
+                  <p>房间类型：标间</p>
+                </div>
+                <p class="right right2">8140</p>
+              </li>
+            </ul>
           </div>
         </swiper-item>
         <swiper-item>
           <div class="tab-swiper vux-center">
-            
+             <ul>
+              <li>
+                <img src="../../assets/images/headpic16.png" alt="">
+                <div class="left">
+                  <p>徐晓灵 <span>南通鸿祥贸易有限公司</span></p>
+                  <p>手机：15026818561</p>
+                  <p>房间类型：标间</p>
+                </div>
+                <p class="right right2">8140</p>
+              </li>
+              <li>
+                <img src="../../assets/images/headpic16.png" alt="">
+                <div class="left">
+                  <p>徐晓灵 <span>南通鸿祥贸易有限公司</span></p>
+                  <p>手机：15026818561</p>
+                  <p>房间类型：标间</p>
+                </div>
+                <p class="right right2">8140</p>
+              </li>
+              <li>
+                <img src="../../assets/images/headpic16.png" alt="">
+                <div class="left">
+                  <p>徐晓灵 <span>南通鸿祥贸易有限公司</span></p>
+                  <p>手机：15026818561</p>
+                  <p>房间类型：标间</p>
+                </div>
+                <p class="right right2">8140</p>
+              </li>
+            </ul>
           </div>
         </swiper-item>
       </swiper> 

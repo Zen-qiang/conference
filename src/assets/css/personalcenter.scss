@@ -40,7 +40,8 @@
     width: 100%;
     height: fmt(340);
     position: relative;
-    background: url(../../assets/images/bg1.png);
+    // background: url(../../assets/images/bg1.png);
+    background: linear-gradient(#0c92ce,#0cb4ce);
     padding-top: fmt(230);
     img{
       position: absolute;

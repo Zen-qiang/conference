@@ -24,6 +24,9 @@
 ul, ol, li {
   list-style: none;
 }
+@function fmt ($val) {
+  @return ($val/200) +rem;
+}
 //申请报名
 .sqbm_container, .dbm_container{
   .cel2{
@@ -40,7 +43,7 @@ ul, ol, li {
         width: 100px;
       }
       .weui-label, .weui-input{
-        line-height: fmt(40);
+        line-height: fmt(50);
       }
       [class^="weui-icon-"], [class*=" weui-icon-"]{
         font-size:10px !important;
@@ -144,21 +147,57 @@ ul, ol, li {
     .weui-cells:before{
       border-top: none !important;
     }
+    .s1 {
+      .weui-select{
+        right: fmt(200);
+        top: fmt(40);
+      } 
+      .weui-cell__bd:after{
+        right: fmt(220);
+      }
+     }
+    .s2 {
+      .weui-select{
+        right: fmt(20);
+        top: fmt(40);
+      }
+      .weui-cell__bd:after{
+        right: fmt(40);
+      }
+    }
   }
   li:nth-child(2),li:nth-child(3),li:nth-child(4),li:nth-child(5){
     .weui-cells{
       margin-top: -1px;
       height: 51px;
       border: none;
+      .s1 {
+      .weui-select{
+        right: fmt(200);
+      } 
+      .weui-cell__bd:after{
+        right: fmt(40);
+      }
+     }
+    .s2 {
+      .weui-select{
+        right: fmt(20);
+      }
+      .weui-cell__bd:after{
+        right: fmt(220);
+      }
     }
-    .weui-select{
-      top: 10px;
     }
+    
     .weui-cell_select .weui-cell__bd:after{
       top:28px;
     }
+    
   }
   li:nth-child(4){
+    .weui-cells{
+      position: relative;
+    }
     .weui-select{
       // border-color: #bebebe;
       color: #bebebe;
@@ -167,13 +206,17 @@ ul, ol, li {
       border-left-color: #bebebe;
     }
   }
+
+  .weui-cell:before{
+    display: none;
+  }
   .weui-select{
     position: absolute;
-    left: 80px;
-    top: 20px;
+    // left: fmt(160);
+    // margin-left: fmt(120);
+    top: fmt(20);
     width: 72px;
     height: 30px;
-    transform: translateX(140%);
     font:12px/28px Microsoft Yahei;
     color: #888;
     padding-left: 10px !important;
@@ -189,7 +232,7 @@ ul, ol, li {
       z-index: 5;
       position: absolute;
       top: 38px;
-      right: 112px;
+      // right: 112px;
       border :4px solid transparent ;
       border-left-color: #898989;
       transform: rotate(90deg);
@@ -205,9 +248,6 @@ ul, ol, li {
   }
 }
 
-@function fmt ($val) {
-  @return ($val/200) +rem;
-}
 //个人中心
 .personalcenter_container{
   .vux-timeline-item{
@@ -256,8 +296,29 @@ ul, ol, li {
   .vux-slider > .vux-indicator > a > .vux-icon-dot.active, .vux-slider .vux-indicator-right > a > .vux-icon-dot.active{
     background: #0cb4ce !important;
   }
-  .inline-calendar{
-    padding: fmt(20) fmt(36);
+  .weui-cell{
+    height: fmt(100);
+    border-bottom: fmt(2) solid #ddd;
+  }
+  .weui-cells{
+    margin-top: 0 !important;
+  }
+  .vux-label{
+    font-size: fmt(28);
+    color: #333;
+  }
+  .vux-cell-value{
+    font-size: fmt(28);
+    margin: 0 fmt(8) fmt(8) 0;
+    line-height: fmt(90);
+  }
+  .vux-calendar:before{
+    display: none;
+  }
+}
+.v-transfer-dom{
+  .vux-popup-header-right{
+    color: #0cb4ce !important;
   }
   .calendar-header{
     height: fmt(80);
@@ -268,18 +329,21 @@ ul, ol, li {
     border-color: #0cbece;
   }
   .calendar-title{
-    font:fmt(22)/fmt(60) Microsoft Yahei;
+    font:fmt(24)/fmt(68) Microsoft Yahei;
     transform:translateY(-44px);
   }
   .week{
-    font:fmt(20)/fmt(60) Microsoft Yahei;
+    font:fmt(24)/fmt(60) Microsoft Yahei;
     color: #cacaca;
+  }
+  .inline-calendar{
+    padding: fmt(24) fmt(36);
   }
   .inline-calendar-demo {
     background: rgba(255,255,255,0.9);
   }
   .vux-calendar-each-date{
-    font:fmt(20)/fmt(50) Microsoft Yahei;
+    font:fmt(24)/fmt(50) Microsoft Yahei;
   }
   .inline-calendar td.current > span.vux-calendar-each-date{
     background: #e94142;
@@ -289,20 +353,4 @@ ul, ol, li {
    
   }
 }
-.v-transfer-dom{
-  .vux-popup-header-right{
-    color: #0cb4ce !important;
-  }
-}
-.zsgl1_container{
-  .weui-cells{
-    margin-top: 0 !important;
-  }
-  .weui-cells:after{
-    border: 1px solid #ddd !important;
-  }
-  .vux-label{
-    font-size: 14px;
-    color: #333;
-  }
-}
+

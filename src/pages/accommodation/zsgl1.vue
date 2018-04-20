@@ -1,7 +1,7 @@
 <template>
   <div class="zsgl1_container">
     <div class="main">
-          <inline-calendar
+          <!-- <inline-calendar
             ref="calendar"
             @on-change="onChange"
             class="inline-calendar-demo"
@@ -23,8 +23,12 @@
             :disable-future="disableFuture"
             :disable-weekend="disableWeekend"
             :disable-date-function="disableDateFunction">
-          </inline-calendar>
-    <input type="button" value="筛选酒店">
+          </inline-calendar> -->
+    <group>
+      <calendar  v-model="demo1" :title="'请选择起始时间'" show-popup-header :popup-header-title="'请选择日期'"></calendar>
+      <calendar  v-model="demo2" :title="'请选择截止时间'" show-popup-header :popup-header-title="'请选择日期'"></calendar>
+    </group> 
+    <input type="button" value="筛选酒店" @click="flag = !flag">
     </div>
 
     <ul class="extra">
@@ -84,41 +88,19 @@ export default {
   },
   data () {
     return {
+      readonly: false,
       demo1: 'TODAY',
-      demo2: [],
-      show: true,
-      value: [],
-      listValue: '',
-      range: false,
-      showLastMonth: false,
-      showNextMonth: false,
-      highlightWeekend: false,
-      return6Rows: true,
-      hideHeader: false,
-      hideWeekList: false,
-      replaceTextList: {},
-      replace: false,
-      changeWeeksList: false,
-      weeksList: [],
-      useCustomFn: false,
-      buildSlotFn: () => '',
-      disablePast: false,
-      disableFuture: false,
-      disableWeekend: false,
-      disableDateFunction (date) {
-        if (date.formatedDate === '2017-10-16') {
-          return true
-        }
-      }
+      demo2: 'TODAY',
+      flag: false
     }
   },
   methods: {
-    onChange (val) {
-      console.log('on-change', val)
-      if (this.value.length === 3) {
-        this.value.shift()
-      }
-    }
+    // onChange (val) {
+    //   console.log('on-change', val)
+    //   if (this.value.length === 3) {
+    //     this.value.shift()
+    //   }
+    // }
   }
 }
 </script>

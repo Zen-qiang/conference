@@ -31,7 +31,7 @@
         margin-bottom: fmt(20);
         span{
             float: left;
-            font:fmt(32)/fmt(150) Microsoft Yahei;
+            font:fmt(30)/fmt(150) Microsoft Yahei;
             color: #474747;
         }
         img{
@@ -60,7 +60,7 @@
             color: #333;
             top: 0;
             left: fmt(160);
-            font-size: fmt(10);
+            font-size: fmt(20);
             letter-spacing: fmt(4);
             color: #5c5c5c;
             i{
@@ -112,23 +112,23 @@
     .cal{
         width: 100%;
         background: #fff;
-        padding-bottom: fmt(140);
+        padding-bottom: fmt(200);
         overflow: hidden;
         position: relative;
         border-bottom: fmt(2) solid #ddd;
         input[type='button']{
-            width: fmt(300);
-            height: fmt(100);
+            width: fmt(280);
+            height: fmt(90);
             background: #0cb4ce;
             color: #fff;
-            font:fmt(30)/fmt(100) Microsoft Yahei;
+            font:fmt(30)/fmt(90) Microsoft Yahei;
             text-align: center;
             border: none;
             outline: none;
-            border-radius: fmt(50);
+            border-radius: fmt(45);
             position: absolute;
-            left: fmt(220);
-            right: fmt(50);
+            left: fmt(230);
+            bottom: fmt(50);
           }
     }
     

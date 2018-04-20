@@ -8,7 +8,7 @@
           {{item}}
         </tab-item> 
       </tab>
-      <swiper v-model="index"  :show-dots="false" height="1000px">
+      <swiper v-model="index"  :show-dots="false" height="1100px">
         <swiper-item>
           <div class="tab-swiper vux-center">
             <ul>

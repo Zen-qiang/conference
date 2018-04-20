@@ -16,10 +16,10 @@
     background: #fff;
     overflow: hidden;
     position: relative;
-    padding-bottom: fmt(160);
+    padding-bottom: fmt(200);
     border-bottom: fmt(2) solid #ddd;
     input[type='button']{
-      width: fmt(320);
+      width: fmt(300);
       height: fmt(100);
       background: #0cb4ce;
       color: #fff;
@@ -29,7 +29,7 @@
       outline: none;
       border-radius: fmt(50);
       position: absolute;
-      left: fmt(200);
+      left: fmt(220);
       bottom: fmt(50);
     }
   }
@@ -38,16 +38,17 @@
     overflow: hidden;
     background: #f2f2f2;
     margin-top: fmt(20);
-    border-top: fmt(2) solid #ddd;
+    // border-top: fmt(2) solid #ddd;
     // border-bottom: fmt(2) solid #ddd;
     li{
       background: #fff;
-      border-bottom: fmt(2) solid #ddd
+      border-bottom: fmt(2) solid #ddd;
     }
     li:nth-child(2n+1){
       width: 100%;
       height: fmt(100);
       padding: 0 fmt(40) 0 fmt(30);
+      border-top: fmt(2) solid #ddd;
       font: fmt(30)/fmt(100) Microsoft Yahei;
       color: #333;
       margin-top: fmt(12);

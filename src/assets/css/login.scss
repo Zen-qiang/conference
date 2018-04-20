@@ -82,10 +82,11 @@
   .bottom{
     width: fmt(180);
     height: fmt(40);
-    position: absolute;
-    left: fmt(270);
-    bottom: fmt(80);
+    // position: fixed;
+    // left: fmt(270);
+    // bottom: fmt(80);
     // overflow: hidden;
+    margin: fmt(400) 0 0 fmt(270);
     img{
       float: left;
       width: fmt(60);

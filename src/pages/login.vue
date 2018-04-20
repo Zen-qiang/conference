@@ -36,7 +36,8 @@ export default {
       a: true,
       b: false,
       value1: '',
-      value2: ''
+      value2: '',
+      fullHeight: document.documentElement.clientHeight
     }
   },
   methods: {

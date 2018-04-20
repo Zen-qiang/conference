@@ -6,7 +6,7 @@
     </div>
     <!-- 点击显示 -->
     <transition name="slide">
-    <div class="hide" v-show="open">
+    <div class="hide" v-show="open" @click="lose($event)">
         <div class="first">
             <img class='logo' src='../assets/images/logo.png' alt="">
             <span id='up' @click='open = !open'>&times;</span>
@@ -120,7 +120,7 @@ export default {
         this.$router.push({'name': 'Dining1'})
         console.log(1111111111)
       } else {
-        this.$router.push({'name': 'Dining'})
+        this.$router.push({'name': 'Diningdetail'})
         console.log(222222222222)
       }
       this.open = !this.open
@@ -142,6 +142,12 @@ export default {
     go8: function () {
       this.$router.push({'name': 'Personalcenter'})
       this.open = !this.open
+    },
+    lose: function (e) {
+      console.dir(e.target)
+      if (e.target.className === 'hide') {
+        this.open = !this.open
+      }
     }
   }
 }
