@@ -31,7 +31,7 @@
               <selector title="性别" :options="list" v-model="defaultValue"></selector>
             </group>
         </li>
-         <li>
+         <!-- <li>
             <span>酒店名</span>
             <span><input type="text" placeholder="请输入酒店名称"></span>
         </li>
@@ -42,7 +42,7 @@
         <li>
             <span>房间序号</span>
             <span><input type="text" placeholder="请输入房间序号"></span>
-        </li>
+        </li> -->
    </ul>
    <p class="end" @click="$router.push({'name' : 'Tjry'})">完成</p>
   </div>

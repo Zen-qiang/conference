@@ -49,7 +49,7 @@
           </li>
         </ul>
       </div>
-      <p class="add" @click="$router.push({'name' : 'Tjxc'})">添加至行程</p>
+      <p class="add" @click="$router.push({'name' : 'Tjxc'})">确定</p>
     </div>
   </div>
 </template>

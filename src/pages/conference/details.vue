@@ -30,9 +30,9 @@
               <li>
                   <span>报名信息</span>
                   <span>已报名<i>{{a}}</i>人</span>
-                   <span><img src="../../assets/images/headpic.jpg" alt=""></span>
+                   <!-- <span><img src="../../assets/images/headpic.jpg" alt=""></span>
                    <span>more</span>
-                   <span><img src="../../assets/images/jiantou.png" alt=""></span>
+                   <span><img src="../../assets/images/jiantou.png" alt=""></span> -->
               </li>
               <li v-if="userRole != 'admin'">
                   <span>经销商</span>
@@ -40,7 +40,7 @@
               </li>
                <li v-if="userRole != 'admin'">
                   <span>报名状态</span>
-                  <span class="red">未提交</span>
+                  <span class="red">未报名</span>
               </li>
           </ul>
 
@@ -61,7 +61,7 @@
 export default{
   data () {
     return {
-      a: 8,
+      a: 0,
       userRole: ''
     }
   },

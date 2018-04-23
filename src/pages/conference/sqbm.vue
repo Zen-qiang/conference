@@ -61,7 +61,7 @@
             </li>
         </ul>
         <!-- 1.酒店信息跳转 -->
-        <ul @click="$router.push({'name': 'Zsgl'})">
+        <!-- <ul @click="$router.push({'name': 'Zsgl'})">
             <li>
                 <span class="hui">酒店信息</span>
                 <span>选择</span>
@@ -79,7 +79,7 @@
                 <span>房间序号</span>
                 <span>310</span>
             </li>
-        </ul>
+        </ul> -->
 
         <ul>
             <li>

@@ -29,12 +29,26 @@ ul, ol, li {
 }
 //申请报名
 .sqbm_container, .dbm_container{
-  .cel2{
-    .weui-cell__hd{
-      width: 316px;
-    }  
-  }
+  // .cel2{
+  //   .weui-cell__hd{
+  //     width: 316px;
+  //   }  
+  // }
+  
   ul:first-of-type{
+    .weui-cell__bd{
+      line-height: fmt(60);
+    }
+    li:nth-of-type(4){
+      .weui-cell_select-after .weui-select{
+        padding-left: fmt(70);
+      }
+    }
+    li:nth-of-type(8){
+      .weui-cell_select-after .weui-select{
+        padding-left: fmt(96);
+      }
+    }
     li:nth-of-type(2), li:nth-of-type(3), li:nth-of-type(6), li:nth-of-type(7){
       .weui-cell{
         padding-left: 0 !important;
@@ -82,13 +96,26 @@ ul, ol, li {
   }
   
 }
+//代报名
 .dbm_container{
-  .weui-cell__hd{
-    width: 314px;
+  .weui-cell__bd{
+    // width: 314px;
+    text-align: right;
+    padding-left: fmt(90);
+  }
+  .weui-cell_select .weui-cell__bd:after{
+    top: 52% !important;
   }
 }
 // 添加行程
 .tjxc_container {
+  .vux-x-input{
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .weui-input{
+    font: 14px/44px Microsoft Yahei;
+  }
   .tab-swiper{
     margin-top: -10px;
   }
@@ -136,8 +163,37 @@ ul, ol, li {
   }
   
 }
+//行程管理
+.xcgl_container{
+  .change{
+    position: absolute;
+    left: fmt(44);
+    top: 0;
+    font:fmt(26)/fmt(90) Microsoft Yahei;
+  }
+  .weui-btn{
+    height: fmt(100);
+    border-radius: fmt(50);
+    font: fmt(30)/fmt(100)  Microsoft Yahei;
+    color: #fff !important;
+    background: #0cb4ce !important;
+  }
+  .divTab{
+    .weui-btn{
+      margin-top: fmt(376);
+    }
+  }
+  .divTab2{
+    .weui-btn{
+      margin-top: fmt(700);
+    }
+  }
+}
 //人员管理
 .rygl_container{
+  .weui-cells:after{
+    border: none;
+  }
   li:first-of-type{
     .weui-cells{
       margin-top: -1px;

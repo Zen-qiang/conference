@@ -16,10 +16,10 @@
               <selector title="交通类型" :options="list3" v-model="defaultValue" v-show="!value2"></selector>
               <cell title="到达城市" value="上海" v-show="!value2"></cell>
               <selector title="到达地点" :options="list4" v-model="defaultValue1" v-show="!value2"></selector>
-              <cell title="到达时间" value="12月20日 周三 08：50" v-show="!value2"></cell>
-              <cell title="班次号" value="中国航空CA32C2" v-show="!value2"></cell>
+              <x-input title="到达时间" placeholder="12月20日 周三 08：50" placeholder-align="right" text-align="right" v-show="!value2"></x-input>
+              <x-input title="班次号"  placeholder="中国航空CA32C2" placeholder-align="right" text-align="right" v-show="!value2"></x-input>
             </group>
-            <div class="last" @click="$router.push({'name' : 'Checkothers'})">
+            <div class="last" @click="$router.push({'name' : 'Tjry'})">
               <span>同行人员</span>
               <span><img src="../../assets/images/headpic.jpg" alt=""></span>
             </div>
@@ -34,10 +34,10 @@
               <selector title="交通类型" :options="list3" v-model="defaultValue" v-show="!value2"></selector>
               <cell title="到达城市" value="广州" v-show="!value2" ></cell>
               <selector title="到达地点" :options="list4" v-model="defaultValue1" v-show="!value2"></selector>
-              <cell title="到达时间" value="12月27日 周二 11：50" v-show="!value2"></cell>
-              <cell title="班次号" value="中国航空CA32C2" v-show="!value2"></cell>
+              <x-input title="到达时间" placeholder="12月20日 周三 08：50" placeholder-align="right" text-align="right" v-show="!value2"></x-input>
+              <x-input title="班次号"  placeholder="中国航空CA32C2" placeholder-align="right" text-align="right" v-show="!value2"></x-input>
             </group>
-            <div class="last" @click="$router.push({'name' : 'Checkothers'})">
+            <div class="last" @click="$router.push({'name' : 'Tjry'})">
               <span>同行人员</span>
               <span><img src="../../assets/images/headpic.jpg" alt=""></span>
             </div>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { Tab, TabItem, Swiper, SwiperItem, Cell, XSwitch, Group, Selector } from 'vux'
+import { Tab, TabItem, Swiper, SwiperItem, Cell, XSwitch, Group, Selector, XInput } from 'vux'
 const list = () => ['到站信息', '返程信息']
 export default {
   components: {
@@ -60,7 +60,8 @@ export default {
     Cell,
     Group,
     XSwitch,
-    Selector
+    Selector,
+    XInput
   },
   data () {
     return {
