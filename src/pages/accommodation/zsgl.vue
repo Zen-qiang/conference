@@ -15,33 +15,9 @@
        </div>
 
        <div class="cal">
-          <!-- <inline-calendar
-            ref="calendar"
-            @on-change="onChange"
-            @on-view-change="onViewChange"
-            class="inline-calendar-demo"
-            :show.sync="show"
-            v-model="value"
-            start-date="2016-04-01"
-            end-date="2018-05-30"
-            :range="range"
-            :show-last-month="showLastMonth"
-            :show-next-month="showNextMonth"
-            :highlight-weekend="highlightWeekend"
-            :return-six-rows="return6Rows"
-            :hide-header="hideHeader"
-            :hide-week-list="hideWeekList"
-            :replace-text-list="replaceTextList"
-            :weeks-list="weeksList"
-            :render-function="buildSlotFn"
-            :disable-past="disablePast"
-            :disable-future="disableFuture"
-            :disable-weekend="disableWeekend"
-            :disable-date-function="disableDateFunction">
-          </inline-calendar> -->
     <group>
-      <calendar  v-model="demo1" :title="'请选择入住日期'" show-popup-header :popup-header-title="'请选择日期'"></calendar>
-      <calendar  v-model="demo2" :title="'请选择退房日期'" show-popup-header :popup-header-title="'请选择日期'"></calendar>
+      <calendar  v-model="demo1" :title="'请选择入住日期'" show-popup-header :popup-header-title="'请选择入住日期'"></calendar>
+      <calendar  v-model="demo2" :title="'请选择退房日期'" show-popup-header :popup-header-title="'请选择退房日期'"></calendar>
     </group>
           <input type="button" value="安排入住" @click="$router.push({'name' : 'Rygl'})">
        </div> 

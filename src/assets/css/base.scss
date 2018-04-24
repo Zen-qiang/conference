@@ -345,7 +345,22 @@ ul, ol, li {
   }
 }
 //住宿管理
+.zsgl1_container{
+  .vux-tab-selected{
+    color: #333 !important;
+  }
+  .vux-slider{
+    margin-top: fmt(20);
+  }
+  .vux-swiper{
+    height: fmt(1400) !important;
+  }
+}
 .zsgl_container, .zsgl1_container{
+  .swi{
+    // height: fmt(360) !important;
+    overflow: hidden;
+  }
   .vux-slider > .vux-indicator, .vux-slider .vux-indicator-right{
     bottom: -30px !important;
   }
@@ -371,21 +386,34 @@ ul, ol, li {
   .vux-calendar:before{
     display: none;
   }
+  .weui-btn{
+    width: fmt(660);
+    height: fmt(100);
+    font:fmt(30)/fmt(100) Microsoft Yahei;
+    color: #fff !important;
+    background: #0cb4ce !important;
+    border-radius: fmt(50);
+    margin: fmt(600) auto;
+    // position: fixed;
+    // bottom: fmt(100);
+    left: 0;
+  }
 }
 .v-transfer-dom{
   .vux-popup-header-right{
     color: #0cb4ce !important;
   }
   .calendar-header{
-    height: fmt(80);
+    height: fmt(60);
   }
   .vux-next-icon,.vux-prev-icon{
     width: fmt(16);
     height: fmt(16);
     border-color: #0cbece;
+    margin-top: fmt(8);
   }
   .calendar-title{
-    font:fmt(24)/fmt(68) Microsoft Yahei;
+    font:fmt(24)/fmt(60) Microsoft Yahei;
     transform:translateY(-44px);
   }
   .week{

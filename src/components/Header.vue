@@ -99,7 +99,7 @@ export default {
       if (this.userRole === 'admin') {
         this.$router.push({'name': 'Report'})
       } else {
-        this.$router.push({'name': ''})
+        this.$router.push({'name': 'Usereport'})
       }
       this.open = !this.open
     },

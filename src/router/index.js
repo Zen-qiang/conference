@@ -10,6 +10,7 @@ import Dbm1 from '@/pages/conference/dbm1'
 import Bmcg from '@/pages/conference/bmcg'
 import Zsgl from '@/pages/accommodation/zsgl'
 import Zsgl1 from '@/pages/accommodation/zsgl1'
+import Staylist from '@/pages/accommodation/staylist'
 import Rygl from '@/pages/accommodation/rygl'
 import Map from '@/pages/accommodation/map'
 import Bmgl from '@/pages/conference/bmgl'
@@ -19,6 +20,7 @@ import Tjxc from '@/pages/journey/tjxc'
 import Checkothers from '@/pages/journey/checkothers'
 import Addroute from '@/pages/journey/addroute'
 import Report from '@/pages/checkin/report'
+import Usereport from '@/pages/checkin/usereport'
 import Reported from '@/pages/checkin/reported'
 import Allreport from '@/pages/checkin/Allreport'
 import Drivercenter from '@/pages/vehicles/drivercenter'
@@ -103,6 +105,11 @@ export default new Router({
       component: Rygl
     },
     {
+      path: '/staylist',
+      name: 'Staylist',
+      component: Staylist
+    },
+    {
       path: '/map',
       name: 'Map',
       component: Map
@@ -141,6 +148,11 @@ export default new Router({
       path: '/report',
       name: 'Report',
       component: Report
+    },
+    {
+      path: '/usereport',
+      name: 'Usereport',
+      component: Usereport
     },
     {
       path: '/reported',

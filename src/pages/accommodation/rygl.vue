@@ -34,7 +34,7 @@
          <group>
             <span :class="{active: !a,normal: true}" @click="chooseOrder($event)"></span>
             <span><img src="../../assets/images/headpic7.png" alt=""></span>
-            <span>柳清风 &nbsp;男 <img src="../../assets/images/nv.png" alt=""></span>
+            <span>戴佩妮 &nbsp;女 <img src="../../assets/images/nv.png" alt=""></span>
             <span>代</span>
             <selector :options="list" v-model="defaultValue2" class="s1"></selector>
             <selector :options="list1" v-model="defaultValue7" class="s2"></selector>
@@ -45,7 +45,7 @@
          <group>
           <span :class="{active: !a,normal: true}" @click="chooseOrder($event)"></span>
           <span><img src="../../assets/images/headpic8.png" alt=""></span>
-          <span>柳清风 &nbsp;男 <img src="../../assets/images/nv.png" alt=""></span>
+          <span>周辛雨 &nbsp;女 <img src="../../assets/images/nv.png" alt=""></span>
           <span>代</span>
           <selector :options="list" v-model="defaultValue3" class="s1"></selector>
           <selector :options="list1" v-model="defaultValue8" class="s2"></selector>
@@ -56,7 +56,7 @@
          <group>
             <span :class="{active: !a,normal: true}" @click="chooseOrder($event)"></span>
             <span><img src="../../assets/images/headpic9.png" alt=""></span>
-            <span>柳清风 &nbsp;男 <img src="../../assets/images/nan.png" alt=""></span>
+            <span>杭鱼风 &nbsp;男 <img src="../../assets/images/nan.png" alt=""></span>
             <span>代</span>
             <selector :options="list" v-model="defaultValue4" class="s1"></selector>
             <selector :options="list1" v-model="defaultValue9" class="s2"></selector>
