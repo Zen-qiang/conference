@@ -14,19 +14,19 @@
           <span class="icon1">1</span> 
         </tab-item> 
      </tab>
-      <swiper v-model="index"  :show-dots="false" height="410px">
+      <swiper v-model="index"  :show-dots="false" height="960px">
         <swiper-item>
           <div class="tab-swiper vux-center">
             <div class="list">
               <div class="inner" @click="$router.push({'name' : 'Details'})">
                 <div class="first">
                   <span>adidas春季魅&黑系列上海订货会</span>
-                  <span>进行中</span>
-                  <span></span>
+                  <span class="now1">当前会务</span>
+                  
                 </div>
                  <div class="last">
                    <img src="../../assets/images/center1.png" alt="">
-                   <p class="col2"><span class="col1">状态：</span>已报名 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="col3">人数：</span><span>8</span>人</p>
+                   <p class="col2"><span class="col1">状态：</span> <span></span> <span>进行中</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="col1">人数：</span><span class="col3">8</span>人</p>
                    <p class="col2"><span class="col1">地址：</span>上海市陆家嘴碧海青天大厦32F</p>
                    <p class="col2"><span class="col1">开始：</span>2018-12-16  &nbsp; <span>结束：</span>2018-12-21</p>
                  </div>
@@ -34,33 +34,53 @@
               <div class="inner">
                 <div class="first">
                   <span>adidas春季魅&黑系列上海订货会</span>
-                  <span>进行中</span>
-                  <span></span>
+                  <span class="now2">切换</span>
+                  
                 </div>
                  <div class="last">
                    <img src="../../assets/images/center2.png" alt="">
-                   <p class="col2"><span class="col1">状态：</span>已报名 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="col3">人数：</span><span>8</span>人</p>
+                   <p class="col2"><span class="col1">状态：</span><span class="bg1"></span> <span>未开始</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="col1">人数：</span><span class="col3">8</span>人</p>
+                   <p class="col2"><span class="col1">地址：</span>上海市陆家嘴碧海青天大厦32F</p>
+                   <p class="col2"><span class="col1">开始：</span>2018-12-16  &nbsp; <span>结束：</span>2018-12-21</p>
+                 </div>
+              </div>
+              <div class="inner">
+                <div class="first">
+                  <span>adidas春季魅&黑系列上海订货会</span>
+                  <span class="now2">切换</span>
+                  
+                </div>
+                 <div class="last">
+                   <img src="../../assets/images/center2.png" alt="">
+                   <p class="col2"><span class="col1">状态：</span> <span class="bg2"></span> <span>已结束</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="col1">人数：</span><span class="col3">8</span>人</p>
                    <p class="col2"><span class="col1">地址：</span>上海市陆家嘴碧海青天大厦32F</p>
                    <p class="col2"><span class="col1">开始：</span>2018-12-16  &nbsp; <span>结束：</span>2018-12-21</p>
                  </div>
               </div>
             </div>
           </div>
+          
         </swiper-item>
            
-
+         <swiper-item>
+          <div class="tab-swiper vux-center">
+            <service></service>
+            
+          </div>
+        </swiper-item> 
+        
         <swiper-item>
           <div class="tab-swiper vux-center">
             <div class="list list1">
-              <div class="inner">
+              <div class="inner" @click="$router.push({'name' : 'Details'})">
                 <div class="first">
                   <span>adidas春季魅&黑系列上海订货会</span>
-                  <span>进行中</span>
-                  <span></span>
+                  <span class="now1">当前会务</span>
+                  
                 </div>
                  <div class="last">
                    <img src="../../assets/images/center1.png" alt="">
-                   <p class="col2"><span class="col1">状态：</span>已报名 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="col3">人数：</span><span>8</span>人</p>
+                   <p class="col2"><span class="col1">状态：</span> <span></span> <span>进行中</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="col1">人数：</span><span class="col3">8</span>人</p>
                    <p class="col2"><span class="col1">地址：</span>上海市陆家嘴碧海青天大厦32F</p>
                    <p class="col2"><span class="col1">开始：</span>2018-12-16  &nbsp; <span>结束：</span>2018-12-21</p>
                  </div>
@@ -93,7 +113,7 @@
 <script>
 import { Tab, TabItem, Swiper, SwiperItem, Timeline, TimelineItem } from 'vux'
 import service from '../../components/Service.vue'
-const list = () => ['所有会务', '最新状态']
+const list = () => ['所有会务', '当前会务', '最新状态']
 export default {
   components: {
     Tab,

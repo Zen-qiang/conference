@@ -11,7 +11,7 @@
   background: #f2f2f2;
   overflow: hidden;
   padding-bottom: fmt(40);
-  ul{
+  .ul1{
     width: 100%;
     background: #fff;
     overflow: hidden;
@@ -53,7 +53,7 @@
       height: fmt(60);
       span{
         background: #f2f2f2;
-        width: fmt(60);
+        // width: fmt(60);
         height: fmt(40);
         font:fmt(24)/fmt(40) Microsoft Yahei;
         color: #787878;
@@ -61,18 +61,21 @@
         border-radius: fmt(8);
       }
       span:first-child{
+        width: fmt(240);
         position: absolute;
         left: fmt(30);
         top: 0;
       }
       span:nth-child(2){
+        width: fmt(60);
         position: absolute;
-        left: fmt(92);
+        left: fmt(290);
         top: 0;
       }
       span:last-child{
+        width: fmt(240);
         position: absolute;
-        left: fmt(166);
+        left: fmt(370);
         top: 0;
       }
     }
@@ -88,8 +91,12 @@
         float: left;
         width: fmt(360);
         height: fmt(40);
-        color: #787878;
-        margin-left: fmt(28);
+        color: #333;
+        // margin-left: fmt(28);
+        i{
+          font-style: normal;
+          color: #9c9c9c;
+        }
       }
       span:nth-child(2){
         float: right;
@@ -105,22 +112,17 @@
         float: left;
         width: fmt(560);
         height: fmt(40);
-        color: #a9a9a9;
+        color: #333;
+        i{
+          font-style: normal;
+          color: #9c9c9c;
+        }
       }
       span:nth-child(4){
         float: right;
         width: fmt(80);
         height: fmt(40);
         color: #a9a9a9;
-      }
-      span:nth-child(5){
-        position: absolute;
-        width: fmt(16);
-        height: fmt(16);
-        top: fmt(12);
-        left: fmt(30);
-        border-radius: fmt(8);
-        background: #e04a42;
       }
     }
     li:nth-child(5){
@@ -153,5 +155,34 @@
         right: fmt(30);
       }
     }
+    li:nth-child(6){
+      width: 100%;
+      height: fmt(90);
+      border-bottom: fmt(2) solid #eee;
+      padding: 0 fmt(30);
+      span:first-child{
+        float: left;
+        font:fmt(24)/fmt(90) Microsoft Yahei;
+        color: #a9a9a9;
+      }
+      span:last-child{
+        float: right;
+        width: fmt(130);
+        height: fmt(44);
+        border-radius: fmt(10);
+        font:fmt(24)/fmt(44) Microsoft Yahei;
+        color: #fff;
+        text-align: center;
+        background: #0cb4ce;
+        margin-top: fmt(20);
+      }
+    }
+  }
+  .green{
+    color: #79cd80 !important;
+  }
+  .btn1{
+    color: #fff !important;
+    background: #ddd !important;
   }
 }

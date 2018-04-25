@@ -28,6 +28,7 @@ import Driveredit from '@/pages/vehicles/driveredit'
 import Driverfinish from '@/pages/vehicles/driverfinish'
 import Driveroperate from '@/pages/vehicles/driveroperate'
 import Drivershift from '@/pages/vehicles/drivershift'
+import Driveradd from '@/pages/vehicles/driveradd'
 import Dining from '@/pages/meal/dining'
 import Dining1 from '@/pages/meal/dining1'
 import Diningdetail from '@/pages/meal/diningdetail'
@@ -188,6 +189,11 @@ export default new Router({
       path: '/drivershift',
       name: 'Drivershift',
       component: Drivershift
+    },
+    {
+      path: '/driveradd',
+      name: 'Driveradd',
+      component: Driveradd
     },
     {
       path: '/dining',

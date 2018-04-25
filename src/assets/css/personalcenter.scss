@@ -19,6 +19,12 @@
 .col5{
   color: #ddd;
 }
+.bg1{
+  background: #ea3f38 !important;
+}
+.bg2{
+  background: #989898 !important;
+}
 .vux-tab{
   position: relative;
   .icon1{
@@ -26,7 +32,7 @@
     font-family: Arial;
     position: absolute;
     top: fmt(0);
-    left: fmt(630);
+    left: fmt(690);
     color: #5bc5d8;
   }
 }
@@ -63,39 +69,58 @@
   }
   .list{
     width: 100%;
-    height: fmt(540);
+    height: fmt(800);
     background: #f2f2f2;
     overflow: hidden;
     .inner{
       width: 100%;
       height: fmt(264);
       background: #fff;
-      padding: 0 fmt(30) 0 fmt(24);
+      padding: 0 0 0 fmt(24);
       margin-top: fmt(8);
       overflow: hidden;
       .first{
-        width: 100%;
+        // width: 100%;
         height: fmt(88);
-        overflow: hidden;
+        // overflow: hidden;
+        margin-right: fmt(30);
         border-bottom: fmt(2) dashed #ddd;
+        position: relative;
         span:first-of-type{
           float: left;
           width: fmt(420);
           font: fmt(28)/fmt(88) Microsoft Yahei;
           color: #333;
         }
-        span:nth-of-type(3){
-          float: right;
-          width: fmt(16);
-          height: fmt(16);
-          background: #5dce58;
-          border-radius: fmt(8);
-          margin: fmt(38) fmt(12) 0 0;
+        span.now1{
+          position: absolute;
+          top: fmt(12);
+          right: fmt(-30);
+          width: fmt(140);
+          height: fmt(64);
+          background: #0cb4ce;
+          color: #fff;
+          text-align: center;
+          // float: right;
+          font:fmt(20)/fmt(64) Microsoft Yahei;
+          border-top-left-radius: fmt(10);
+          border-bottom-left-radius: fmt(10);
         }
-        span:nth-of-type(2){
-          float: right;
-          font:fmt(20)/fmt(88) Microsoft Yahei;
-          color: #999;
+        span.now2{
+          position: absolute;
+          top: fmt(12);
+          right: fmt(-30);
+          width: fmt(100);
+          height: fmt(62);
+          border:fmt(2) solid #0cb4ce;
+          border-right: none;
+          background: #edf9f8;
+          color: #0cb4ce;
+          text-align: center;
+          // float: right;
+          font:fmt(20)/fmt(64) Microsoft Yahei;
+          border-top-left-radius: fmt(10);
+          border-bottom-left-radius: fmt(10);
         }
       }
       .last{
@@ -113,6 +138,19 @@
           position: absolute;
           top: fmt(20);
           left: fmt(250);
+          span:nth-of-type(2){
+            position: absolute;
+            top: fmt(14);
+            left: fmt(70);
+            width: fmt(16);
+            height: fmt(16);
+            background: #5dce58;
+            border-radius: fmt(8);
+            // margin: fmt(38) fmt(12) 0 0;
+          }
+          span:nth-of-type(3){
+            margin-left: fmt(20);
+          }
         }
         p:nth-of-type(2){
           position: absolute;
