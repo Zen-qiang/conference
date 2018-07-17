@@ -2,8 +2,8 @@
   <div class="cars_container">
      <tab :line-width=2 active-color='#00aac9' v-model="index" custom-bar-width="76px">
         <tab-item class="vux-center" 
-                  :selected="demo2 === item" 
-                  v-for="(item, index) in list2" 
+                  :selected="demo === item" 
+                  v-for="(item, index) in list" 
                   :key="index">
           {{item}}
         </tab-item> 
@@ -33,13 +33,13 @@
               <li >
                 <span>乘客信息</span>
                 <img src="../../assets/images/headpic18.png" alt="" v-if="!flag">
-                <span>{{a1}}/6 </span>
+                <span>{{firstNum}}/6 </span>
                 <img src="../../assets/images/jiantou.png" alt="">
               </li>
               <li>
                 <span>报名状态</span>
-                <span @click="one" v-if='flag'>立即报名</span>
-                <span @click="one" v-if='!flag' class="btn1">立即报名</span>
+                <span @click="enroll" v-if='flag'>立即报名</span>
+                <span @click="enroll" v-if='!flag' class="btn1">立即报名</span>
               </li>
             </ul>
  
@@ -96,12 +96,12 @@
               <li>
                 <span>乘客信息</span>
                 <img src="../../assets/images/headpic18.png" alt="" v-if='!flag'>
-                <span>{{a2}}/6 </span>
+                <span>{{secondNum}}/6 </span>
                 <img src="../../assets/images/jiantou.png" alt="">
               </li>
               <li>
                 <span>报名状态</span>
-                <span @click="two" v-if='flag'>立即报名</span>
+                <span @click="secondEnroll" v-if='flag'>立即报名</span>
                 <span  v-if='!flag' class="btn1">立即报名</span>
               </li>
             </ul>
@@ -147,12 +147,10 @@
         </swiper-item>
       </swiper> 
   </div>
-  </div>
 </template>
 
 <script>
 import { Tab, TabItem, Swiper, SwiperItem } from 'vux'
-const list = () => ['全部车辆', '已报名车辆']
 export default {
   components: {
     Tab,
@@ -162,29 +160,29 @@ export default {
   },
   data () {
     return {
-      list2: list(),
-      demo2: '全部状态',
+      list: ['全部车辆', '已报名车辆'],
+      demo: '全部状态',
       index: 0,
-      flag1: true,
+      colFlag: true,
       flag: true,
-      a1: 0,
-      b1: 6,
-      a2: 0,
-      b2: 6
+      firstNum: 0,
+      firstSum: 6,
+      secondNum: 0,
+      secondSum: 6
     }
   },
   methods: {
-    one: function () {
-      console.log(1111)
+    enroll: function () {
+      // console.log(1111)
       this.$router.push({'name': 'Driveradd'})
       this.flag = !this.flag
-      this.a1 = this.b1
-      console.log(this.flag)
+      this.firstNum = this.firstSum
+      // console.log(this.flag)
     },
-    two: function () {
+    secondEnroll: function () {
       this.$router.push({'name': 'Driveradd'})
-      this.flag1 = !this.flag1
-      this.a2 = this.b2
+      this.colFlag = !this.colFlag
+      this.secondNum = this.secondSum
     }
   }
 }

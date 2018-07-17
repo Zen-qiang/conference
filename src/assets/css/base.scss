@@ -27,6 +27,11 @@ ul, ol, li {
 @function fmt ($val) {
   @return ($val/200) +rem;
 }
+//登录
+.login_container{
+  position: relative;
+  z-index: 999;
+}
 //申请报名
 .sqbm_container, .dbm_container{
   // .cel2{
@@ -68,7 +73,7 @@ ul, ol, li {
   }
   }
   .weui-cells{
-    height: 49px;
+    height: 100%;
     margin: 0;
   }
   .weui-cells:before, .weui-cells:after{
@@ -172,21 +177,15 @@ ul, ol, li {
     font:fmt(26)/fmt(90) Microsoft Yahei;
   }
   .weui-btn{
+    width: 100%;
     height: fmt(100);
-    border-radius: fmt(50);
+    position: fixed;
+    bottom: 0;
+    left: 0;
     font: fmt(30)/fmt(100)  Microsoft Yahei;
     color: #fff !important;
     background: #0cb4ce !important;
-  }
-  .divTab{
-    .weui-btn{
-      margin-top: fmt(376);
-    }
-  }
-  .divTab2{
-    .weui-btn{
-      margin-top: fmt(700);
-    }
+    border-radius: 0;
   }
 }
 //人员管理
@@ -351,9 +350,16 @@ ul, ol, li {
   }
   .vux-slider{
     margin-top: fmt(20);
+    // padding: fmt(80) 0;
+    // overflow: hidden;
   }
   .vux-swiper{
-    height: fmt(1400) !important;
+    height: fmt(1130) !important;
+    // padding: fmt(80) 0;
+    // overflow: hidden;
+  }
+  .vux-center{
+    height: 100%;
   }
 }
 .zsgl_container, .zsgl1_container{
@@ -387,16 +393,21 @@ ul, ol, li {
     display: none;
   }
   .weui-btn{
-    width: fmt(660);
+    width: 100%;
     height: fmt(100);
     font:fmt(30)/fmt(100) Microsoft Yahei;
     color: #fff !important;
     background: #0cb4ce !important;
-    border-radius: fmt(50);
-    margin: fmt(600) auto;
-    // position: fixed;
-    // bottom: fmt(100);
+    border-radius: 0;
+    // margin: fmt(600) auto;
+    position: fixed;
+    bottom: 0;
     left: 0;
+  }
+}
+.bmgl_container{
+  .vux-slider{
+    height: fmt(1400) !important;
   }
 }
 .v-transfer-dom{

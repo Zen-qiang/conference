@@ -1,7 +1,9 @@
-import * as types from './mutation-types'
 const mutations = {
-  [types.CURRENTUSER]: (state, currentUser) => {
+  currentUser: (state, currentUser) => {
     state.currentUser = currentUser
+  },
+  enroll: (state, enroll) => {
+    state.enroll = enroll
   },
   setVersion: (state, version) => {
     state.version = version

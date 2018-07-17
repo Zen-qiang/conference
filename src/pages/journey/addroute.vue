@@ -1,6 +1,6 @@
 <template>
    <div class="addroute_container">
-     <div class="main" @click="$router.push({'name' : 'Tjry'})">
+     <div class="main" @click="$router.push({'name' : 'AddPeople'})">
        <img src="../../assets/images/jia3.png" alt="">
        <span>添加行程</span>
      </div>

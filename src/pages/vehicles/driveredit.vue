@@ -12,19 +12,19 @@
       </li>
       <li>
         <span>车辆名称 ：</span>
-        <span>宝骏117豪华商务车</span>
+        <span><input type="text" placeholder="宝骏117豪华商务车"></span>
       </li>
       <li>
         <span>车牌号码 ：</span>
-        <span>沪B32191</span>
+        <span><input type="text" placeholder="沪B32191"></span>
       </li>
       <li>
         <span>联系人 ：</span>
-        <span>刘韩</span>
+        <span><input type="text" placeholder="刘韩"></span>
       </li>
       <li>
         <span>手机号 ：</span>
-        <span>1502682214</span>
+        <span><input type="text" placeholder="1502682214"></span>
       </li>
       <li>
         <span>乘员人数 ：</span>

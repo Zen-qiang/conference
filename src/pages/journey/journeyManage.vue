@@ -1,18 +1,20 @@
 <template>
   <div class="xcgl_container">
      <ul class="tabs">
-        <li class="li-tab" v-for="(item,index) in tabsParam" @click="toggleTabs(index)"
-        :class="{active:index!=nowIndex,active1:index===nowIndex}">
+        <li class="li-tab" 
+            v-for="(item,index) in tabsParam" @click="toggleTabs(index)"
+            :key='index'
+           :class="{active:index!=nowIndex,active1:index===nowIndex}">
           {{item}}
         </li>
         <span class="change">
           <span v-show="flag" class="red" @click="flag = !flag">删除</span>
           <span v-show="!flag" class="blue" @click="flag = !flag">完成</span>
         </span>
-        <img src="../../assets/images/jia2.png" alt="" class="pic" @click="$router.push({'name' : 'Tjry'})">
+        <img src="../../assets/images/jia2.png" alt="" class="pic" @click="$router.push({'name' : 'AddPeople'})">
     </ul>
     <div class="divTab" v-show="nowIndex===0">
-       <div class="box" v-if='flag1'>
+       <div class="box" v-if='firstFlag'>
          <div class="content">
            <div class="left">
             <img src="../../assets/images/headpic11.png" alt="">
@@ -36,10 +38,10 @@
          <span><img src="../../assets/images/headpic.jpg" alt=""></span>
          <span>more</span>
       </div>
-      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="flag1 = false">
+      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="firstFlag = false">
      </div>
 
-       <div class="box" v-if='flag2'>
+       <div class="box" v-if='secondFlag'>
          <div class="content">
            <div class="left">
             <img src="../../assets/images/headpic12.png" alt="">
@@ -63,14 +65,14 @@
          <!-- <span><img src="../../assets/images/headpic.jpg" alt=""></span> -->
          <span>/</span>
       </div>
-      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="flag2 = false">
-       <x-button @click.native="out">安排我的住宿</x-button>
+      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="secondFlag = false">
+       <x-button @click.native="out">管理我的专车</x-button>
      </div>
       
     </div>
     
     <div class="divTab divTab2" v-show="nowIndex===1">
-      <div class="box" v-if='flag3'>
+      <div class="box" v-if='nextFirstFlag'>
          <div class="content">
            <div class="left">
             <img src="../../assets/images/headpic13.png" alt="">
@@ -94,8 +96,8 @@
          <span><img src="../../assets/images/headpic14.png" alt=""></span>
          <span>more</span>
       </div>
-      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="flag3 = false">
-       <x-button @click.native="out">安排我的住宿</x-button>
+      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="nextFirstFlag = false">
+       <x-button @click.native="out">管理我的专车</x-button>
      </div>
      
     </div>
@@ -115,9 +117,9 @@ export default {
       a: 8,
       b: 0,
       flag: 'false',
-      flag1: 'true',
-      flag2: 'true',
-      flag3: 'true'
+      firstFlag: 'true',
+      secondFlag: 'true',
+      nextFirstFlag: 'true'
     }
   },
   methods: {
@@ -125,14 +127,13 @@ export default {
       this.nowIndex = index
     },
     out: function () {
-      console.log(11111111)
-      this.$router.push({'name': 'Zsgl1'})
+      this.$router.push({'name': 'Cars'})
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  @import "../../assets/css/xcgl.scss";
+  @import "../../assets/css/journeyManage.scss";
 </style>
 

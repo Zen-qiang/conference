@@ -1,8 +1,8 @@
-<template>
+ @click="$router.push({'name': 'Haslived'})"<template>
   <div class="staylist_container">
     <div class="first">
        <span><img src="../../assets/images/hotel.png" alt=""></span>
-       <span @click="$router.push({'name': 'Zsgl'})">上海全季酒店（陆家嘴店）</span> 
+       <span @click="$router.push({'name': 'HotelManage'})">上海全季酒店（陆家嘴店）</span> 
     </div>
     <div class="second">
       <p>标间数：2 &nbsp;&nbsp;大床：8 &nbsp;&nbsp;双人床：4 &nbsp;&nbsp;三人床：2</p>
@@ -44,7 +44,7 @@
       </li>
     </ul>
      <p class="else">未勾选编辑人员无需住宿自行解决</p>
-    <!-- <p class="save" @click="$router.push({'name': 'Zsgl1'})">保存</p> -->
+    <!-- <p class="save" @click="$router.push({'name': 'AccommodationManage'})">保存</p> -->
   </div>
 </template>
 
@@ -55,6 +55,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import  "../../assets/css/staylist.scss";
+@import  "../../assets/css/haslived.scss";
 </style>
 

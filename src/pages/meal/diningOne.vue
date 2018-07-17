@@ -14,6 +14,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/css/dining1.scss";
+@import "../../assets/css/diningOne.scss";
 </style>
 

@@ -12,8 +12,14 @@
        </li>
         <li>
             <span>照片</span>
-            <span class="hui">将用于证件打印</span>
+            <span class="hui"></span>
+
+            <a href="javascript:;" class="upload">将用于证件打印
+              <input type="file" multiple="multiple" accept="image/*" capture="camera" class="change">
+            </a>
+            
             <span><img src="../../assets/images/camera.png" alt=""></span>
+           
         </li>
         <li>
             <span>手机</span>
@@ -44,7 +50,7 @@
             <span><input type="text" placeholder="请输入房间序号"></span>
         </li> -->
    </ul>
-   <p class="end" @click="$router.push({'name' : 'Sqbm'})">完成</p>
+   <p class="end" @click="$router.push({'name' : 'ApplyRegist'})">完成</p>
   </div>
    
 </template>
@@ -66,7 +72,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "../../assets/css/dbm.scss";
+@import "../../assets/css/replaceEroll.scss";
 </style>
 
 

@@ -112,4 +112,59 @@
       }
     }
   }
+  ul.different{
+    width: 100%;
+    background: #fff;
+    overflow: hidden;
+    border-top: fmt(2) solid #eee;
+    margin-top: fmt(20);
+    li{
+      width: 100%;
+      height: fmt(180);
+      border-bottom: fmt(2) solid #eee;
+      position: relative;
+      overflow: hidden;
+      img{
+        width: fmt(112);
+        position: absolute;
+        top: fmt(32);
+        left: fmt(30);
+      }
+      .left{
+        width: fmt(400);
+        position: absolute;
+        top: fmt(32);
+        left: fmt(170);
+        p:first-child{
+          font:fmt(28)/fmt(48) Microsoft Yahei;
+          color: #333;
+          span{
+            font:fmt(24)/fmt(48) Microsoft Yahei;
+            color: #333;
+          }
+        }
+        p:nth-of-type(2),  p:nth-of-type(3){
+          font:fmt(20)/fmt(40) Microsoft Yahei;
+          color: #c6c6c6;
+        }
+      }
+      div.right{
+        position: absolute;
+        top: fmt(46);
+        right: fmt(30);
+        width: fmt(120);
+        p:first-child{
+          float: right;
+          font:fmt(24)/fmt(50) Microsoft Yahei;
+          color: #b1b1b1;
+        }
+        p:last-child{
+          float: right;
+          font:fmt(24)/fmt(50) Microsoft Yahei;
+          color: #5bc5d8;
+        }
+      }
+    
+    }
+  }
 }

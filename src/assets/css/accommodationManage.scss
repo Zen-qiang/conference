@@ -4,6 +4,7 @@
 .hui{
   color: #999 !important;
 }
+
 .zsgl1_container{
   width: 100%;
   height: 100%;
@@ -44,30 +45,36 @@
       background: #fff;
       border-bottom: fmt(2) solid #ddd;
     }
-    li:nth-child(2n+1){
+
+    li{
       width: 100%;
-      height: fmt(100);
-      padding: 0 fmt(40) 0 fmt(30);
-      border-top: fmt(2) solid #ddd;
-      font: fmt(30)/fmt(100) Microsoft Yahei;
-      color: #333;
-      margin-top: fmt(12);
-      span:first-child{
-        float: left;
+      height: fmt(280);
+      position: relative;
+      // padding: fmt(20) fmt(20) fmt(30) fmt(30);
+      .top{
+        width: 100%;
+        height: fmt(100);
+        padding: 0 fmt(40) 0 fmt(30);
+        border-top: fmt(2) solid #eee;
+        border-bottom: fmt(2) solid #ddd;
+        font: fmt(30)/fmt(100) Microsoft Yahei;
+        color: #333;
+        // margin-top: fmt(12);
+        span:first-child{
+          float: left;
+        }
+        span:last-child{
+          float: right;
+        }
       }
-      span:last-child{
-        float: right;
-      }
-    }
-    li:nth-child(2n){
-      width: 100%;
-      height: fmt(180);
-      padding: fmt(20) fmt(20) fmt(30) fmt(30);
       .left{
         float: left;
         width: fmt(240);
         height: 100%;
-        position: relative;
+        position: absolute;
+        left: fmt(30);
+        top: fmt(120);
+        overflow: hidden;
         img{
           position: absolute;
           left: 0;
@@ -75,7 +82,10 @@
         }
       }
       .right{
-        float: left;
+        position: absolute;
+        top: fmt(120);
+        right: fmt(30);
+        overflow: hidden;
         // margin-top: fmt(-4);
         // margin-left: fmt(4);
         // margin-left: fmt(-10);
@@ -88,24 +98,31 @@
   }
   ul.extra1{
     margin-top: 0;
-    li:first-of-type{
-      margin-top: 0;
-    }
-    li:nth-child(3n){
+    li{
+      height: fmt(380);
+      .bottom{
         width: 100%;
         height: fmt(100);
-        border-top: none;
-        border-bottom: fmt(2) solid #ddd;
-        margin-top: 0;
+        padding: 0 fmt(30);
+        border-top:fmt(2) solid #ddd;
+        // border-bottom: fmt(2) solid #ddd;
+        // margin-top: 0;
+        position: absolute;
+        left: 0;
+        bottom: 0;
         span{
+          float: left;
           height: fmt(100);
           font: fmt(30)/fmt(100) Microsoft Yahei;
           color: #333;
-          img{
-            width: fmt(200);
-            margin-top: fmt(16);
-          }
         }
+        img{
+          float: right;
+          width: fmt(200);
+          margin-top: fmt(16);
+        }
+     }
     }
+   
   }
 }

@@ -7,7 +7,7 @@ import router from './router'
 import store from './store'
 // 引入全局样式
 import '@/assets/css/base.scss'
-
+// import { WechatPlugin } from 'vux'
 import axios from './http'
 Vue.prototype.axios = axios
 // 移动端点击延迟解决方案

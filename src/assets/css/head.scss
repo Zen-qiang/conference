@@ -14,9 +14,10 @@
 }
 #mynav {
     .logo{
+        width: fmt(200);
         position: absolute;
-        top: fmt(10);
-        left: fmt(8);
+        top: fmt(22);
+        left: fmt(22);
         overflow: hidden;
     }
     #btn1{

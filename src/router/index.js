@@ -4,19 +4,19 @@ import HelloWorld from '@/components/HelloWorld'
 import Index from '@/pages/index'
 import Meetings from '@/pages/conference/meetings'
 import Details from '@/pages/conference/details'
-import Sqbm from '@/pages/conference/sqbm'
-import Dbm from '@/pages/conference/dbm'
-import Dbm1 from '@/pages/conference/dbm1'
-import Bmcg from '@/pages/conference/bmcg'
-import Zsgl from '@/pages/accommodation/zsgl'
-import Zsgl1 from '@/pages/accommodation/zsgl1'
-import Staylist from '@/pages/accommodation/staylist'
-import Rygl from '@/pages/accommodation/rygl'
+import ApplyRegist from '@/pages/conference/applyRegist'
+import ReplaceEroll from '@/pages/conference/replaceEroll'
+import ReplaceErollOne from '@/pages/conference/replaceErollOne'
+import EnrollSuccess from '@/pages/conference/enrollSuccess'
+import HotelManage from '@/pages/accommodation/hotelManage'
+import AccommodationManage from '@/pages/accommodation/accommodationManage'
+import Haslived from '@/pages/accommodation/haslived'
+import PeopleManage from '@/pages/accommodation/peopleManage'
 import Map from '@/pages/accommodation/map'
-import Bmgl from '@/pages/conference/bmgl'
-import Xcgl from '@/pages/journey/xcgl'
-import Tjry from '@/pages/journey/tjry'
-import Tjxc from '@/pages/journey/tjxc'
+import EnrollManage from '@/pages/conference/enrollManage'
+import JourneyManage from '@/pages/journey/journeyManage'
+import AddPeople from '@/pages/journey/addPeople'
+import AddJourney from '@/pages/journey/addJourney'
 import Checkothers from '@/pages/journey/checkothers'
 import Addroute from '@/pages/journey/addroute'
 import Report from '@/pages/checkin/report'
@@ -30,15 +30,15 @@ import Driveroperate from '@/pages/vehicles/driveroperate'
 import Drivershift from '@/pages/vehicles/drivershift'
 import Driveradd from '@/pages/vehicles/driveradd'
 import Dining from '@/pages/meal/dining'
-import Dining1 from '@/pages/meal/dining1'
+import DiningOne from '@/pages/meal/diningOne'
 import Diningdetail from '@/pages/meal/diningdetail'
 import Diningscan from '@/pages/meal/diningscan'
 import Dininglist from '@/pages/meal/dininglist'
 import Certificate from '@/pages/user/certificate'
 import Personalcenter from '@/pages/user/personalcenter'
 import Hotelregist from '@/pages/accommodation/hotelregist'
-import Hotellist1 from '@/pages/accommodation/hotellist1'
-import Hotellist2 from '@/pages/accommodation/hotellist2'
+import HotellistOne from '@/pages/accommodation/HotellistOne'
+import HotellistTwo from '@/pages/accommodation/hotellistTwo'
 import Cars from '@/pages/vehicles/cars'
 import Login from '@/pages/login'
 
@@ -71,44 +71,44 @@ export default new Router({
       component: Details
     },
     {
-      path: '/sqbm',
-      name: 'Sqbm',
-      component: Sqbm
+      path: '/applyRegist',
+      name: 'ApplyRegist',
+      component: ApplyRegist
     },
     {
-      path: '/dbm',
-      name: 'Dbm',
-      component: Dbm
+      path: '/replaceEroll',
+      name: 'ReplaceEroll',
+      component: ReplaceEroll
     },
     {
-      path: '/dbm1',
-      name: 'Dbm1',
-      component: Dbm1
+      path: '/replaceEroll',
+      name: 'ReplaceErollOne',
+      component: ReplaceErollOne
     },
     {
-      path: '/bmcg',
-      name: 'Bmcg',
-      component: Bmcg
+      path: '/enrollSuccess',
+      name: 'EnrollSuccess',
+      component: EnrollSuccess
     },
     {
-      path: '/zsgl',
-      name: 'Zsgl',
-      component: Zsgl
+      path: '/hotelManage',
+      name: 'HotelManage',
+      component: HotelManage
     },
     {
-      path: '/zsgl1',
-      name: 'Zsgl1',
-      component: Zsgl1
+      path: '/accommodationManage',
+      name: 'AccommodationManage',
+      component: AccommodationManage
     },
     {
-      path: '/rygl',
-      name: 'Rygl',
-      component: Rygl
+      path: '/peopleManage',
+      name: 'PeopleManage',
+      component: PeopleManage
     },
     {
-      path: '/staylist',
-      name: 'Staylist',
-      component: Staylist
+      path: '/haslived',
+      name: 'Haslived',
+      component: Haslived
     },
     {
       path: '/map',
@@ -116,24 +116,24 @@ export default new Router({
       component: Map
     },
     {
-      path: '/bmgl',
-      name: 'Bmgl',
-      component: Bmgl
+      path: '/enrollManage',
+      name: 'EnrollManage',
+      component: EnrollManage
     },
     {
-      path: '/xcgl',
-      name: 'Xcgl',
-      component: Xcgl
+      path: '/journeyManage',
+      name: 'JourneyManage',
+      component: JourneyManage
     },
     {
-      path: '/tjry',
-      name: 'Tjry',
-      component: Tjry
+      path: '/addPeople',
+      name: 'AddPeople',
+      component: AddPeople
     },
     {
-      path: '/tjxc',
-      name: 'Tjxc',
-      component: Tjxc
+      path: '/addJourney',
+      name: 'AddJourney',
+      component: AddJourney
     },
     {
       path: '/checkothers',
@@ -201,9 +201,9 @@ export default new Router({
       component: Dining
     },
     {
-      path: '/dining1',
-      name: 'Dining1',
-      component: Dining1
+      path: '/diningOne',
+      name: 'DiningOne',
+      component: DiningOne
     },
     {
       path: '/diningdetail',
@@ -236,14 +236,14 @@ export default new Router({
       component: Hotelregist
     },
     {
-      path: '/hotellist1',
-      name: 'Hotellist1',
-      component: Hotellist1
+      path: '/hotellistOne',
+      name: 'HotellistOne',
+      component: HotellistOne
     },
     {
-      path: '/hotellist2',
-      name: 'Hotellist2',
-      component: Hotellist2
+      path: '/hotellistTwo',
+      name: 'HotellistTwo',
+      component: HotellistTwo
     },
     {
       path: '/cars',

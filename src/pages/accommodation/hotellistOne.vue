@@ -77,6 +77,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "../../assets/css/hotellist1.scss";
+  @import "../../assets/css/hotellistOne.scss";
 </style>
 

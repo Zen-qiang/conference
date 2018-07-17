@@ -3,19 +3,20 @@
 }
 .meetings_container{
     position: relative;
+    padding-bottom: fmt(170);
     height: 100%;
     background: #f2f2f2;
     // overflow: hidden;
     .text{
-        position: absolute;
+        position: relative;
         left: 0;
-        top: 0;
+        top: fmt(100);
         overflow: hidden;
         z-index: 9;
         background: #f2f2f2;
     }
     .content{
-        padding-top: fmt(100);
+        // padding-top: fmt(100);
         overflow: hidden;
         .left{
             width: fmt(200);
@@ -60,13 +61,10 @@
             }
         }
     }
-    .content2{
-        padding: 0 0 fmt(40) 0;
-        p:last-of-type{
-            border: none !important;
+    li:last-of-type{
+        p{
+            border: none !important;   
         }
-    }
-    
-    
+    }   
 }
 

@@ -10,7 +10,7 @@
           会务管理一条龙服务。<br/>
        </p>
        <!-- <input type="btn" value="立即体验"> -->
-       <div class="btn1" @click="$router.push({'name': 'Login'})" v-show="!userRole">立即登录</div>
+       <div class="btn1" @click="$router.push({'name': 'Login'})" v-show="!roleSet">立即登录</div>
     </div>
   </div>
 <!-- </transition> -->
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -26,9 +26,10 @@ export default {
     }
   },
   computed: {
-    userRole: function () {
-      return this.$store.state.currentUser.role
-    }
+    ...mapGetters({
+      roleSet: 'getRoleSet'
+      // rootRole: 'isRoot'
+    })
   }
 }
 </script>

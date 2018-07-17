@@ -83,6 +83,28 @@
                 top: fmt(10);
                 right: fmt(20);
             }
+            .upload{
+                position: absolute;
+                top: fmt(20);
+                right: fmt(60);
+                font-size: fmt(24);
+                width: fmt(220);
+                height: fmt(100);
+                padding: 4px 10px;
+                height: 20px;
+                line-height: 20px;
+                // position: relative;
+                // border: 1px solid #999;
+                text-decoration: none;
+                color: #666;
+                .change{
+                    position: absolute;
+                    overflow: hidden;
+                    right: 0;
+                    top: 0;
+                    opacity: 0;
+                }
+            }
         }
         li:nth-child(5){
             span:nth-of-type(2){

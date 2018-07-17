@@ -1,14 +1,14 @@
 <template>
 <div id='mynav'>
-    <img class='logo' src='../assets/images/logo.png' alt="">
-    <div id="btn1" @click="down" ref='btn1' v-show="userRole">
+    <img class='logo' src='../assets/images/logo3.png' alt="">
+    <div id="btn1" @click="down" ref='btn1' v-show="roleSet">
       <img src='../assets/images/list.png' alt="">
     </div>
     <!-- 点击显示 -->
     <transition name="slide">
     <div class="hide" v-show="open" @click="lose($event)">
         <div class="first">
-            <img class='logo' src='../assets/images/logo.png' alt="">
+            <img class='logo' src='../assets/images/logo3.png' alt="">
             <span id='up' @click='open = !open'>&times;</span>
         </div>
         <ul>
@@ -16,35 +16,35 @@
                 {{value}}
                 <img src="../assets/images/jiantou.png" alt="">
             </li> -->
-            <li class="lis" @click="go1()">
+            <li class="lis" @click="goIndex()">
                 首页
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
-            <li class="lis" @click="go2()">
+            <li class="lis" @click="goMeetings()">
                 所有会务
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
-            <li class="lis" @click="go3()">
+            <li class="lis" @click="goReport()">
                 报名管理
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
-            <li class="lis" @click="go4()">
+            <li class="lis" @click="goCars()">
                 派车管理
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
-            <li class="lis" @click="go5()">
+            <li class="lis" @click="goDining()">
                 用餐管理
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
-            <li class="lis" @click="go6()">
+            <li class="lis" @click="goAccommodation()">
                 住宿中心
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
-            <li class="lis" @click="go7()">
+            <li class="lis" @click="goCertificate()">
                 证件管理
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
-            <li class="lis" @click="go8()">
+            <li class="lis" @click="goPersonalcenter()">
                 用户中心
                 <img src="../assets/images/jiantou.png" alt="">
             </li>
@@ -56,10 +56,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  // props: {
-
-  // },
   data () {
     return {
       arr: [
@@ -76,9 +74,9 @@ export default {
     }
   },
   computed: {
-    userRole: function () {
-      return this.$store.state.currentUser.role
-    }
+    ...mapGetters({
+      roleSet: 'getRoleSet'
+    })
   },
   created () {
   },
@@ -86,17 +84,17 @@ export default {
     down: function () {
       this.open = !this.open
     },
-    go1: function () {
+    goIndex: function () {
       this.$router.push({'name': 'Index'})
       this.open = !this.open
     },
-    go2: function () {
+    goMeetings: function () {
       this.$router.push({'name': 'Meetings'})
       this.open = !this.open
     },
     // 报名管理
-    go3: function () {
-      if (this.userRole === 'admin') {
+    goReport: function () {
+      if (this.roleSet[0] === 'root') {
         this.$router.push({'name': 'Report'})
       } else {
         this.$router.push({'name': 'Usereport'})
@@ -104,8 +102,8 @@ export default {
       this.open = !this.open
     },
     // 派车管理
-    go4: function () {
-      if (this.userRole === 'admin') {
+    goCars: function () {
+      if (this.roleSet[0] === 'root') {
         this.$router.push({'name': 'Drivercenter'})
       } else {
         this.$router.push({'name': 'Cars'})
@@ -113,11 +111,11 @@ export default {
       this.open = !this.open
     },
     // 用餐管理
-    go5: function () {
+    goDining: function () {
       console.log(this.$store.state.currentUser.role)
       console.log(this.userRole)
-      if (this.userRole === 'admin') {
-        this.$router.push({'name': 'Dining1'})
+      if (this.roleSet[0] === 'root') {
+        this.$router.push({'name': 'DiningOne'})
         console.log(1111111111)
       } else {
         this.$router.push({'name': 'Diningdetail'})
@@ -126,20 +124,20 @@ export default {
       this.open = !this.open
     },
     // 住宿管理
-    go6: function () {
+    goAccommodation: function () {
       console.log(this.$store.state.currentUser.role)
-      if (this.userRole === 'admin') {
-        this.$router.push({'name': 'Hotelregist'})
+      if (this.roleSet[0] === 'root') {
+        this.$router.push({'name': 'HotellistTwo'})
       } else {
-        this.$router.push({'name': 'Zsgl1'})
+        this.$router.push({'name': 'AccommodationManage'})
       }
       this.open = !this.open
     },
-    go7: function () {
+    goCertificate: function () {
       this.$router.push({'name': 'Certificate'})
       this.open = !this.open
     },
-    go8: function () {
+    goPersonalcenter: function () {
       this.$router.push({'name': 'Personalcenter'})
       this.open = !this.open
     },

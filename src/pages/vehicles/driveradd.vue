@@ -94,6 +94,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "../../assets/css/tjry.scss";
+  @import "../../assets/css/addPeople.scss";
 </style>
 

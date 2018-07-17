@@ -6,7 +6,7 @@
         <p>刘铁柱</p>
         <p>南通鸿祥贸易有限公司</p>
       </div>
-      <p class="modify" @click="$router.push({'name' : 'Sqbm'})">修改</p>
+      <p class="modify" @click="$router.push({'name' : 'ApplyRegist'})">修改</p>
     </div>
 
     <ul>

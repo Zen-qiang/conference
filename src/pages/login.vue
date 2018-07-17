@@ -1,24 +1,32 @@
 <template>
   <div class="login_container">
-    <img src="../assets/images/logo2.png" alt="" class="logo">
+    <img src="../assets/images/logo3.png" alt="" class="logo">
     <div class="box1">
       <label ref="input1">
         <span></span>
-        <input type="text" placeholder="请输入账号" v-model="value1" @focus="onFocus1" @blur="onBlur1">
-        <span ref="aaa" v-show="value1 !== ''"  @click="click1"></span>
+        <input type="text"
+          placeholder="请输入账号"
+          v-model="userName"
+          @focus="useronFocus" 
+          @blur="useronBlur">
+        <span ref="aaa" v-show="userName !== ''"  @click="clearUsername"></span>
       </label>
       
     </div>
     <div class="box2">
       <label ref="input2">
         <span></span>
-        <input type="password" placeholder="请输入密码" v-model="value2"  @focus="onFocus2" @blur="onBlur2">
-        <span ref="bbb" v-show="value2 !== ''" @click="click2"></span>
+        <input type="password"
+          placeholder="请输入密码" 
+          v-model="password" 
+          @focus="pwdonFocus"
+          @blur="pwdonBlur">
+        <span ref="bbb" v-show="password !== ''" @click="clearPwd"></span>
       </label>
       
     </div>
     
-    <input type="button" value="登录" @click="check">
+    <input type="button" value="登录" @click="login">
     <div class="bottom">
       <img src="../assets/images/english.png" alt="">
       <p>English</p>
@@ -29,51 +37,69 @@
 </template>
 
 <script>
-import * as types from '../store/mutation-types'
 export default {
   data () {
     return {
-      a: true,
-      b: false,
-      value1: '',
-      value2: '',
-      fullHeight: document.documentElement.clientHeight
+      fullHeight: document.documentElement.clientHeight,
+      userName: '',
+      password: ''
     }
   },
   methods: {
-    onFocus1 () {
+    login () {
+      this.axios({
+        method: 'post',
+        url: '/api/user/login',
+        data: {
+          userName: this.userName,
+          password: this.password
+        }
+      }).then(res => {
+        if (res.data.code === 0) {
+          let currentUser = {
+            name: res.data.data.name,
+            roleSet: res.data.data.roleSet
+          }
+          this.$store.commit('currentUser', currentUser)
+          this.$router.push({'name': 'Meetings'})
+        }
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    useronFocus () {
       this.$refs.input1.classList.add('active')
       this.$refs.input1.classList.remove('normal')
     },
-    onBlur1 () {
+    useronBlur () {
       this.$refs.input1.classList.remove('active')
       this.$refs.input1.classList.add('normal')
     },
-    onFocus2 () {
+    pwdonFocus () {
       this.$refs.input2.classList.add('active')
       this.$refs.input2.classList.remove('normal')
     },
-    onBlur2 () {
+    pwdonBlur () {
       this.$refs.input2.classList.remove('active')
       this.$refs.input2.classList.add('normal')
     },
-    click1 () {
-      this.value1 = ''
+    clearUsername () {
+      this.userName = ''
     },
-    click2 () {
-      this.value2 = ''
-    },
-    check () {
-      if (this.value1 === '111' && this.value2 === '111') {
-        this.$router.push({'name': 'Meetings'})
-        this.$store.commit(types.CURRENTUSER, {'name': '111', 'role': 'admin'})
-        this.$store.commit('setVersion', '2333')
-      } else if (this.value1 === '222' && this.value2 === '222') {
-        this.$router.push({'name': 'Meetings'})
-        this.$store.commit(types.CURRENTUSER, {'name': '222', 'role': 'user'})
-      } else {
-      }
+    clearPwd () {
+      this.password = ''
     }
+    // check () {
+    //   if (this.value1 === '111' && this.value2 === '111') {
+    //     this.$router.push({'name': 'Meetings'})
+    //     this.$store.commit(types.CURRENTUSER, {'name': '111', 'role': 'admin'})
+    //   } else if (this.value1 === '222' && this.value2 === '222') {
+    //     this.$router.push({'name': 'Meetings'})
+    //     this.$store.commit(types.CURRENTUSER, {'name': '222', 'role': 'user'})
+    //   } else {
+    //   }
+    // }
   }
 }
 </script>

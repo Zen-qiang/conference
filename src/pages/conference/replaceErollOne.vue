@@ -44,7 +44,7 @@
             <span><input type="text" placeholder="请输入房间序号"></span>
         </li> -->
    </ul>
-   <p class="end" @click="$router.push({'name' : 'Tjry'})">完成</p>
+   <p class="end" @click="$router.push({'name' : 'AddPeople'})">完成</p>
   </div>
    
 </template>
@@ -66,5 +66,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "../../assets/css/dbm.scss";
+@import "../../assets/css/replaceEroll.scss";
 </style>

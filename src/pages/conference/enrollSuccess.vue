@@ -14,7 +14,7 @@
                <span>10人</span>
            </li>
            <!-- 1.报名管理跳转 -->
-           <li class="outli3" @click="$router.push({'name' : 'Bmgl'})">
+           <li class="outli3" @click="$router.push({'name' : 'EnrollManage'})">
                <span><img src="../../assets/images/headpic4.jpg" alt=""></span>
                <span><img src="../../assets/images/jiantou.png" alt=""></span>
            </li>
@@ -29,6 +29,6 @@
 </script>
 
 <style lang="sass" scoped>
-@import  "../../assets/css/bmcg.scss";
+@import  "../../assets/css/enrollSuccess.scss";
 </style>
 

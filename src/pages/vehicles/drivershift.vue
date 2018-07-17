@@ -7,8 +7,8 @@
 
       <tab :line-width=2 active-color='#00aac9' v-model="index" custom-bar-width="100px">
         <tab-item class="vux-center" 
-                  :selected="demo2 === item" 
-                  v-for="(item, index) in list2" 
+                  :selected="demo === item" 
+                  v-for="(item, index) in list" 
                   :key="index">
           {{item}}
         </tab-item> 
@@ -85,7 +85,6 @@
 
 <script>
 import { Tab, TabItem, Swiper, SwiperItem } from 'vux'
-const list = () => ['已乘车', '未乘车']
 export default {
   components: {
     Tab,
@@ -95,8 +94,8 @@ export default {
   },
   data () {
     return {
-      list2: list(),
-      demo2: '已乘车',
+      list: ['已乘车', '未乘车'],
+      demo: '已乘车',
       index: 0
     }
   }

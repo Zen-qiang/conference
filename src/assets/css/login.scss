@@ -14,7 +14,8 @@
   background: url(../assets/images/bak3.png);
   overflow: hidden;
   .logo{
-    margin: fmt(200) 0 0 fmt(180);
+    width: fmt(380);
+    margin: fmt(220) 0 fmt(20) fmt(180);
   }
   .box1, .box2{
     height: fmt(100);
@@ -82,10 +83,10 @@
   .bottom{
     width: fmt(180);
     height: fmt(40);
-    // position: fixed;
-    // left: fmt(270);
-    // bottom: fmt(80);
-    // overflow: hidden;
+    position: fixed;
+    // left: fmt(100);
+    bottom: fmt(80);
+    overflow: hidden;
     margin: fmt(400) 0 0 fmt(270);
     img{
       float: left;

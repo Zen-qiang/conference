@@ -3,7 +3,7 @@
     <div class="content">
       <p class="first">
         <span>成员信息</span>
-        <span @click="$router.push({'name' : 'Dbm1'})">增加</span>
+        <span @click="$router.push({'name' : 'ReplaceErollOne'})">增加</span>
       </p>
       <div class="main">
         <ul>
@@ -49,7 +49,7 @@
           </li>
         </ul>
       </div>
-      <p class="add" @click="$router.push({'name' : 'Tjxc'})">确定</p>
+      <p class="add" @click="$router.push({'name' : 'AddJourney'})">确定</p>
     </div>
   </div>
 </template>
@@ -94,6 +94,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "../../assets/css/tjry.scss";
+  @import "../../assets/css/addPeople.scss";
 </style>
 

@@ -7,8 +7,8 @@
     </div>
     <tab :line-width=2 active-color='#00aac9' v-model="index" custom-bar-width="70px">
         <tab-item class="vux-center" 
-                  :selected="demo2 === item" 
-                  v-for="(item, index) in list2" 
+                  :selected="demo === item" 
+                  v-for="(item, index) in list" 
                   :key="index">
           {{item}}
           <span class="icon1">1</span> 
@@ -113,7 +113,6 @@
 <script>
 import { Tab, TabItem, Swiper, SwiperItem, Timeline, TimelineItem } from 'vux'
 import service from '../../components/Service.vue'
-const list = () => ['所有会务', '当前会务', '最新状态']
 export default {
   components: {
     Tab,
@@ -126,8 +125,8 @@ export default {
   },
   data () {
     return {
-      list2: list(),
-      demo2: '所有会务',
+      list: ['所有会务', '当前会务', '最新状态'],
+      demo: '所有会务',
       index: 0
     }
   }

@@ -16,16 +16,16 @@
 
        <div class="cal">
     <group>
-      <calendar  v-model="demo1" :title="'请选择入住日期'" show-popup-header :popup-header-title="'请选择入住日期'"></calendar>
-      <calendar  v-model="demo2" :title="'请选择退房日期'" show-popup-header :popup-header-title="'请选择退房日期'"></calendar>
+      <calendar  v-model="firstTime" :title="'请选择入住日期'" show-popup-header :popup-header-title="'请选择入住日期'"></calendar>
+      <calendar  v-model="lastTime" :title="'请选择退房日期'" show-popup-header :popup-header-title="'请选择退房日期'"></calendar>
     </group>
-          <input type="button" value="安排入住" @click="$router.push({'name' : 'Rygl'})">
+          <input type="button" value="安排入住" @click="$router.push({'name' : 'PeopleManage'})">
        </div> 
        <div class="box1">
          <span>入住信息</span>
          <span><i>{{a}}</i>/10人</span>
-          <!-- <span><img src="../assets/images/headpic.jpg" alt="" @click="$router.push({'name': 'Rygl'})"></span>
-          <span @click="$router.push({'name': 'Rygl'})">more</span>
+          <!-- <span><img src="../assets/images/headpic.jpg" alt="" @click="$router.push({'name': 'PeopleManage'})"></span>
+          <span @click="$router.push({'name': 'PeopleManage'})">more</span>
           <span><img src="../assets/images/jiantou.png" alt=""></span> -->
        </div>
        <div class="box2">
@@ -62,8 +62,8 @@ export default {
           img: '/static/image/bo3.jpg'
         }
       ],
-      demo1: 'TODAY',
-      demo2: 'TODAY'
+      firstTime: 'TODAY',
+      lastTime: 'TODAY'
     }
   },
   methods: {
@@ -81,7 +81,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import  "../../assets/css/zsgl.scss";
+@import  "../../assets/css/hotelManage.scss";
 </style>
 
 
