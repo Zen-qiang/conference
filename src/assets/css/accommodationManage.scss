@@ -42,14 +42,11 @@
     // border-top: fmt(2) solid #ddd;
     // border-bottom: fmt(2) solid #ddd;
     li{
-      background: #fff;
-      border-bottom: fmt(2) solid #ddd;
-    }
-
-    li{
       width: 100%;
       height: fmt(280);
       position: relative;
+      background: #fff;
+      border-bottom: fmt(2) solid #ddd;
       // padding: fmt(20) fmt(20) fmt(30) fmt(30);
       .top{
         width: 100%;

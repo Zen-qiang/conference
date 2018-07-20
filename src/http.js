@@ -7,8 +7,8 @@
 import axios from 'axios'
 import qs from 'querystring'
 // import { Toast } from 'mint-ui'
-axios.defaults.retry = 2
-axios.defaults.retryDelay = 1000
+axios.defaults.retry = 1
+axios.defaults.retryDelay = 3000
 // 响应时间
 axios.defaults.timeout = 20000
 // 配置请求头

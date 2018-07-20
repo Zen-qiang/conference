@@ -17,22 +17,23 @@
                 <calendar  v-model="firstTime" :title="'请选择起始时间'" show-popup-header :popup-header-title="'请选择起始日期'"></calendar>
                 <calendar  v-model="lastTime" :title="'请选择截止时间'" show-popup-header :popup-header-title="'请选择截止日期'"></calendar>
              </group> 
-             <input type="button" value="筛选酒店" @click="flag = !flag">
+             <input type="button" value="筛选酒店" @click="searchHotel">
           </div>
 
-            <ul class="extra">
-              <li @click="$router.push({'name' : 'HotelManage'})" v-for="item of hotelsInfo" :key="item.id">
+            <ul class="extra" v-for ="(item, index) of hotelsInfo" :key ="index">
+              <li>
                 <div class="top">
                   <span>{{item.name}}</span>
                   <span><img src="../../assets/images/address.png" alt=""></span>
                 </div>
                 <div class="left">
-                  <img src="../../assets/images/hotel.png" alt="">
+                  <!-- ../../assets/images/hotel.png -->
+                  <img :src="item.photo" alt="">
                 </div>
-                <div class="right">
-                  <p><span class="hui">房型：</span> 大床；双人；三人；标间</p>
+                <div class="right" @click="getHotelInfo(item.id)">
+                  <p><span class="hui">房型：</span> {{item.roomType}}</p>
                   <p><span class="hui">地址：</span>{{item.address}}</p>
-                  <p><span class="hui">开始：</span>2018-12-16 &nbsp; &nbsp; &nbsp;<span class="hui">结束：</span>2018-12-21</p>
+                  <p><span class="hui">开始：</span>{{item.startTime | formatDate}} &nbsp; &nbsp; &nbsp;<span class="hui">结束：</span>{{item.endTime | formatDate}}</p>
                 </div>
               </li>
             </ul>
@@ -75,7 +76,14 @@
 
 <script>
 import { Group, Calendar, InlineCalendar, Tab, TabItem, Swiper, SwiperItem, XButton } from 'vux'
+import { formatDate } from '../../assets/js/date.js'
 export default {
+  filters: {
+    formatDate (time) {
+      let date = new Date(time)
+      return formatDate(date, 'yyyy-MM-dd')
+    }
+  },
   components: {
     Calendar,
     Group,
@@ -95,28 +103,45 @@ export default {
       list: ['安排入住', '已经入住'],
       demo: '安排入住',
       index: 0,
-      hotelsInfo: {},
-      hotelsName: {},
-      hotelAddress: {}
+      hotelsInfo: {}
     }
   },
-  created () {
-    this.getHotelsInfo()
-  },
   methods: {
-    // onChange (val) {
-    //   console.log('on-change', val)
-    //   if (this.value.length === 3) {
-    //     this.value.shift()
-    //   }
-    // }
-    getHotelsInfo () {
+    searchHotel () {
       this.axios({
         method: 'get',
         url: '/api/accommodation/hotels',
-        params: {}
+        params: {
+          startTime: String(this.firstTime) + ' ' + '00:00:00',
+          endTime: String(this.lastTime) + ' ' + '00:00:00'
+        }
       }).then(res => {
-        this.hotelsInfo = res.data.data
+        if (res.data.code === 0) {
+          this.hotelsInfo = res.data.data
+          console.log(this.hotelsInfo)
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    getHotelInfo (id) {
+      this.axios({
+        method: 'get',
+        url: '/api/accommodation/hotelInfo/' + id,
+        params: {
+          hotelId: id
+        }
+      }).then(res => {
+        if (res.data.code === 0) {
+          let hotelDetail = res.data.data
+          console.log(res.data.data)
+          this.$router.push({
+            name: 'HotelManage',
+            query: {
+              hotelName: hotelDetail.name
+            }
+          })
+        }
       }).catch(err => {
         console.log(err)
       })

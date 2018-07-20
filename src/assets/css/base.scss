@@ -33,28 +33,42 @@ ul, ol, li {
   z-index: 999;
 }
 //申请报名
-.sqbm_container, .dbm_container{
-  // .cel2{
-  //   .weui-cell__hd{
-  //     width: 316px;
-  //   }  
-  // }
-  
+.dbm_container{
+  li:last-of-type {
+    .weui-cell{
+      display: flex;
+    }
+    .weui-cell__hd{
+      flex: 10;
+    }
+    .weui-cell__bd{
+      flex: 2; 
+      .weui-select{
+        text-align: center !important;
+      }
+    }
+  }
+}
+.sqbm_container, .dbm_container{ 
   ul:first-of-type{
     .weui-cell__bd{
       line-height: fmt(60);
     }
-    li:nth-of-type(4){
-      .weui-cell_select-after .weui-select{
-        padding-left: fmt(70);
+    li:nth-of-type(4), li:nth-of-type(7){
+      .weui-cell{
+        display: flex;
+      }
+      .weui-cell__hd{
+        flex: 10;
+      }
+      .weui-cell__bd{
+        flex: 2; 
+        .weui-select{
+          text-align: center !important;
+        }
       }
     }
-    li:nth-of-type(8){
-      .weui-cell_select-after .weui-select{
-        padding-left: fmt(96);
-      }
-    }
-    li:nth-of-type(2), li:nth-of-type(3), li:nth-of-type(6), li:nth-of-type(7){
+    li:nth-of-type(2), li:nth-of-type(3), li:nth-of-type(6){
       .weui-cell{
         padding-left: 0 !important;
       }
@@ -141,7 +155,7 @@ ul, ol, li {
     position: relative;
     width: 100px;
     height: 32px;
-    transform: translateX(140%);
+    // transform: translateX(140%);
     font:14px/32px Microsoft Yahei;
     color: #888;
     padding-left: 10px !important;
@@ -149,15 +163,26 @@ ul, ol, li {
     border-radius: 6px;
    
   }
-
+  .vux-selector{
+    display: flex;
+    padding-right: 10px !important;
+    .weui-cell__hd{
+      flex: 6.5;
+    }
+    .weui-cell__bd{
+      flex: 2.5;
+      position: relative;
+    }
+  }
+  
   .weui-cell_select .weui-cell__bd:after{
       content: '';
       width: 0;
       height: 0;
       z-index: 5;
       position: absolute;
-      top: 24px;
-      right: 24px;
+      top: 18px;
+      right: 14%;
       border :5px solid transparent ;
       border-left-color: #333 !important;
       transform: rotate(90deg);
@@ -304,7 +329,7 @@ ul, ol, li {
 }
 
 //个人中心
-.personalcenter_container{
+.latestState_container{
   .vux-timeline-item{
     padding-right: fmt(30);
   }
@@ -317,6 +342,9 @@ ul, ol, li {
   // .vux-timeline-item-content:last-of-type{
   //   border-bottom: none;
   // }
+  .vux-timeline-item-color{
+    z-index: 9 !important;
+  }
   .vux-timeline-item-color{
     margin-top: fmt(8);
     background: #ddd;
@@ -336,11 +364,6 @@ ul, ol, li {
   }
   [class^="weui-icon-"], [class*=" weui-icon-"]{
     display: none;
-  }
-  li:last-of-type{
-    .vux-timeline-item-content{
-      border-bottom: none;
-    }
   }
 }
 //住宿管理

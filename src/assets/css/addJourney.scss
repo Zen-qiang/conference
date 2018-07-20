@@ -2,7 +2,7 @@
   @return ($val/200) +rem;
 }
 .vux-slider{
-  height: fmt(1144);
+  height: fmt(1160);
 }
 .vux-tab .vux-tab-item.vux-tab-selected{
   color: #333 !important;
@@ -33,17 +33,27 @@
     overflow: hidden;
     span:first-of-type{
       position: absolute;
+      left: fmt(30);
       top: fmt(20);
-      float: left;
       font:fmt(28)/fmt(50) Microsoft Yahei;
     }
-    span:last-of-type{
-      position: absolute;
-      bottom: fmt(-28);
-      right: fmt(30);
+    ul{
+      width: fmt(200);
+      height: 100%;
       float: right;
-      img{
-        width: fmt(170);
+      li{
+        position: relative;
+        width: fmt(80);
+        height: 100%;
+        float: right;
+        img{
+          margin-top: fmt(10);
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: fmt(70);
+          object-fit: contain;
+        }
       }
     }
   }

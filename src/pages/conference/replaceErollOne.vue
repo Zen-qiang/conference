@@ -1,9 +1,9 @@
 <template>
   <div class="dbm_container">
-      <div class="add">
+      <!-- <div class="add">
        <img src="../../assets/images/jia.png" alt="">
        <p>代报名</p>
-   </div>
+   </div> -->
 
    <ul>
        <li>

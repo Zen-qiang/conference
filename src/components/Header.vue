@@ -114,12 +114,11 @@ export default {
     goDining: function () {
       console.log(this.$store.state.currentUser.role)
       console.log(this.userRole)
+      console.log(this.roleSet[0])
       if (this.roleSet[0] === 'root') {
         this.$router.push({'name': 'DiningOne'})
-        console.log(1111111111)
       } else {
         this.$router.push({'name': 'Diningdetail'})
-        console.log(222222222222)
       }
       this.open = !this.open
     },
@@ -142,7 +141,7 @@ export default {
       this.open = !this.open
     },
     lose: function (e) {
-      console.dir(e.target)
+      // console.dir(e.target)
       if (e.target.className === 'hide') {
         this.open = !this.open
       }

@@ -1,0 +1,88 @@
+@function fmt ($val) {
+    @return ($val/200) +rem;
+}
+.personalSettings_container{
+    width: 100%;
+    height: 100vh;
+    background: #f2f2f2;
+    padding-top: fmt(100);
+    overflow: hidden;
+    .top{
+      width: 100%;
+      height: fmt(280);
+      padding-top: fmt(60);
+      background: linear-gradient(#0c92ce,#0cb4ce);
+      .head{
+          position: relative;
+          width: fmt(160);
+          height: fmt(160);
+          margin-left:40%;
+          overflow: hidden;
+          img{
+              position: absolute;
+              left: 0;
+              top: 0;
+              z-index: 2;
+          }
+          p{
+            position: absolute;
+            width: fmt(146);
+            height: fmt(146);
+            background: rgba(0, 0, 0,.6);
+            left: fmt(4);
+            top: fmt(4);
+            z-index: 3;
+            border-radius: fmt(73);
+            font: fmt(26)/fmt(146) Microsoft Yahei;
+            color: rgba($color: #fff, $alpha: .8);
+            font-weight: lighter;
+            text-align: center;
+            letter-spacing: fmt(4);
+           }
+        }
+    }
+    ul{
+        width: 100%;
+        background: #fff;
+        overflow: hidden;
+        li{
+            width: 100%;
+            height: fmt(100);
+            border-bottom: fmt(2) solid #ddd;
+            padding: 0 fmt(30);
+            span{
+                color: #333;
+                line-height: fmt(100);
+                font-family: Microsoft Yahei;
+            }
+            span:first-of-type{
+              float: left; 
+              font-size: fmt(28);  
+            }
+            span:last-of-type{
+              float: right;
+              font-size: fmt(26);
+            }
+        }
+        li:first-of-type{
+            span:last-of-type{
+                color: #949494;
+            }
+        }
+        li:last-of-type{
+            border: none;
+        }
+    }
+    .bottom{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: fmt(100);
+        background: #fff;
+        font:fmt(30)/fmt(100) Microsoft Yahei;
+        text-align: center;
+        color: #ea6059;
+        border-top: 1px solid #eee;
+    }
+}

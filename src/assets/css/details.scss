@@ -47,6 +47,7 @@
           img{
             width: fmt(690);
             height: fmt(400);
+            object-fit: contain;
            }
        }
        li:nth-of-type(2){
@@ -133,7 +134,8 @@
     }
     .intro{
         width: 100%;
-        height: fmt(390);
+        // height: fmt(390);
+        overflow: hidden;
         background: #fff;
         padding: fmt(40) fmt(30);
         text-align:justify;

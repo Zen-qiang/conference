@@ -7,6 +7,9 @@ const mutations = {
   },
   setVersion: (state, version) => {
     state.version = version
+  },
+  selectConferenceMembersId: (state, selectConferenceMembersId) => {
+    state.selectConferenceMembersId = selectConferenceMembersId
   }
 }
 

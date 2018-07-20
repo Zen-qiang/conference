@@ -2,7 +2,7 @@
   <div class="rygl_container">
     <div class="first">
        <span @click="a=!a">全选</span>
-       <span @click="$router.push({'name': 'HotelManage'})">上海全季酒店（陆家嘴店）</span> 
+       <span @click="$router.push({'name': 'HotelManage'})">{{hotelName}}</span> 
     </div>
     <div class="second">
       <p>标间数：2 &nbsp;&nbsp;大床：8 &nbsp;&nbsp;双人床：4 &nbsp;&nbsp;三人床：2</p>
@@ -93,7 +93,8 @@ export default {
       defaultValue8: 'one',
       defaultValue9: 'one',
       roomlist: [{key: 'bj', value: '标间1'}, {key: 'dc', value: '大床2'}, {key: 'tf', value: '套房3'}, {key: 'sc', value: '水床4'}],
-      orderlist: [{key: 'one', value: '序号1'}, {key: 'two', value: '序号2'}, {key: 'three', value: '序号3'}, {key: 'four', value: '序号4'}, {key: 'five', value: '序号5'}]
+      orderlist: [{key: 'one', value: '序号1'}, {key: 'two', value: '序号2'}, {key: 'three', value: '序号3'}, {key: 'four', value: '序号4'}, {key: 'five', value: '序号5'}],
+      hotelName: this.$route.query.hotelName
     }
   },
   methods: {

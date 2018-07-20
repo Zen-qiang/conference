@@ -8,99 +8,82 @@
           {{item}}
         </li>
         <span class="change">
-          <span v-show="flag" class="red" @click="flag = !flag">删除</span>
+          <span v-show="flag" class="red" @click="flag = !flag">编辑</span>
           <span v-show="!flag" class="blue" @click="flag = !flag">完成</span>
         </span>
         <img src="../../assets/images/jia2.png" alt="" class="pic" @click="$router.push({'name' : 'AddPeople'})">
+      </ul>
+    <ul class="divTab" v-show="nowIndex===0">
+       <li class="box" 
+           v-for ="(item, index) of arriveList" 
+           :key ="index">
+         <div class="content" @click="editInfo(item.id)">
+           <div class="left">
+             <!-- ../../assets/images/headpic11.png -->
+            <img :src="item.photo" alt="">
+          </div>
+          <div class="center">
+            <p>{{item.week}}</p>
+            <p></p>
+            <img src="../../assets/images/sanjiaoxing.png" alt="">
+            <p>{{item.numberOfRuns}}</p>
+          </div>
+          <div class="right">
+            <p>{{item.city}}</p>
+            <p>{{item.place}}</p>
+            <p>{{item.hour}}</p>
+            <p>预计到达 {{item.hour}}</p>
+          </div>
+       </div>
+        <div class="xia" @click="checkothers(item.id, item.membersSize)">
+         <span>其他成员 &nbsp;</span>
+         <span><i>{{item.membersSize}}</i>人</span>
+         <span><img :src="item.members.length?item.members[0].photo:''" alt=""></span>
+         <!-- <span v-if="item.members.length">
+           <img :src="item.members[0].photo" alt="">
+         </span>
+         <span v-else>
+           <img src="" alt="">
+         </span> -->
+         <span>more</span>
+      </div>
+      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="deleteInfo(item.id)">
+     </li>      
+     <x-button @click.native="out">管理我的专车</x-button>
     </ul>
-    <div class="divTab" v-show="nowIndex===0">
-       <div class="box" v-if='firstFlag'>
-         <div class="content">
-           <div class="left">
-            <img src="../../assets/images/headpic11.png" alt="">
-          </div>
-          <div class="center">
-            <p>12月20日 &nbsp;周三</p>
-            <p></p>
-            <img src="../../assets/images/sanjiaoxing.png" alt="">
-            <p>中国国航CA3202</p>
-          </div>
-          <div class="right">
-            <p>上海</p>
-            <p>虹桥T3</p>
-            <p>08:50</p>
-            <p>预计到达 08:50</p>
-          </div>
-       </div>
-        <div class="xia" @click="$router.push({'name' : 'Checkothers'})">
-         <span>其他成员 &nbsp;</span>
-         <span><i>{{a}}</i>人</span>
-         <span><img src="../../assets/images/headpic.jpg" alt=""></span>
-         <span>more</span>
-      </div>
-      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="firstFlag = false">
-     </div>
-
-       <div class="box" v-if='secondFlag'>
-         <div class="content">
-           <div class="left">
-            <img src="../../assets/images/headpic12.png" alt="">
-          </div>
-          <div class="center">
-            <p>12月20日 &nbsp;周三</p>
-            <p></p>
-            <img src="../../assets/images/sanjiaoxing.png" alt="">
-            <p>自行解决</p>
-          </div>
-          <div class="right">
-            <p>上海</p>
-            <p>/</p>
-            <p>待定</p>
-            <p>/</p>
-          </div>
-       </div>
-        <div class="xia">
-         <span>其他成员 &nbsp;</span>
-         <span><i>{{b}}</i>人</span>
-         <!-- <span><img src="../../assets/images/headpic.jpg" alt=""></span> -->
-         <span>/</span>
-      </div>
-      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="secondFlag = false">
-       <x-button @click.native="out">管理我的专车</x-button>
-     </div>
-      
-    </div>
     
-    <div class="divTab divTab2" v-show="nowIndex===1">
-      <div class="box" v-if='nextFirstFlag'>
+    <ul class="divTab divTab2" v-show="nowIndex===1">
+      <li class="box" 
+          v-if='nextFirstFlag'
+          v-for ="(item, index) of departList" 
+          :key ="index">
          <div class="content">
            <div class="left">
-            <img src="../../assets/images/headpic13.png" alt="">
+            <img :src="item.photo" alt="">
           </div>
           <div class="center">
-            <p>12月20日 &nbsp;周三</p>
+            <p>{{item.week}}</p>
             <p></p>
             <p></p>
-            <p>和谐号KB4403</p>
+            <p>{{item.numberOfRuns}}</p>
           </div>
           <div class="right">
-            <p>上海</p>
-            <p>南站T2</p>
-            <p>14:20</p>
-            <p>预计离开 14:20</p>
+            <p>{{item.city}}</p>
+            <p>{{item.place}}</p>
+            <p>{{item.hour}}</p>
+            <p>预计到达 {{item.hour}}</p>
           </div>
        </div>
-        <div class="xia" @click="$router.push({'name' : 'Checkothers'})">
-         <span>其他成员 &nbsp;</span>
-         <span><i>{{a}}</i>人</span>
-         <span><img src="../../assets/images/headpic14.png" alt=""></span>
-         <span>more</span>
+      <div class="xia" @click="checkothers(item.id, item.membersSize)">
+        <span>其他成员 &nbsp;</span>
+        <span><i>{{item.membersSize}}</i>人</span>
+        <span><img :src="item.members.length?item.members[0].photo:''" alt=""></span>
+        <span>more</span>
       </div>
-      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="nextFirstFlag = false">
-       <x-button @click.native="out">管理我的专车</x-button>
-     </div>
-     
-    </div>
+      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="deleteInfo(item.id)">
+      </li>
+      <x-button @click.native="out">管理我的专车</x-button>
+    </ul>
   </div>
 </template>
 
@@ -114,13 +97,19 @@ export default {
     return {
       tabsParam: ['到站信息', '返程信息'],
       nowIndex: 0,
-      a: 8,
-      b: 0,
       flag: 'false',
       firstFlag: 'true',
       secondFlag: 'true',
-      nextFirstFlag: 'true'
+      nextFirstFlag: 'true',
+      arriveList: [],
+      departList: [],
+      arriveMemberNum: '',
+      departMenmberNum: ''
     }
+  },
+  created () {
+    this.getArriveStatus()
+    this.getDepartStatus()
   },
   methods: {
     toggleTabs: function (index) {
@@ -128,6 +117,72 @@ export default {
     },
     out: function () {
       this.$router.push({'name': 'Cars'})
+    },
+    editInfo (id) {
+      if (!this.flag) {
+        this.$router.push({
+          name: 'EditJourney',
+          query: {
+            journeyId: id
+          }
+        })
+      }
+    },
+    getArriveStatus () {
+      this.axios({
+        method: 'get',
+        url: '/api/journey/list',
+        params: {
+          journeyType: 'ARRIVE'
+        }
+      }).then(res => {
+        if (res.data.code === 0) {
+          this.arriveList = res.data.data
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    getDepartStatus () {
+      this.axios({
+        method: 'get',
+        url: '/api/journey/list',
+        params: {
+          journeyType: 'DEPART'
+        }
+      }).then(res => {
+        if (res.data.code === 0) {
+          this.departList = res.data.data
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    checkothers (id, num) {
+      if (num === 0) {
+        return 0
+      } else {
+        this.$router.push({
+          name: 'Checkothers',
+          query: {
+            journeyId: id
+          }
+        })
+      }
+      // console.log(id)
+    },
+    deleteInfo (id) {
+      this.axios({
+        method: 'delete',
+        url: '/api/journey/deleteJourneyMember',
+        params: {
+          journeyId: id
+        }
+      }).then(res => {
+        console.log(res.data.data)
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }
 }

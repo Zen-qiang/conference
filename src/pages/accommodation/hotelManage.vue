@@ -10,7 +10,7 @@
        </div>
 
        <div class="address" @click="$router.push({'name' : 'Map'})">
-         <span>上海全季酒店</span>
+         <span>{{hotelName}}</span>
          <img src="../../assets/images/address.png" alt="">
        </div>
 
@@ -19,7 +19,7 @@
       <calendar  v-model="firstTime" :title="'请选择入住日期'" show-popup-header :popup-header-title="'请选择入住日期'"></calendar>
       <calendar  v-model="lastTime" :title="'请选择退房日期'" show-popup-header :popup-header-title="'请选择退房日期'"></calendar>
     </group>
-          <input type="button" value="安排入住" @click="$router.push({'name' : 'PeopleManage'})">
+          <input type="button" value="安排入住" @click="checkin">
        </div> 
        <div class="box1">
          <span>入住信息</span>
@@ -63,7 +63,8 @@ export default {
         }
       ],
       firstTime: 'TODAY',
-      lastTime: 'TODAY'
+      lastTime: 'TODAY',
+      hotelName: this.$route.query.hotelName
     }
   },
   methods: {
@@ -75,6 +76,14 @@ export default {
     },
     onViewChange (val, count) {
       console.log('on view change', val, count)
+    },
+    checkin () {
+      this.$router.push({
+        name: 'PeopleManage',
+        query: {
+          hotelName: this.hotelName
+        }
+      })
     }
   }
 }

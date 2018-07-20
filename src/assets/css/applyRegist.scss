@@ -6,7 +6,7 @@
 }
 .sqbm_container{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: #f2f2f2;
     position: relative;
     // overflow: hidden;
@@ -82,7 +82,7 @@
                 color: #ed7574;
             }   
         }
-        li:nth-of-type(2), li:nth-of-type(3), li:nth-of-type(6), li:nth-of-type(7){
+        li:nth-of-type(2), li:nth-of-type(3), li:nth-of-type(6) {
             span:last-of-type{
                 position: absolute;
                 top: 0;

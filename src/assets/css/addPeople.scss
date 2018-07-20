@@ -2,14 +2,16 @@
   @return ($val/200) +rem;
 }
 .tjry_container{
-  margin-top: fmt(100);
+  padding-top: fmt(100);
   // border-top: fmt(2) solid #ddd;
-  padding-top: fmt(20);
-  padding-bottom: fmt(400);
+  // padding-top: fmt(20);
+  // padding-bottom: fmt(400);
   overflow: hidden;
   width: 100%;
+  height: 100vh;
   background: #f2f2f2;
   .content{
+    margin-top: fmt(20);
     width: 100%;
     background: #fff;
     .first{

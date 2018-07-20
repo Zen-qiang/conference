@@ -10,9 +10,9 @@
                   <img src="../../assets/images/left1.png" alt="">
               </div>
               <div class="right" @click="getState(index)">
-                  <img src="../../assets/images/adidas1.jpg" alt="">
+                  <img :src= status[index].conferenceCoverUrl alt="">
                   <h2>{{status[index].subject}}</h2>
-                  <p><span></span> &nbsp;进行中</p>
+                  <p><span></span> &nbsp;{{status[index].valueDefault}}</p>
                   <p>{{status[index].description}}</p>
                   <!-- <p>此次阿迪达斯魅&黑2018秋冬新品延续了品牌产品一贯的优秀品质与颜值，不管是鞋类还是服装类，在设计上都推陈出新，搭配上更注重整体理念，将材质、织法、剪裁、配色等特点融入服饰的款式中，鞋类产品新BOUNCE、BOOST与CLOUDFOAM缓震材质的嵌入，为羽毛球运动的每一步移动提供更好的能量传递与推动，使阿迪达斯羽毛球系列产品的鞋底风潮...</p> -->
               </div>

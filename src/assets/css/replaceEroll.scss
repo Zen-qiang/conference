@@ -44,6 +44,9 @@
             padding-left: fmt(28);
             border-bottom:1px solid #ddd;
             position: relative;
+            div:first-of-type{
+                height: 100%;
+            }
             span{
                 float: left;
                 font:fmt(28)/fmt(100) Microsoft Yahei;

@@ -17,6 +17,7 @@ import EnrollManage from '@/pages/conference/enrollManage'
 import JourneyManage from '@/pages/journey/journeyManage'
 import AddPeople from '@/pages/journey/addPeople'
 import AddJourney from '@/pages/journey/addJourney'
+import EditJourney from '@/pages/journey/editJourney'
 import Checkothers from '@/pages/journey/checkothers'
 import Addroute from '@/pages/journey/addroute'
 import Report from '@/pages/checkin/report'
@@ -36,6 +37,9 @@ import Diningscan from '@/pages/meal/diningscan'
 import Dininglist from '@/pages/meal/dininglist'
 import Certificate from '@/pages/user/certificate'
 import Personalcenter from '@/pages/user/personalcenter'
+import PersonalSettings from '@/pages/user/personalSettings'
+import ConferenceCenter from '@/pages/user/conferenceCenter'
+import LatestState from '@/pages/user/latestState'
 import Hotelregist from '@/pages/accommodation/hotelregist'
 import HotellistOne from '@/pages/accommodation/HotellistOne'
 import HotellistTwo from '@/pages/accommodation/hotellistTwo'
@@ -136,6 +140,11 @@ export default new Router({
       component: AddJourney
     },
     {
+      path: '/editJourney',
+      name: 'EditJourney',
+      component: EditJourney
+    },
+    {
       path: '/checkothers',
       name: 'Checkothers',
       component: Checkothers
@@ -229,6 +238,21 @@ export default new Router({
       path: '/personalcenter',
       name: 'Personalcenter',
       component: Personalcenter
+    },
+    {
+      path: '/personalSettings',
+      name: 'PersonalSettings',
+      component: PersonalSettings
+    },
+    {
+      path: '/conferenceCenter',
+      name: 'ConferenceCenter',
+      component: ConferenceCenter
+    },
+    {
+      path: '/latestState',
+      name: 'LatestState',
+      component: LatestState
     },
     {
       path: '/hotelregist',

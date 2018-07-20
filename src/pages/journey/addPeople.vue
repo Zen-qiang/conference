@@ -7,87 +7,97 @@
       </p>
       <div class="main">
         <ul>
-          <li class="active"  @click="chooseOrder($event)">
-            <img src="../../assets/images/pic1.jpg" alt="">
-            <p>王霜</p>
-          </li>
-          <li class="active" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic2.jpg" alt="">
-            <p>曹爽</p>
-          </li>
-          <li class="active" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic3.jpg" alt="">
-            <p>司马昭</p>
-          </li>
-          <li class="active" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic4.jpg" alt="">
-            <p>小沅</p>
-          </li>
-          <li class="active" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic5.jpg" alt="">
-            <p>王朗</p>
-          </li>
-          <li class="normal" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic6.jpg" alt="">
-            <p>曹睿</p>
-          </li>
-          <li class="normal" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic7.jpg" alt="">
-            <p>白灵韵</p>
-          </li>
-          <li class="normal" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic8.jpg" alt="">
-            <p>兰博</p>
-          </li>
-          <li class="normal" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic9.png" alt="">
-            <p>刘韩</p>
-          </li>
-          <li :class="{normal:true}" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic10.jpg" alt="">
-            <p>煮雨</p>
+          <li
+            v-for="(item, index) of info.members"
+            :key="index"
+            :class="{active: item.show}"
+            @click="chooseOrder($event, item.conferenceMembersId, item)"
+           >
+            <img :src="item.userPicture" alt="">
+            <p>{{item.name}}</p>
           </li>
         </ul>
       </div>
-      <p class="add" @click="$router.push({'name' : 'AddJourney'})">确定</p>
+      <p class="add" @click="addUserpic()">确定</p>
     </div>
   </div>
 </template>
 
 <script>
+// import * as types from '../../store/mutations'
 export default {
   data () {
     return {
       a: true,
       b: false,
-      no: null
+      no: null,
+      info: [],
+      userPic: [],
+      selectId: []
     }
+  },
+  created () {
+    this.getPeopleInfo()
   },
   methods: {
     change: function (index) {
-      // this.a = !this.a
-      // this.b = !this.b
       this.no = index
     },
-    chooseOrder: function (e) {
+    chooseOrder: function (e, id, item) {
+      item.show ? this.$set(item, 'show', false) : this.$set(item, 'show', true)
       // console.dir(e.target.parentNode)
-      if (e.target.tagName === 'LI') {
-        if (e.target.className.indexOf('active') === -1) {
-          e.target.classList.add('active')
-          e.target.classList.remove('normal')
-        } else {
-          e.target.classList.remove('active')
-          e.target.classList.add('normal')
+      // if (e.target.tagName === 'LI') {
+      //   if (e.target.className.indexOf('active') === -1) {
+      //     e.target.classList.add('active')
+      //     e.target.classList.remove('normal')
+      //   } else {
+      //     e.target.classList.remove('active')
+      //     e.target.classList.add('normal')
+      //   }
+      // } else {
+      //   if (e.target.parentNode.className.indexOf('active') === -1) {
+      //     e.target.parentNode.classList.add('active')
+      //     e.target.parentNode.classList.remove('normal')
+      //   } else {
+      //     e.target.parentNode.classList.remove('active')
+      //     e.target.parentNode.classList.add('normal')
+      //   }
+      // }
+    },
+    getPeopleInfo () {
+      this.axios({
+        method: 'get',
+        url: '/api/conference/searchApplySuccessMemberInfo'
+      }).then(res => {
+        if (res.data.code === 0) {
+          this.info = res.data.data
+          this.info.members.forEach(element => {
+            this.$set(element, 'show', true)
+          })
+          let members = this.info.members
+          for (var i = 0; i < members.length; i++) {
+            this.userPic.push(members[i].userPicture)
+          }
         }
-      } else {
-        if (e.target.parentNode.className.indexOf('active') === -1) {
-          e.target.parentNode.classList.add('active')
-          e.target.parentNode.classList.remove('normal')
-        } else {
-          e.target.parentNode.classList.remove('active')
-          e.target.parentNode.classList.add('normal')
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    addUserpic () {
+      let selsects = []
+      this.info.members.forEach((el, index) => {
+        if (el.show) {
+          selsects.push(el.conferenceMembersId)
         }
-      }
+      })
+      console.log(selsects)
+      this.$store.commit('selectConferenceMembersId', selsects)
+      this.$router.push({
+        name: 'AddJourney',
+        query: {
+          userPic: this.userPic.slice(0, 2)
+        }
+      })
     }
   }
 }

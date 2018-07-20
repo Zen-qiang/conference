@@ -27,9 +27,9 @@
                 <x-input title="姓名" name="username" placeholder="请输入姓名" :max="5" is-type="china-name" placeholder-align="right" text-align="right" :show-clear="false"  v-model="username"></x-input>
               </group>
             </li>
-            <li>
+            <li @click="getList ('POSITION', jobList)">
                 <group>
-                     <selector title="岗位" :options="jobList" v-model="defaultValue1"></selector>
+                     <selector title="岗位" :options="jobList"></selector>
                 </group>
             </li>
             <li>
@@ -49,19 +49,19 @@
                 <x-input title="手机"  name="mobile" placeholder="请输入手机号码" :max="11" keyboard="number" is-type="china-mobile" placeholder-align="right" text-align="right" :show-clear="false"  v-model="phone"></x-input>
               </group> 
             </li>
-            <li>
+            <!-- <li> -->
                 <!-- <span>身份证</span>
                 <span><input type="text" placeholder="请输入身份证号码"></span> -->
-                <group>
+                <!-- <group>
                 <x-input title="身份证"  name="card" placeholder="请输入身份证号码" :max="18"  ref="input2"   placeholder-align="right" text-align="right"  v-model="card"></x-input>
-              </group> 
-            </li>
-            <li class="cel2">
+              </group>  -->
+            <!-- </li> -->
+            <li class="cel2" @click="getList ('GENDER', sexList)">
                 <!-- <span>性别</span>
                 <span>男 <img src="../assets/images/nan.png" alt=""></span>
                 <span><img src="../assets/images/jiantou.png" alt=""></span> -->
                 <group>
-                    <selector title="性别" :options="sexList" v-model="defaultValue"></selector>
+                    <selector title="性别" :options="sexList"></selector>
                 </group>
             </li>
         </ul>
@@ -145,66 +145,99 @@ export default {
   data () {
     return {
       a: 0,
-      defaultValue: 'nan',
-      sexList: [{key: 'nan', value: '男'}, {key: 'nv', value: '女'}],
-      defaultValue1: 'jl',
-      jobList: [{key: 'jl', value: '经理'}, {key: 'zj', value: '总监'}],
+      // defaultValue: ' ',
+      sexList: [],
+      // defaultValue1: ' ',
+      jobList: [],
       companyname: '',
       username: '',
       phone: '',
-      card: ''
+      card: '',
+      conferenceId: this.$route.query.meettingId,
+      list: '',
+      singleList: {},
+      keyword: ''
     }
   },
+  created () {
+    // this.getList()
+  },
   methods: {
+    // 提交报名列表
     sub () {
       this.axios({
         method: 'post',
         url: '/api/conference/enter',
         data: {
-          conferenceId: 2,
+          conferenceId: this.conferenceId,
           conferenceMemberViews: [
             {
-              endTime: '2018-04-27T04:35:56.016Z',
+              endTime: '',
               fkGenderId: 0,
               fkMasterId: 0,
               fkRoomTypeId: 0,
               fkUserId: 0,
-              idNumber: 'string',
+              idNumber: this.card,
               master: true,
-              name: 'Jenny',
-              phoneNo: 'string',
-              photo: 'string',
+              name: this.username,
+              phoneNo: this.phone,
+              photo: '',
               roomSeq: 0,
-              startTime: '2018-04-27T04:35:56.016Z',
+              startTime: '',
               valid: true
             }
           ]
         }
-        // transformRequest: [function (data) {
-        //   let ret = ''
-        //   for (let it in data) {
-        //     ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-        //   }
-        //   return ret
-        // }]
       }).then((res) => {
-        console.log(res.data)
+        console.log(res.data.data)
       })
       .catch(err => {
         console.log(err)
       })
-      this.$router.push({'name': 'EnrollSuccess'})
+      this.$router.push({
+        name: 'EnrollSuccess',
+        query: {
+          meettingId: this.conferenceId
+        }
+      })
+    },
+    // 获取下拉列表
+    getList (keyword, list) {
+      if (list.length) return
+      this.axios({
+        method: 'get',
+        url: '/api/list/properties',
+        params: {
+          group: keyword
+        }
+      }).then(res => {
+        if (res.data.code === 0) {
+          let newlist = res.data.data
+          for (var i = 0; i < newlist.length; i++) {
+            // this.singleList.key = this.list[i].propKey
+            // this.singleList.value = this.list[i].value)
+            let singleList = {
+              'key': newlist[i].propKey,
+              'value': newlist[i].value
+            }
+            // this.$set(this.data,”key”,value’) $set()方法，既可以新增属性,又可以触发视图更新
+            this.$set(list, i, singleList)
+          }
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    // 职位列表
+    getJoblist () {
+      this.keyword = 'POSITION'
+      this.getList()
+    },
+    // 性别列表
+    getSexlist () {
+      this.keyword = 'GENDER'
+      this.getList()
     }
-    // custom (value) {
-    //   console.log(1111111188882222)
-    //   var regIdCard = / ^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/
-    //   if (this.refs.input2.value.test(regIdCard) === true) {
-    //     this.$refs.input2.valid = true
-    //   } else {
-    //     this.$refs.input2.valid = false
-    //   }
-    //   console.log(111111118888)
-    // }
   }
 }
 </script>
