@@ -165,29 +165,26 @@ export default {
   methods: {
     // 提交报名列表
     sub () {
+      let data = [{
+        endTime: '',
+        fkGenderId: 0,
+        fkMasterId: 0,
+        fkRoomTypeId: 0,
+        fkUserId: 0,
+        idNumber: this.card,
+        master: true,
+        name: this.username,
+        phoneNo: this.phone,
+        photo: '',
+        roomSeq: 0,
+        startTime: '',
+        valid: true
+      }]
+      console.log(JSON.stringify(data))
       this.axios({
         method: 'post',
         url: '/api/conference/enter',
-        data: {
-          conferenceId: this.conferenceId,
-          conferenceMemberViews: [
-            {
-              endTime: '',
-              fkGenderId: 0,
-              fkMasterId: 0,
-              fkRoomTypeId: 0,
-              fkUserId: 0,
-              idNumber: this.card,
-              master: true,
-              name: this.username,
-              phoneNo: this.phone,
-              photo: '',
-              roomSeq: 0,
-              startTime: '',
-              valid: true
-            }
-          ]
-        }
+        data: JSON.stringify(data)
       }).then((res) => {
         console.log(res.data.data)
       })
