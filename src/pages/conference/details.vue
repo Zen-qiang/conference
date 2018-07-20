@@ -109,11 +109,11 @@ export default{
     chooseConference () {
       console.log('chooseConference')
       this.axios({
-        method: 'put',
-        url: `/api/conference/choose/${this.conferenceId}`
-        // params: {
-        //   conferenceId: this.conferenceId
-        // },
+        method: 'post',
+        url: '/api/conference/choose/' + this.conferenceId,
+        params: {
+          _method: 'put'
+        }
       }).then(res => {
         if (res.data.code === 0) {
           console.log(res.data.data)
