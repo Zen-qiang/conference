@@ -6,7 +6,9 @@
                 <li><img src="../../assets/images/dui2.png" alt=""></li>
                 <li><p>恭喜您报名成功！</p></li>
                 <li><p>长按关注我们，以便及时获取最新状态</p></li>
-                <li><img src="../../assets/images/erweima.jpg" alt=""></li>
+                <li>
+                  <qrcode value="" type="img"></qrcode>
+                </li>
              </ul> 
            </li>
            <!-- <li class="outli2" >
@@ -19,12 +21,12 @@
                <span><img src="../../assets/images/jiantou.png" alt=""></span>
            </li> -->
        </ul>
-        <!-- 2.行程管理跳转 -->
         <p class="anpai" @click="$router.push({'name' : 'Addroute'})">安排我的行程</p>
    </div>
 </template>
 
 <script>
+import { Qrcode } from 'vux'
 export default {
   data () {
     return {
@@ -33,28 +35,28 @@ export default {
       picStatus: ''
     }
   },
+  components: {
+    Qrcode
+  },
   created () {
-    this.getPicStatus()
+    // this.getPicStatus()
   },
   methods: {
     // 拿二维码
-    getPicStatus () {
-      this.axios({
-        method: 'get',
-        url: '/api/conference/searchApplySuccessMemberInfo',
-        params: {
-          conferenceId: this.conferenceId
-        }
-      }).then(res => {
-        if (res.data.code === 0) {
-          // this.picStatus = res.data.data
-          // this.QRcode = this.picStatus
-          // console.log(res.data.data)
-        }
-      }).catch(err => {
-        console.log(err)
-      })
-    }
+    // getPicStatus () {
+    //   this.axios({
+    //     method: 'get',
+    //     url: '/api/conference/searchApplySuccessMemberInfo',
+    //     params: {
+    //       conferenceId: this.conferenceId
+    //     }
+    //   }).then(res => {
+    //     if (res.data.code === 0) {
+    //     }
+    //   }).catch(err => {
+    //     console.log(err)
+    //   })
+    // }
   }
 }
 </script>

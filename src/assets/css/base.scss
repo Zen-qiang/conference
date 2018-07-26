@@ -113,7 +113,47 @@ ul, ol, li {
   .weui-select{
     text-align: right !important;
   }
-  
+
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 4px;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+  }
+  // .avatar-uploader .el-upload:hover {
+  //   border-color: #409EFF;
+  // }
+  .avatar-uploader-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 18px;
+    color: #8c939d;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+  }
+  .avatar {
+    width: 40px;
+    height: 40px;
+    display: block;
+  }
+  .phone{
+    .weui-cells{
+      width: 100%;
+      height: 100%;
+      padding: 0 0 0 14px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
 }
 //代报名
 .dbm_container{
@@ -124,6 +164,16 @@ ul, ol, li {
   }
   .weui-cell_select .weui-cell__bd:after{
     top: 52% !important;
+  }
+}
+.bmcg_container{
+  .inner{
+    li:last-of-type{
+      img{
+        width: 140px !important;
+        height: 140px !important;
+      }
+    }
   }
 }
 // 添加行程
@@ -174,7 +224,16 @@ ul, ol, li {
       position: relative;
     }
   }
-  
+  .vux-x-input {
+    .weui-cell__bd{
+      height: 30px;
+      // line-height: 30px;
+      input{
+        height: 100%;
+        line-height: 30px;
+      }
+    }
+  }
   .weui-cell_select .weui-cell__bd:after{
       content: '';
       width: 0;
@@ -191,6 +250,8 @@ ul, ol, li {
     font:14px/24px Microsoft Yahei;
     color: #333;
   }
+  
+  
   
 }
 //行程管理
@@ -467,8 +528,16 @@ ul, ol, li {
     background: #e94142;
   }
   .inline-calendar td.is-today, .inline-calendar td.is-today.is-disabled{
-    color: #e53837;
-   
+    color: #e53837;   
+  }
+}
+.cars_container{
+  .vux-slider{
+    // height: fmt(600) !important;
+    padding: 0 0 fmt(80) 0;
+  }
+  .vux-swiper-item{
+    
   }
 }
 

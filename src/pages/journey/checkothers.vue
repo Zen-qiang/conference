@@ -23,10 +23,10 @@
             <span>代</span>
             <div class="text">
               <p>手机 ：{{item.phoneNo}}</p>
-              <P>身份证 ：{{item.idNumber}}</P>
+              <!-- <P>身份证 ：{{item.idNumber}}</P>
               <p>酒店 ：{{item.hotelName}}</p>
               <P>房间类型 ：{{item.roomType}}</P>
-              <p>房间序号 ： {{item.room_seq}}</p> 
+              <p>房间序号 ： {{item.room_seq}}</p>  -->
             </div>
           </div>
       </li>
@@ -66,9 +66,10 @@ export default {
     },
     deleteMember (id) {
       this.axios({
-        method: 'delete',
+        method: 'post',
         url: '/api/journey/deleteJourneyMember',
         params: {
+          _method: 'delete',
           journeyMemberId: id
         }
       }).then(res => {

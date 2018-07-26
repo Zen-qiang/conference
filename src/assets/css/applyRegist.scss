@@ -6,12 +6,12 @@
 }
 .sqbm_container{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background: #f2f2f2;
     position: relative;
     // overflow: hidden;
     padding-top: fmt(100);
-    padding-bottom: fmt(160);
+    padding-bottom: fmt(200);
     .first{
         position: relative;
         width: 100%;
@@ -90,12 +90,12 @@
             }
         }
         li:nth-of-type(5){
-            span:nth-of-type(2){
-                position: absolute;
-                top: 0;
-                right: fmt(88);
-                font-size: fmt(24);
-            }
+            // span:nth-of-type(2){
+            //     position: absolute;
+            //     top: 0;
+            //     right: fmt(88);
+            //     font-size: fmt(24);
+            // }
             .upload{
                 position: absolute;
                 top: fmt(20);
@@ -118,7 +118,7 @@
                     opacity: 0;
                 }
             }
-            span:last-of-type{
+            .cam{
                 position: absolute;
                 top: fmt(10);
                 right: fmt(20);
@@ -168,13 +168,6 @@
                 }
             }
         }
-        li:first-of-type{
-            span:nth-of-type(2){
-                position: absolute;
-                top: 0;
-                right: fmt(60);
-            }
-        }
     }
     ul.dbm{
         width: 100%;
@@ -187,8 +180,13 @@
             border-bottom:1px solid #ddd;
             position: relative;
         }
-        li:first-of-type{
+        .firstdiv{
             height: fmt(100);
+            width: 100%;
+            background: #fff;
+            padding-left: fmt(28);
+            border-bottom:1px solid #ddd;
+            position: relative;
             span{
                 float: left;
                 font:fmt(28)/fmt(100) Microsoft Yahei;
@@ -198,8 +196,8 @@
                 right: fmt(20);
             }
         }
-        li:nth-of-type(2),li:nth-of-type(3){
-            height: fmt(330);
+        li{
+            height: fmt(200);
             padding-top: fmt(20);
             .close{
                 float: left;
@@ -223,13 +221,14 @@
                     // font:fmt(28)/fmt(100) Microsoft Yahei;
                 }
                 span:first-of-type{
+                    height: fmt(80);
                     img{
                         width: fmt(50);
                         height: fmt(50);
                     }
                 }
                 span:nth-of-type(2),span:nth-of-type(3){
-                    margin: fmt(-12) 0 0 fmt(24);
+                    margin: fmt(-8) 0 0 fmt(24);
                     line-height: fmt(80);
                     color: #494949;
                 }
@@ -246,19 +245,20 @@
                 }
                 span:nth-of-type(5){
                     float: right;
-                    margin-top: fmt(4);
+                    height: fmt(80);
+                    // margin-top: fmt(4);
                 }
                 .text{
                     position: absolute;
                     left: fmt(120);
-                    bottom: fmt(16);
+                    bottom: fmt(34);
                     width: fmt(600);
                     color: #999;
                     font:fmt(20)/fmt(40) Microsoft Yahei;
                 }
             }
         }
-        li:nth-of-type(3){
+        li{
             .text{
                 padding-top: fmt(18);
                 border-top: 1px solid #eee; 

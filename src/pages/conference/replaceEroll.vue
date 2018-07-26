@@ -4,53 +4,30 @@
        <img src="../../assets/images/jia.png" alt="">
        <p>代报名</p>
    </div> -->
-
    <ul>
        <li>
            <span>姓名</span>
-           <span><input type="text" placeholder="请输入姓名"></span>
+           <span><input type="text" placeholder="请输入姓名" v-model="userName"></span>
        </li>
         <li>
             <span>照片</span>
             <span class="hui"></span>
-
             <a href="javascript:;" class="upload">将用于证件打印
               <input type="file" multiple="multiple" accept="image/*" capture="camera" class="change">
-            </a>
-            
-            <span><img src="../../assets/images/camera.png" alt=""></span>
-           
+            </a>           
+            <span><img src="../../assets/images/camera.png" alt=""></span>           
         </li>
         <li>
             <span>手机</span>
-            <span class="hui"><input type="text" placeholder="请输入手机号码"></span>
+            <span class="hui"><input type="text" placeholder="请输入手机号码" v-model="phone"></span>
         </li>
-        <!-- <li>
-            <span>身份证</span>
-            <span><input type="text" placeholder="请输入身份证号码"></span>
-        </li> -->
         <li>
-            <!-- <span>性别</span>
-            <span>男 <img src="../../assets/images/nan.png" alt=""></span>
-            <span><img src="../../assets/images/jiantou.png" alt=""></span> -->
             <group>
-              <selector title="性别" :options="list" v-model="defaultValue"></selector>
+              <selector title="性别" :options="sexList" v-model="defaultValue"></selector>
             </group>
         </li>
-         <!-- <li>
-            <span>酒店名</span>
-            <span><input type="text" placeholder="请输入酒店名称"></span>
-        </li>
-        <li>
-            <span>房间类型</span>
-            <span><input type="text" placeholder="请输入房间类型"></span>
-        </li>
-        <li>
-            <span>房间序号</span>
-            <span><input type="text" placeholder="请输入房间序号"></span>
-        </li> -->
    </ul>
-   <p class="end" @click="$router.push({'name' : 'ApplyRegist'})">完成</p>
+   <p class="end" @click="addReplace()">完成</p>
   </div>
    
 </template>
@@ -62,10 +39,80 @@ export default {
     Group,
     Selector
   },
+  created () {
+    this.getSexlist()
+  },
   data () {
     return {
-      defaultValue: 'nan',
-      list: [{key: 'nan', value: '男'}, {key: 'nv', value: '女'}]
+      defaultValue: '',
+      sexList: [],
+      userName: '',
+      phone: '',
+      meetting: this.$route.query.meetting,
+      fkUserId: this.$store.state.userInfo.defaultConference.fkUserId
+    }
+  },
+  computed: {
+    userInfo () {
+      return this.$store.state.userInfo.defaultConference.fkUserId
+    }
+  },
+  methods: {
+    addReplace () {
+      // let arr = []
+      let arrobj = {
+        name: this.userName,
+        phoneNo: this.phone,
+        fkGenderId: this.defaultValue,
+        fkMasterId: this.fkUserId, // 当前登陆人ID
+        master: false
+      }
+      // arr.push(arrobj)
+      this.$store.commit('replacePeople', arrobj)
+      this.$router.push({
+        name: 'ApplyRegist',
+        query: {
+          meetting: this.meetting
+        }
+      })
+    },
+    // 获取下拉列表
+    getList (keyword, list) {
+      let self = this
+      if (list.length) return
+      this.axios({
+        method: 'get',
+        url: '/api/list/properties',
+        params: {
+          group: keyword
+        }
+      }).then(res => {
+        if (res.data.code === 0) {
+          let newlist = res.data.data
+          for (var i = 0; i < newlist.length; i++) {
+            // this.singleList.key = this.list[i].propKey
+            // this.singleList.value = this.list[i].value)
+            let singleList = {
+              'key': newlist[i].id,
+              'value': newlist[i].value
+            }
+            // this.$set(this.data,”key”,value’) $set()方法，既可以新增属性,又可以触发视图更新
+            this.$set(list, i, singleList)
+          }
+          // if (keyword === 'POSITION') {
+          //   self.defaultValue = list[0].key
+          // } else if (keyword === 'GENDER') {
+          //   self.defaultValue1 = list[0].key
+          // }
+          self.defaultValue = list[0].key
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    // 性别列表
+    getSexlist () {
+      this.getList('GENDER', this.sexList)
     }
   }
 }

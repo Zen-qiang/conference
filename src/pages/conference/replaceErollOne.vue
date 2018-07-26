@@ -19,10 +19,10 @@
             <span>手机</span>
             <span class="hui"><input type="text" placeholder="请输入手机号码"></span>
         </li>
-        <li>
+        <!-- <li>
             <span>身份证</span>
             <span><input type="text" placeholder="请输入身份证号码"></span>
-        </li>
+        </li> -->
         <li>
             <!-- <span>性别</span>
             <span>男 <img src="../assets/images/nan.png" alt=""></span>

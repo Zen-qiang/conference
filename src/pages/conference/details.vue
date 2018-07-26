@@ -17,7 +17,7 @@
               </li>
               <li>
                   <span>时间</span>
-                  <span>2018年 2月28日 16:00-21:00</span>
+                  <span>{{conferenceInfo.timeRange}}</span>
               </li>
               <!-- 点击地址显示定位（通用）- -->
                <li>
@@ -53,7 +53,8 @@
 
           <div class="btn2" @click="go()" v-if="userRole !=='root'">
               <img src="../../assets/images/shenqing.png" alt="">
-              <p>申请报名</p>
+              <p v-if="userInfo.number === 0">申请报名</p>
+              <p v-else>修改报名</p>
           </div>
          
    </div>
@@ -67,11 +68,16 @@ export default{
       userRole: '',
       userInfo: {},
       conferenceInfo: {},
-      conferenceId: this.$route.query.meettingId
+      conferenceId: this.$route.query.meettingId,
+      meettingId: this.$route.query.meettingId,
+      meetting: '',
+      conferenceName: '',
+      replaceList: this.$store.state.replaceList
     }
   },
   created () {
     this.userRole = this.$store.state.currentUser.roleSet[0]
+    // console.log(this.userRole)
     // this.getParams()
     this.getConferenceInfo()
     this.chooseConference()
@@ -79,14 +85,32 @@ export default{
   watch: {
     '$route': 'getParams'
   },
+  computed: {
+    replaceInfo () {
+      return this.$store.state.replaceList
+    }
+  },
   methods: {
     go () {
-      this.$router.push({
-        name: 'ApplyRegist',
-        query: {
-          meettingId: this.conferenceId
-        }
-      })
+      if (this.userInfo.number === 0) {
+        this.replaceList = []
+        this.$store.commit('replaceList', this.replaceList)
+        this.$router.push({
+          name: 'ApplyRegist',
+          query: {
+            meettingId: this.conferenceId,
+            meetting: this.meetting
+          }
+        })
+      } else {
+        this.$router.push({
+          name: 'EditRegist',
+          query: {
+            meettingId: this.meettingId,
+            conferenceName: this.conferenceName
+          }
+        })
+      }
     },
     // 取路由带过来的参数
     getParams () {
@@ -101,16 +125,22 @@ export default{
         if (res.data.code === 0) {
           this.conferenceInfo = res.data.data.conferenceDetails
           this.userInfo = res.data.data.userInfo
+          this.meetting = this.conferenceInfo.subject
+          this.conferenceName = this.meetting
         }
       }).catch(err => {
         console.log(err)
       })
     },
     chooseConference () {
-      console.log('chooseConference')
+      // console.log('chooseConference')
       this.axios({
-        method: 'put',
-        url: `/api/conference/choose/${this.conferenceId}`
+        method: 'post',
+        url: '/api/conference/choose/' + this.conferenceId,
+        params: {
+          _method: 'put'
+        }
+        // url: `/api/conference/choose/${this.conferenceId}`
         // params: {
         //   conferenceId: this.conferenceId
         // },

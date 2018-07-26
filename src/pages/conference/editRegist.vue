@@ -1,28 +1,23 @@
 <template>
     <div class="sqbm_container">
-        <!-- 1.详细信息跳转 -->
-        <div class="first"> 
-            <p>{{this.meetting}}</p>
+        <div class="first" @click="$router.push({'name': 'Details'})"> 
+            <p>{{conferenceName}}</p>
             <span></span>
         </div>
-
         <ul>
             <li>
                 <span class="hui">报名信息</span>
                 <span><img src="../../assets/images/jia.png" alt=""></span>
-                <!-- 2.代报名跳转 -->
-                <span @click="goreplace()">添加代报名</span>
+                <span @click="$router.push({'name': 'ReplaceEroll'})">添加代报名</span>
             </li>
             <li>
               <group>
-                <x-input title="经销商" name="companyname" placeholder="请输入公司名称" is-type="china" placeholder-align="right" text-align="right" :show-clear="false" v-model="companyname"></x-input>
+                <x-input title="经销商" name="companyname" placeholder="请输入公司名称" v-model="companyname" is-type="china" placeholder-align="right" text-align="right" :show-clear="false"></x-input>
               </group>
             </li>
             <li>
-                <!-- <span>姓名</span>
-                <span><input type="text" placeholder="请输入姓名"></span> -->
                 <group>
-                <x-input title="姓名" name="username" placeholder="请输入姓名" :max="5" is-type="china-name" placeholder-align="right" text-align="right" :show-clear="false"  v-model="username"></x-input>
+                <x-input title="姓名" name="username" placeholder="请输入姓名" v-model="username" :max="5" is-type="china-name" placeholder-align="right" text-align="right" :show-clear="false"></x-input>
               </group>
             </li>
             <li>
@@ -32,28 +27,17 @@
             </li>
             <li>
                 <span>照片</span>
+                <span class="img1"><img :src="masterInfo.photo" alt=""></span>
                 <!-- <span class="hui">将用于证件打印</span> -->
-
                 <!-- <a href="javascript:;" class="upload">将用于证件打印
                   <input type="file" multiple="multiple" accept="image/*" capture="camera" class="change">
                </a> -->
-                <el-upload
-                  class="avatar-uploader"
-                  action="https://jsonplaceholder.typicode.com/posts/"
-                  :show-file-list="false"
-                  :on-success="handleAvatarSuccess"
-                  :before-upload="beforeAvatarUpload">
-                  <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
-
+                
                 <!-- <span class="cam" v-if="!imageUrl"><img src="../../assets/images/camera.png" alt=""></span> -->
             </li>
-            <li>
-                <!-- <span>手机</span>
-                <span class="hui"><input type="text" placeholder="请输入手机号码"></span> -->
+            <li class="phone">
               <group>
-                <x-input title="手机"  name="mobile" placeholder="请输入手机号码" :max="11" keyboard="number" is-type="china-mobile" placeholder-align="right" text-align="right" :show-clear="false"  v-model="phone"></x-input>
+                <x-input title="手机"  name="mobile" placeholder="请输入手机号码"  v-model="phone" :max="11" keyboard="number" is-type="china-mobile" placeholder-align="right" text-align="right" :show-clear="false"></x-input>
               </group> 
             </li>
             <li class="cel2">
@@ -62,19 +46,18 @@
                 </group>
             </li>
         </ul>
-
         <ul class="dbm">
             <div class="firstdiv">
                 <span class="hui">代报名成员</span>
-                <span class="hui">{{replaceList.length}}</span>
+                <span class="hui">{{membersInfo.length}}</span>
             </div>
-            <li v-for="(item, index) of replaceList" :key="index" v-if="replaceList[index] !== ''">
+            <li v-for="(item, index) of membersInfo" :key="index" v-if="membersInfo[index] !== ''">
                 <div class="close"><img src="../../assets/images/cha.png" alt="" @click="deleteReplace(index)"></div>
                 <div class="box">
-                  <span><img src="../../assets/images/headpic2.jpg" alt=""></span>
+                  <span><img :src="item.photo" alt=""></span>
                   <span>{{item.name}}</span>
-                  <span>{{item.sex}}
-                    <img v-if="item.sex === '男'" src="../../assets/images/nan.png" alt="">
+                  <span>{{item.fkGenderId}}
+                    <img v-if="item.fkGenderId === '男'" src="../../assets/images/nan.png" alt="">
                     <img v-else src="../../assets/images/nv.png" alt="">
                   </span>
                   <span>代</span>
@@ -85,8 +68,7 @@
                 </div>
             </li>
         </ul>
-         <!-- 4.报名成功跳转 -->
-        <p class="apply" @click="sub">提交报名</p>
+        <p class="apply" @click="finishEdit()">修改完成</p>
     </div>
 </template>
 
@@ -100,7 +82,6 @@ export default {
   },
   data () {
     return {
-      a: 0,
       defaultValue: '',
       sexList: [],
       defaultValue1: '',
@@ -109,24 +90,29 @@ export default {
       username: '',
       phone: '',
       card: '',
-      conferenceId: this.$route.query.meettingId,
       list: '',
       singleList: {},
       keyword: '',
       replaceList: this.$store.state.replaceList,
       imageUrl: '',
-      meetting: this.$route.query.meetting,
+      masterInfo: {},
+      membersInfo: [],
       dataList: [],
+      meettingId: this.$route.query.meettingId,
+      conferenceId: this.$route.query.conferenceId,
+      conferenceName: this.$route.query.conferenceName,
       fkUserId: this.$store.state.userInfo.defaultConference.fkUserId
     }
   },
   created () {
+    this.getInfo()
     this.getSexlist()
     this.getJoblist()
+    // console.log(this.$store.state.replaceList)
   },
   computed: {
     replaceInfo () {
-      return this.$store.state.replaceList.fkUserId
+      return this.$store.state.replaceList
     },
     userInfo () {
       return this.$store.state.userInfo.defaultConference.fkUserId
@@ -159,16 +145,10 @@ export default {
       .catch(err => {
         console.log(err)
       })
-      this.$router.push({
-        name: 'EnrollSuccess',
-        query: {
-          meettingId: this.conferenceId
-        }
-      })
     },
     // 获取下拉列表
     getList (keyword, list) {
-      let self = this
+      // let self = this
       if (list.length) return
       this.axios({
         method: 'get',
@@ -189,11 +169,6 @@ export default {
             // this.$set(this.data,”key”,value’) $set()方法，既可以新增属性,又可以触发视图更新
             this.$set(list, i, singleList)
           }
-          if (keyword === 'POSITION') {
-            self.defaultValue = list[0].key
-          } else if (keyword === 'GENDER') {
-            self.defaultValue1 = list[0].key
-          }
         }
       }).catch(err => {
         console.log(err)
@@ -208,31 +183,46 @@ export default {
       this.getList('GENDER', this.sexList)
     },
     // 删除代报名
-    deleteReplace (index) {
-      this.replaceList.splice(index, 1)
+    deleteReplace (id) {
+      // this.membersInfo.splice(index, 1)
+      this.axios({
+        method: 'post',
+        url: '/api/journey/deleteJourneyMember',
+        params: {
+          _method: 'delete',
+          journeyMemberId: this.membersInfo[id].id
+        }
+      }).then(res => {
+        console.log(res.data.data)
+      }).catch(err => {
+        console.log(err)
+      })
     },
-    // 增加代报名
-    goreplace () {
-      this.$router.push({
-        name: 'ReplaceEroll',
-        query: {
-          meetting: this.meetting
+    // 获取页面信息
+    getInfo () {
+      this.axios({
+        method: 'get',
+        url: '/api/conference/searchUpdateConferenceData'
+      }).then(res => {
+        if (res.data.code === 0) {
+          this.masterInfo = res.data.data.masterMember
+          this.membersInfo = res.data.data.conferenceMembers
+          this.defaultValue = this.masterInfo.fkGenderId
+          this.companyname = this.masterInfo.companyName
+          this.username = this.masterInfo.name
+          this.phone = this.masterInfo.phoneNo
+          this.defaultValue = this.masterInfo.fkPosition
+          this.defaultValue1 = this.masterInfo.fkGenderId
         }
       })
     },
-    handleAvatarSuccess (res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw)
-    },
-    beforeAvatarUpload (file) {
-      const isJPG = file.type === 'image/jpeg'
-      const isLt2M = file.size / 1024 / 1024 < 2
-      if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 格式!')
+    finishEdit () {
+      this.sub()
+      if (this.meettingId) {
+        this.$router.push({name: 'EnrollSuccess'})
+      } else {
+        this.$router.push({name: 'Usereport'})
       }
-      if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!')
-      }
-      return isJPG && isLt2M
     }
   }
 }
@@ -240,5 +230,19 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/css/applyRegist.scss";
+.img1{
+  float: right !important;
+  padding-right: 10px;
+  padding-top: 5px;
+  img{
+    width: 38px;
+    height: 38px;
+  }
+  .phone{
+    .weui-cells {
+      width: 100% !important;
+    }
+  }
+}
 </style>
 

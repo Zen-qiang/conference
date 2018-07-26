@@ -13,7 +13,7 @@
   padding-top: fmt(100);
   background: #f2f2f2;
   overflow: hidden;
-  padding-bottom: fmt(60);
+  padding-bottom: fmt(210);
   .first{
     position: relative;
     width: 100%;
@@ -36,7 +36,7 @@
   }
   .second{
     width: 100%;
-    height: fmt(386);
+    height: fmt(360);
     background: #fff;
     position: relative;
     padding:fmt(30) ;
@@ -56,11 +56,13 @@
       width: fmt(400);
       height: 100%;
       p:first-of-type{
-        color: #333;
+        // color: #333;
+        color: #969696;
         font:fmt(26)/fmt(50) Microsoft Yahei;
       }
       p:nth-of-type(2){
-        color: #333;
+        // color: #333;
+        color: #969696;
         font:fmt(20)/fmt(46) Microsoft Yahei;
       }
       p:nth-of-type(2)~p{
@@ -111,10 +113,27 @@
         margin-top: fmt(22);
     }
 }
+  .info{
+    width: 100%;
+    background: #fff;
+    padding-left: fmt(28);
+    border-bottom:1px solid #ddd;
+    position: relative;
+    height: fmt(100);
+    margin-top: fmt(20);
+    span{
+        float: left;
+        font:fmt(28)/fmt(100) Microsoft Yahei;
+    }
+    span:last-child{
+        position: absolute;
+        right: fmt(40);
+    }
+  }
   ul{
     width: 100%;
     background: #fff;
-    margin-top: fmt(20);
+    // margin-top: fmt(20);
     li{
         width: 100%;
         background: #fff;
@@ -122,18 +141,7 @@
         border-bottom:1px solid #ddd;
         position: relative;
     }
-    li:first-of-type{
-        height: fmt(100);
-        span{
-            float: left;
-            font:fmt(28)/fmt(100) Microsoft Yahei;
-        }
-        span:last-child{
-            position: absolute;
-            right: fmt(20);
-        }
-    }
-    li:nth-of-type(2n){
+    li:nth-of-type(2n+1){
         height: fmt(290);
         padding-top: fmt(20);
         .head{

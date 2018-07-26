@@ -39,6 +39,7 @@ export default{
   },
   methods: {
     getState (index) {
+      this.$store.commit('nowConferenceId', this.status[index].id)
       this.$router.push({
         name: 'Details',
         query: {

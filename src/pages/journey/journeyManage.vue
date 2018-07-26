@@ -16,7 +16,8 @@
     <ul class="divTab" v-show="nowIndex===0">
        <li class="box" 
            v-for ="(item, index) of arriveList" 
-           :key ="index">
+           :key ="index"
+           >
          <div class="content" @click="editInfo(item.id)">
            <div class="left">
              <!-- ../../assets/images/headpic11.png -->
@@ -47,7 +48,7 @@
          </span> -->
          <span>more</span>
       </div>
-      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="deleteInfo(item.id)">
+      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="deleteInfo(item.id, index)">
      </li>      
      <x-button @click.native="out">管理我的专车</x-button>
     </ul>
@@ -57,7 +58,7 @@
           v-if='nextFirstFlag'
           v-for ="(item, index) of departList" 
           :key ="index">
-         <div class="content">
+         <div class="content" @click="editInfo(item.id)">
            <div class="left">
             <img :src="item.photo" alt="">
           </div>
@@ -80,7 +81,7 @@
         <span><img :src="item.members.length?item.members[0].photo:''" alt=""></span>
         <span>more</span>
       </div>
-      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="deleteInfo(item.id)">
+      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag"  @click="deleteInfo(item.id, index)">
       </li>
       <x-button @click.native="out">管理我的专车</x-button>
     </ul>
@@ -123,7 +124,8 @@ export default {
         this.$router.push({
           name: 'EditJourney',
           query: {
-            journeyId: id
+            journeyId: id,
+            nowIndex: this.nowIndex
           }
         })
       }
@@ -171,18 +173,24 @@ export default {
       }
       // console.log(id)
     },
-    deleteInfo (id) {
+    deleteInfo (id, index) {
       this.axios({
-        method: 'delete',
-        url: '/api/journey/deleteJourneyMember',
+        method: 'post',
+        url: '/api/journey/deleteJourney',
         params: {
-          journeyId: id
+          _method: 'delete',
+          'journeyId': id
         }
       }).then(res => {
         console.log(res.data.data)
       }).catch(err => {
         console.log(err)
       })
+      if (this.nowIndex === 0) {
+        this.arriveList.splice(index, 1)
+      } else {
+        this.departList.splice(index, 1)
+      }
     }
   }
 }

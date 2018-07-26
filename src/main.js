@@ -8,11 +8,14 @@ import store from './store'
 // 引入全局样式
 import '@/assets/css/base.scss'
 // import { WechatPlugin } from 'vux'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 import axios from './http'
 Vue.prototype.axios = axios
 // 移动端点击延迟解决方案
 // FastClick.attach(document.body)
 Vue.config.productionTip = false
+Vue.use(ElementUI)
 
 /* eslint-disable no-new */
 new Vue({

@@ -33,11 +33,24 @@ export default {
       no: null,
       info: [],
       userPic: [],
-      selectId: []
+      selectId: [],
+      nowIndex: this.$route.query.nowIndex,
+      journeyId: this.$route.query.journeyId,
+      statusFlag: true
+      // journeyInfo: null
     }
   },
   created () {
+    // this.journeyInfo = this.$store.state.journeyInfo
+    // // 1.从vuex获取journeyInfo
+    // 2.判断journeyInfo.from，如果存在，获取对应到站/返程同行人员，替换本页面select
+    // 3.如果不存在，按默认全选操作
     this.getPeopleInfo()
+  },
+  computed: {
+    journeyInfo () {
+      return this.$store.state.journeyInfo
+    }
   },
   methods: {
     change: function (index) {
@@ -91,13 +104,36 @@ export default {
         }
       })
       console.log(selsects)
-      this.$store.commit('selectConferenceMembersId', selsects)
-      this.$router.push({
-        name: 'AddJourney',
-        query: {
-          userPic: this.userPic.slice(0, 2)
+      // console.log(this.journeyInfo)
+      if (this.journeyInfo) {
+        // console.log(this.journeyInfo.from)
+        if (this.journeyInfo.from === 'Arrive') {
+          this.journeyInfo.arrive.people = selsects
+          this.$store.commit('journeyInfo', this.journeyInfo)
+        } else {
+          this.journeyInfo.depart.people = selsects
+          this.$store.commit('journeyInfo', this.journeyInfo)
         }
-      })
+      } else {
+        this.$store.commit('selectConferenceMembersId', selsects)
+      }
+      if (this.nowIndex === 0 || this.nowIndex === 1) {
+        this.$router.push({
+          name: 'EditJourney',
+          query: {
+            nowIndex: this.nowIndex,
+            journeyId: this.journeyId,
+            statusFlag: this.statusFlag
+          }
+        })
+      } else {
+        this.$router.push({
+          name: 'AddJourney',
+          query: {
+            userPic: this.userPic.slice(0, 2)
+          }
+        })
+      }
     }
   }
 }

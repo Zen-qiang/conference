@@ -60,6 +60,7 @@ export default {
             name: res.data.data.name,
             roleSet: res.data.data.roleSet
           }
+          this.$store.commit('userInfo', res.data.data)
           this.$store.commit('currentUser', currentUser)
           this.$router.push({'name': 'Meetings'})
         }
@@ -90,16 +91,6 @@ export default {
     clearPwd () {
       this.password = ''
     }
-    // check () {
-    //   if (this.value1 === '111' && this.value2 === '111') {
-    //     this.$router.push({'name': 'Meetings'})
-    //     this.$store.commit(types.CURRENTUSER, {'name': '111', 'role': 'admin'})
-    //   } else if (this.value1 === '222' && this.value2 === '222') {
-    //     this.$router.push({'name': 'Meetings'})
-    //     this.$store.commit(types.CURRENTUSER, {'name': '222', 'role': 'user'})
-    //   } else {
-    //   }
-    // }
   }
 }
 </script>

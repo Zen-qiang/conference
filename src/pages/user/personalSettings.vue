@@ -28,7 +28,7 @@
           <span>天赐服装贸易公司</span>
         </li>
       </ul>
-      <div class="bottom">
+      <div class="bottom" @click="$router.push({name: 'Login'})">
         退出登录
       </div>
     </div>

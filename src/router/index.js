@@ -5,6 +5,7 @@ import Index from '@/pages/index'
 import Meetings from '@/pages/conference/meetings'
 import Details from '@/pages/conference/details'
 import ApplyRegist from '@/pages/conference/applyRegist'
+import EditRegist from '@/pages/conference/editRegist'
 import ReplaceEroll from '@/pages/conference/replaceEroll'
 import ReplaceErollOne from '@/pages/conference/replaceErollOne'
 import EnrollSuccess from '@/pages/conference/enrollSuccess'
@@ -45,6 +46,7 @@ import HotellistOne from '@/pages/accommodation/HotellistOne'
 import HotellistTwo from '@/pages/accommodation/hotellistTwo'
 import Cars from '@/pages/vehicles/cars'
 import Login from '@/pages/login'
+import NoMessage from '@/pages/noMessage'
 
 Vue.use(Router)
 
@@ -78,6 +80,11 @@ export default new Router({
       path: '/applyRegist',
       name: 'ApplyRegist',
       component: ApplyRegist
+    },
+    {
+      path: '/EditRegist',
+      name: 'EditRegist',
+      component: EditRegist
     },
     {
       path: '/replaceEroll',
@@ -278,6 +285,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/noMessage',
+      name: 'NoMessage',
+      component: NoMessage
     }
   ]
 })

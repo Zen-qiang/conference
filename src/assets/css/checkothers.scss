@@ -73,7 +73,7 @@
         }
     }
     li{
-        height: fmt(350);
+        height: fmt(200);
         padding-top: fmt(20);
         .close{
             float: left;
@@ -82,7 +82,7 @@
             position: relative;
             img{
                 position: absolute;
-                left: fmt(12);
+                left: fmt(24);
                 top: fmt(16);
             }
         }
@@ -97,13 +97,14 @@
                 // font:fmt(28)/fmt(100) Microsoft Yahei;
             }
             span:first-of-type{
+                height: fmt(80);
                 img{
                     width: fmt(50);
                     height: fmt(50);
                 }
             }
             span:nth-of-type(2),span:nth-of-type(3){
-                margin: fmt(-12) 0 0 fmt(24);
+                margin: fmt(-8) 0 0 fmt(24);
                 line-height: fmt(80);
                 color: #494949;
             }
@@ -118,17 +119,25 @@
                 text-align: center;
                 margin: fmt(14) 0 0 fmt(16);
             }
-          
+            span:nth-of-type(5){
+                float: right;
+                height: fmt(80);
+                // margin-top: fmt(4);
+            }
             .text{
                 position: absolute;
                 left: fmt(120);
-                bottom: fmt(30);
+                bottom: fmt(34);
                 width: fmt(600);
                 color: #999;
-                padding-top: fmt(18);
-                border-top: 1px solid #ddd; 
                 font:fmt(20)/fmt(40) Microsoft Yahei;
             }
+        }
+    }
+    li{
+        .text{
+            padding-top: fmt(18);
+            border-top: 1px solid #eee; 
         }
     }
   

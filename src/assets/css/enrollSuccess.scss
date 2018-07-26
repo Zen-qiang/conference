@@ -15,16 +15,17 @@
         background: #fff;
         li:first-child{
             width: 100%;
-            height: fmt(840);
+            height: 60%;
             ul.inner{
                 width: 100%;
                 height: 100%;
                 border-bottom:1px solid #ddd;
-                margin-top: fmt(50);
+                // margin-top: fmt(50);
                 li:first-child{
                     width: 100%;
                     height: fmt(200);
-                    text-align: center
+                    text-align: center;
+                    line-height: fmt(200);
                 }
                 li:nth-child(2){
                     width: 100%;
@@ -46,6 +47,7 @@
                      width: 100%;
                      text-align: center;
                      margin-top: fmt(52);
+                     padding-bottom: fmt(40);
                      img{
                          width: fmt(280);
                      } 
