@@ -40,7 +40,7 @@
               </li>
               <li>
                 <span>报名状态</span>
-                <span @click="enroll" v-if='item1.canEdit && !item1.isDepart'>立即报名</span>
+                <span @click="enroll(index1)" v-if='item1.canEdit && !item1.isDepart'>立即报名</span>
                 <span v-else class="btn1">立即报名</span>
               </li>
             </ul>
@@ -79,7 +79,7 @@
               </li>
               <li>
                 <span>报名状态</span>
-                <span @click="enroll" v-if='item1.canEdit && !item1.isDepart'>立即报名</span>
+                <span @click="enroll(index1)" v-if='item1.canEdit && !item1.isDepart'>立即报名</span>
                 <span v-else class="btn1">立即报名</span>
               </li>
             </ul>
@@ -123,15 +123,24 @@ export default {
     this.getInfo(true)
   },
   methods: {
-    enroll: function () {
-      this.$router.push({'name': 'Driveradd'})
-      this.flag = !this.flag
-      this.firstNum = this.firstSum
-    },
-    secondEnroll: function () {
-      this.$router.push({'name': 'Driveradd'})
-      this.colFlag = !this.colFlag
-      this.secondNum = this.secondSum
+    enroll: function (num) {
+      if (this.index === 0) {
+        this.$router.push({
+          name: 'Driveradd',
+          query: {
+            vehiclesName: this.allList[num].vehiclesName,
+            shiftsId: this.allList[num].id
+          }
+        })
+      } else {
+        this.$router.push({
+          name: 'Driveradd',
+          query: {
+            vehiclesName: this.applyList[num].vehiclesName,
+            shiftsId: this.applyList[num].id
+          }
+        })
+      }
     },
     getInfo (keyword) {
       this.axios({
@@ -159,7 +168,21 @@ export default {
     },
     goPassengers (index) {
       if (this.allList[index].members.length) {
-        this.$router.push({name: 'Drivershift'})
+        if (this.index === 0) {
+          this.$router.push({
+            name: 'Drivershift',
+            query: {
+              shiftsId: this.applyList[index].id
+            }
+          })
+        } else {
+          this.$router.push({
+            name: 'Drivershift',
+            query: {
+              shiftsId: this.allList[index].id
+            }
+          })
+        }
       } else {
         return 0
       }

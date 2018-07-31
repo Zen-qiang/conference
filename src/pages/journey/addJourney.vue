@@ -117,10 +117,12 @@ export default {
       arriveOrder: '',
       arriveCity: '',
       fkUserId: this.$store.state.userInfo.id,
-      nowConferenceId: this.$store.state.nowConferenceId,
+      nowConferenceId: this.$store.state.userInfo.defaultConference.id,
       show: false,
       // journeyInfo: null,
-      From: 'Arrive'
+      From: 'Arrive',
+      addPeopleFlag: true
+      // addPeopleFlag1: this.this.$route.query.addPeopleFlag
     }
   },
   computed: {
@@ -130,9 +132,6 @@ export default {
     },
     userInfo () {
       return this.$store.state.userInfo.defaultConference.fkUserId
-    },
-    getnowConferenceId () {
-      return this.$store.state.nowConferenceId
     },
     journeyInfo () {
       return this.$store.state.journeyInfo
@@ -166,11 +165,11 @@ export default {
     addMessage () {
       let date = new Date()
       let journeyList = JSON.stringify([{
+        'fkConferenceId': this.nowConferenceId,
         'arriveCity': this.arriveCity,
         'arrivePlace': this.stationValue,
         'arriveTime': this.arriveTimeValue,
         'createdTime': date,
-        'fkConferenceId': this.nowConferenceId,
         'fkUserId': this.fkUserId,
         'fkVehiclesId': this.ArriveTrafficValue,
         'id': 0,
@@ -179,11 +178,11 @@ export default {
         'numberOfRuns': this.arriveOrder
       },
       {
+        'fkConferenceId': this.nowConferenceId,
         'departCity': this.departCity,
         'departPlace': this.stationValue1,
         'departTime': this.departTimeValue,
         'createdTime': date,
-        'fkConferenceId': this.nowConferenceId,
         'fkUserId': this.fkUserId,
         'fkVehiclesId': this.DepartTrafficValue,
         'id': 0,
@@ -214,10 +213,10 @@ export default {
         }
       }).then(res => {
         // console.log(res.data.data)
+        this.$router.push({name: 'JourneyManage'})
       }).catch(err => {
         console.log(err)
       })
-      this.$router.push({name: 'JourneyManage'})
     },
     // 获得下拉列表
     getList (keyword, list) {
@@ -285,7 +284,12 @@ export default {
         this.journeyInfo.from = this.From
         this.$store.commit('journeyInfo', this.journeyInfo)
       }
-      this.$router.push({name: 'AddPeople'})
+      this.$router.push({
+        name: 'AddPeople',
+        querry: {
+          addPeopleFlag: this.addPeopleFlag
+        }
+      })
     }
   }
 }

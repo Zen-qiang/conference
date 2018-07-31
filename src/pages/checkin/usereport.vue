@@ -39,9 +39,9 @@
              <span class="phone">手机</span>
             <div class="text">
               <p>手机 ：{{conferenceMembersInfo[index].phoneNo}}</p>
-              <P>身份证 ：{{conferenceMembersInfo[index].idNumber}}</P>
+              <!-- <P>身份证 ：{{conferenceMembersInfo[index].idNumber}}</P>
               <p>酒店 ：{{conferenceMembersInfo[index].hotelName}}</p>
-              <p>房间号 ：{{conferenceMembersInfo[index].hotelNumber}}</p> 
+              <p>房间号 ：{{conferenceMembersInfo[index].hotelNumber}}</p>  -->
             </div>
           </div>
        </li>

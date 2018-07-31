@@ -69,6 +69,9 @@
               position: absolute;
               left: 0;
               top: fmt(28);
+              width: fmt(220);
+              height: fmt(120);
+              object-fit: contain;
             }
             p{
               // color: #333;

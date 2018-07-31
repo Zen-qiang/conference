@@ -3,53 +3,21 @@
     <div class="content">
       <p class="first">
         <span>车辆成员</span>
-        <span style="color:#333">宝骏1 17豪华商务车</span>
+        <span style="color:#333">{{vehiclesName}}</span>
       </p>
       <div class="main">
         <ul>
-          <li class="active"  @click="chooseOrder($event)">
-            <img src="../../assets/images/pic1.jpg" alt="">
-            <p>王霜</p>
-          </li>
-          <li class="active" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic2.jpg" alt="">
-            <p>曹爽</p>
-          </li>
-          <li class="active" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic3.jpg" alt="">
-            <p>司马昭</p>
-          </li>
-          <li class="active" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic4.jpg" alt="">
-            <p>小沅</p>
-          </li>
-          <li class="active" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic5.jpg" alt="">
-            <p>王朗</p>
-          </li>
-          <li class="normal" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic6.jpg" alt="">
-            <p>曹睿</p>
-          </li>
-          <li class="normal" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic7.jpg" alt="">
-            <p>白灵韵</p>
-          </li>
-          <li class="normal" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic8.jpg" alt="">
-            <p>兰博</p>
-          </li>
-          <li class="normal" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic9.png" alt="">
-            <p>刘韩</p>
-          </li>
-          <li :class="{normal:true}" @click="chooseOrder($event)">
-            <img src="../../assets/images/pic10.jpg" alt="">
-            <p>煮雨</p>
+          <li :class="{active: item.isChecked}" 
+              v-if="info.length" 
+              v-for="(item, index) of info" 
+              :key="index" 
+              @click="chooseOrder($event, item.id, item)">
+            <img :src="item.photo" alt="">
+            <p>{{item.name}}</p>
           </li>
         </ul>
       </div>
-      <p class="add" @click="$router.push({'name' : 'Cars'})">添加至车辆</p>
+      <p class="add" @click="addCarsPeople()">添加至车辆</p>
     </div>
   </div>
 </template>
@@ -60,8 +28,15 @@ export default {
     return {
       a: true,
       b: false,
-      no: null
+      no: null,
+      vehiclesName: this.$route.query.vehiclesName,
+      info: [],
+      shiftsId: this.$route.query.shiftsId
     }
+  },
+  created () {
+    // console.log(this.vehiclesName)
+    this.getPeopleInfo()
   },
   methods: {
     change: function (index) {
@@ -69,25 +44,57 @@ export default {
       // this.b = !this.b
       this.no = index
     },
-    chooseOrder: function (e) {
-      // console.dir(e.target.parentNode)
-      if (e.target.tagName === 'LI') {
-        if (e.target.className.indexOf('active') === -1) {
-          e.target.classList.add('active')
-          e.target.classList.remove('normal')
-        } else {
-          e.target.classList.remove('active')
-          e.target.classList.add('normal')
+    // li点击样式改变
+    chooseOrder: function (e, id, item) {
+      // item.show ? this.$set(item, 'show', false) : this.$set(item, 'show', true)
+      item.isChecked ? item.isChecked = false : item.isChecked = true
+    },
+    // 默认信息
+    getPeopleInfo () {
+      this.axios({
+        method: 'get',
+        url: '/api/journey/searchAddJourneyMembersInfo'
+      }).then(res => {
+        if (res.data.code === 0) {
+          this.info = res.data.data
+          // this.info.forEach(element => {
+          //   this.$set(element, 'show', true)
+          // })
+          // let members = this.info.members
+          // for (var i = 0; i < members.length; i++) {
+          //   this.userPic.push(members[i].userPicture)
+          // }
         }
-      } else {
-        if (e.target.parentNode.className.indexOf('active') === -1) {
-          e.target.parentNode.classList.add('active')
-          e.target.parentNode.classList.remove('normal')
-        } else {
-          e.target.parentNode.classList.remove('active')
-          e.target.parentNode.classList.add('normal')
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    // 添加至车辆
+    addCarsPeople () {
+      let rideSelsect = []
+      this.info.forEach((el, index) => {
+        if (el.isChecked) {
+          rideSelsect.push(el.id)
         }
-      }
+      })
+      console.log(rideSelsect)
+      this.axios({
+        method: 'post',
+        url: '/api/dispatching/addVehiclesMembers',
+        data: {
+          shiftsId: this.shiftsId,
+          'membersId[]': rideSelsect
+        },
+        params: {
+          _method: 'put'
+        }
+      }).then(res => {
+        if (res.data.code === 0) {
+          this.$router.push({name: 'Cars'})
+        }
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }
 }

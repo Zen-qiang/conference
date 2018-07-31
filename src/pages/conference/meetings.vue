@@ -40,6 +40,7 @@ export default{
   methods: {
     getState (index) {
       this.$store.commit('nowConferenceId', this.status[index].id)
+      this.$store.commit('nowConferenceName', this.status[index].subject)
       this.$router.push({
         name: 'Details',
         query: {
@@ -53,6 +54,7 @@ export default{
         url: '/api/conference/list'
       }).then(res => {
         if (res.data.code === 0) {
+          // alert(res.data.data)
           this.status = res.data.data
         }
       }).catch(err => {

@@ -6,7 +6,7 @@
         <p>{{info.userName}}</p>
         <p>{{info.companyName}}</p>
       </div>
-      <p class="modify" @click="$router.push({'name' : 'ApplyRegist'})">修改</p>
+      <p class="modify" @click="goEdit()">修改</p>
     </div>
 
     <ul>
@@ -46,7 +46,16 @@ export default {
   created () {
     this.getInfo()
   },
+  computed: {
+    nowConferenceId () {
+      return this.$store.state.nowConferenceId
+    },
+    nowConferenceName () {
+      return this.$store.state.nowConferenceName
+    }
+  },
   methods: {
+    // 默认信息
     getInfo () {
       this.axios({
         method: 'get',
@@ -64,6 +73,7 @@ export default {
         console.log(err)
       })
     },
+    // 删除代报名
     deleteMember (id) {
       this.axios({
         method: 'post',
@@ -76,6 +86,16 @@ export default {
         console.log(res.data.data)
       }).catch(err => {
         console.log(err)
+      })
+    },
+    // 修改
+    goEdit () {
+      this.$router.push({
+        name: 'EditRegist',
+        query: {
+          conferenceId: this.nowConferenceId,
+          conferenceName: this.nowConferenceName
+        }
       })
     }
   }

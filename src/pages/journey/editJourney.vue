@@ -107,7 +107,8 @@ export default {
       arriveOrder: '',
       arriveCity: '',
       fkUserId: this.$store.state.userInfo.id,
-      From: ''
+      From: '',
+      nowConferenceId: this.$store.state.userInfo.defaultConference.id
     }
   },
   created () {
@@ -136,10 +137,7 @@ export default {
       return this.$store.state.selectConferenceMembersId
     },
     userInfo () {
-      return this.$store.state.userInfo.defaultConference.fkUserId
-    },
-    nowConferenceId () {
-      return this.$store.state.nowConferenceId
+      return this.$store.state.userInfo
     },
     journeyInfo () {
       return this.$store.state.journeyInfo
@@ -179,8 +177,6 @@ export default {
     },
     // 完成修改提交
     changeMassage () {
-      console.log(this.nowConferenceId)
-      console.log('big pig!!!')
       let date = new Date()
       let arriveJourney = JSON.stringify([{
         'fkConferenceId': this.nowConferenceId,
@@ -232,6 +228,7 @@ export default {
           }
         }).then(res => {
           // console.log(res.data.data)
+          this.$router.push({name: 'JourneyManage'})
         }).catch(err => {
           console.log(err)
         })
@@ -249,11 +246,11 @@ export default {
           }
         }).then(res => {
           // console.log(res.data.data)
+          this.$router.push({name: 'JourneyManage'})
         }).catch(err => {
           console.log(err)
         })
       }
-      this.$router.push({name: 'JourneyManage'})
     },
     // 获得列表
     getList (keyword, list) {

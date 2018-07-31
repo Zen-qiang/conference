@@ -1,6 +1,12 @@
 @function fmt ($val) {
   @return ($val/200) +rem;
 }
+.blue{
+  color: #0cb4ce !important;
+}
+.red {
+  color: #e63832 !important;
+}
 .rygl_container{
   width: 100%;
   height: 100vh;
@@ -16,7 +22,7 @@
     span:first-child{
       float: left;
       font:fmt(28)/fmt(100) Microsoft Yahei;
-      color:#0cb4ce;  
+      // color:#0cb4ce;  
     }
     span:last-child{
       float: right;
@@ -28,10 +34,9 @@
     width: 100%;
     height: fmt(66);
     background: #f2f2f2;
-    p{
+    span{
+      float: left;
       padding-left: fmt(20);
-      width: 100%;
-      height: 100%;
       font:fmt(20)/fmt(66) Microsoft Yahei;
       color: #a3a3a3;
       overflow: hidden;
@@ -39,160 +44,85 @@
   }
   ul{
     width: 100%;
-    height: fmt(548);
+    // height: fmt(548);
     background: #fff;
+    overflow: hidden;
+    border-top: 1px solid #eee;
     li{
       position: relative;
-      border-top:1px solid #eee;
+      border-bottom:1px solid #eee;
       height: fmt(100);
-      padding: 0 fmt(30) 0 fmt(20);
+      padding: 0 fmt(30);
       overflow: hidden;
       span{
         float: left;
+        font-size: fmt(32);
       }
-    }
-    li:first-child{
-      width: 100%;
-      height: fmt(140);
-      position: relative;
-      span:first-of-type{
-        width: fmt(28);
-        height: fmt(28);
-        position: absolute;
-        top: fmt(60);
-        left: 0;
+      span:first-of-type {
+        line-height: fmt(100);
+        color: #bbb;
       }
       span:nth-of-type(2){
-        position: absolute;
-        top: fmt(24);
-        left: fmt(48);
-        img{
-          width: fmt(88);
-          height: fmt(88);
-        }
+        position: relative;
+        width: fmt(200);
+        height: 100%;
       }
       span:nth-of-type(3){
-        position: absolute;
-        top: 0;
-        left: fmt(158);
-        font:fmt(24)/fmt(140) Microsoft Yahei;
-        color: #898989;
-      }
-      p{
+        position: relative;
+        width: fmt(400);
+        height: 100%;
         float: right;
-        width: fmt(140);
-        height: fmt(60);
-        border: 1px solid #ddd;
-        border-radius:fmt(8);
-        font:fmt(24)/fmt(60) Microsoft Yahei;
-        text-align: center; 
-        margin-top: fmt(40);
-        color: #898989;
-      }
-  }
-  span.active{
-    background: url(../../assets/images/xuanzhong1.png);
-  }
-  span.active.normal{
-    background: url(../../assets/images/xuanzhong1.png);
-  }
-  span.normal{
-    border: fmt(2) solid #eee;
-    background: #fff;
-  }
-  li:first-child,li:nth-child(2),li:nth-child(3),li:nth-child(5){
-    span:first-of-type.active{
-      background: url(../../assets/images/xuanzhong1.png);
-    }
-  }
-  li:nth-child(2),li:nth-child(3),li:nth-child(4),li:nth-child(5){
-    width: 100%;
-    height: fmt(100);
-    span:first-of-type{
-      width: fmt(28);
-      height: fmt(28);
-      position: absolute;
-      top: fmt(44);
-      left: 0;
-    }
-    span:nth-of-type(2){
-      position: absolute;
-      top: fmt(24);
-      left: fmt(60);
-      img{
-        width: fmt(50);
-        height: fmt(50);
+        span:first-of-type {
+          float: right;
+          font-size: fmt(28);
+          margin-left: fmt(40);
+        }
+        .more{
+          width: fmt(80);
+          line-height: fmt(100);
+          float: right;
+          margin-left: fmt(12);
+          font-size: fmt(24);
+          color: #bbb;
+        }
+        img{
+          float: right;
+          margin-top: fmt(20);
+          width: fmt(54);
+          height: fmt(54);
+          margin-left: fmt(8);
+        }
+        .spanlast{
+          float: right;
+          width: fmt(120);
+          font-size: fmt(28);
+          color: #0cb4ce;
+          line-height: fmt(100);
+          text-align: center;
+        }
       }
     }
-    span:nth-of-type(3){
-      position: absolute;
-      top: 0;
-      left: fmt(134);
-      font:fmt(24)/fmt(100) Microsoft Yahei;
-      color: #898989;
-    }
-    span:nth-of-type(4){
-       width: fmt(30);
-       height: fmt(30);
-       font:fmt(18)/fmt(24) Microsoft Yahei;
-       text-align: center;
-       border: fmt(2) solid #eee;
-       border-radius:fmt(2);
-       color: #c2c2c2;
-       position: absolute;
-       top: fmt(36);
-       left: fmt(288);
-    }
-    p{
-      float: right;
-      width: fmt(140);
-      height: fmt(60);
-      border: 1px solid #ddd;
-      border-radius:fmt(8);
-      font:fmt(24)/fmt(60) Microsoft Yahei;
-      text-align: center; 
-      margin-top: fmt(20);
-      color: #898989;
-    }
   }
-  li:nth-child(4){
-    span:first-of-type{
-      float: left;
-      width: fmt(28);
-      height: fmt(28);
-      border: fmt(2) solid #efefef;
-      position: absolute;
-      top: fmt(40);
-      left: 0;
-    }
-    span{
-      color: #bebebe !important;
-    }
-    p{
-      color: #bebebe;
-    }
-  }
-  }
-  p.else{
+  .last{
     width: 100%;
-    height: fmt(440);
-    background: #f2f2f2;
-    // border-bottom: 1px solid #ccc;
-    border-top: 1px solid #eee;
-    font:fmt(24)/fmt(80)  Microsoft Yahei;
-    padding-left: fmt(20);
-    color: #bbb;
-  }
-  p.save{
-    width: 100%;
-    height: fmt(100);
-    background: #0cb4ce;
+    display: flex;
+    height: fmt(110);
     position: fixed;
     bottom: 0;
     left: 0;
-    font:fmt(28)/fmt(100) Microsoft Yahei;
+    font:fmt(30)/fmt(110) Microsoft Yahei;
     text-align: center;
-    color: #fff;
     letter-spacing: fmt(4);
+    border-top: 1px solid #eee;
+    p:first-of-type{
+      flex: 1;
+      background: #fff;
+      color: #0cb4ce;
+    }
+    p:last-of-type{
+      flex: 1;
+      background: #0cb4ce;
+      color: #fff;
+    }
   }
 }

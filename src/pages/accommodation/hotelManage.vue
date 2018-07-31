@@ -64,8 +64,19 @@ export default {
       ],
       firstTime: 'TODAY',
       lastTime: 'TODAY',
-      hotelName: this.$route.query.hotelName
+      hotelDetail: {}
     }
+  },
+  computed: {
+    hotelId () {
+      return this.$store.state.hotelId
+    },
+    hotelName () {
+      return this.$store.state.hotelName
+    }
+  },
+  created () {
+    this.getHotelInfo()
   },
   methods: {
     onChange (val) {
@@ -79,10 +90,26 @@ export default {
     },
     checkin () {
       this.$router.push({
-        name: 'PeopleManage',
-        query: {
-          hotelName: this.hotelName
+        name: 'PeopleManage'
+        // query: {
+        //   hotelName: this.hotelName
+        // }
+      })
+    },
+    // 获取默认信息
+    getHotelInfo () {
+      this.axios({
+        method: 'get',
+        url: '/api/accommodation/hotelInfo/' + this.hotelId,
+        params: {
+          hotelId: this.hotelId
         }
+      }).then(res => {
+        if (res.data.code === 0) {
+          this.hotelDetail = res.data.data
+        }
+      }).catch(err => {
+        console.log(err)
       })
     }
   }

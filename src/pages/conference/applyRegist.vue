@@ -22,7 +22,7 @@
                 <!-- <span>姓名</span>
                 <span><input type="text" placeholder="请输入姓名"></span> -->
                 <group>
-                <x-input title="姓名" name="username" placeholder="请输入姓名" :max="5" is-type="china-name" placeholder-align="right" text-align="right" :show-clear="false"  v-model="username"></x-input>
+                <x-input title="姓名"  placeholder="请输入姓名" :max="5" is-type="china-name" placeholder-align="right" text-align="right" :show-clear="false"  v-model="username"></x-input>
               </group>
             </li>
             <li>
@@ -116,28 +116,30 @@ export default {
       replaceList: this.$store.state.replaceList,
       imageUrl: '',
       meetting: this.$route.query.meetting,
-      dataList: [],
-      fkUserId: this.$store.state.userInfo.defaultConference.fkUserId
+      dataList: []
     }
   },
   created () {
     this.getSexlist()
     this.getJoblist()
+    console.log(this.conferenceId)
+    this.companyname = this.userInfo.company.name
   },
   computed: {
     replaceInfo () {
       return this.$store.state.replaceList.fkUserId
     },
     userInfo () {
-      return this.$store.state.userInfo.defaultConference.fkUserId
+      return this.$store.state.userInfo
     }
   },
   methods: {
     // 提交报名列表
     sub () {
+      console.log(this.username)
       this.dataList.push({
         'fkGenderId': this.defaultValue1,
-        'fkUserId': this.fkUserId,
+        'fkUserId': this.userInfo.id,
         'master': true,
         'name': this.username,
         'phoneNo': this.phone,
@@ -154,16 +156,18 @@ export default {
           conferenceMemberViews: JSON.stringify(this.dataList)
         }
       }).then((res) => {
-        console.log(res.data.data)
+        // console.log(res.data.data)
+        if (res.data.code === 0) {
+          this.$router.push({
+            name: 'EnrollSuccess',
+            query: {
+              meettingId: this.conferenceId
+            }
+          })
+        }
       })
       .catch(err => {
         console.log(err)
-      })
-      this.$router.push({
-        name: 'EnrollSuccess',
-        query: {
-          meettingId: this.conferenceId
-        }
       })
     },
     // 获取下拉列表
@@ -216,7 +220,8 @@ export default {
       this.$router.push({
         name: 'ReplaceEroll',
         query: {
-          meetting: this.meetting
+          meetting: this.meetting,
+          meettingId: this.conferenceId
         }
       })
     },

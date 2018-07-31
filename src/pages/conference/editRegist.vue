@@ -1,6 +1,6 @@
 <template>
     <div class="sqbm_container">
-        <div class="first" @click="$router.push({'name': 'Details'})"> 
+        <div class="first"> 
             <p>{{conferenceName}}</p>
             <span></span>
         </div>
@@ -8,7 +8,7 @@
             <li>
                 <span class="hui">报名信息</span>
                 <span><img src="../../assets/images/jia.png" alt=""></span>
-                <span @click="$router.push({'name': 'ReplaceEroll'})">添加代报名</span>
+                <span @click="goreplace()">添加代报名</span>
             </li>
             <li>
               <group>
@@ -49,15 +49,31 @@
         <ul class="dbm">
             <div class="firstdiv">
                 <span class="hui">代报名成员</span>
-                <span class="hui">{{membersInfo.length}}</span>
+                <span class="hui">{{membersInfo.length+replaceList.length}}</span>
             </div>
-            <li v-for="(item, index) of membersInfo" :key="index" v-if="membersInfo[index] !== ''">
-                <div class="close"><img src="../../assets/images/cha.png" alt="" @click="deleteReplace(index)"></div>
+            <li v-for="(item, index) of membersInfo" :key="'membersInfo' + index" v-if="membersInfo[index] !== ''">
+                <div class="close"><img src="../../assets/images/cha.png" alt="" @click="deleteMember(item.id)"></div>
                 <div class="box">
                   <span><img :src="item.photo" alt=""></span>
                   <span>{{item.name}}</span>
                   <span>{{item.fkGenderId}}
-                    <img v-if="item.fkGenderId === '男'" src="../../assets/images/nan.png" alt="">
+                    <img v-if="item.fkGenderId === 4" src="../../assets/images/nan.png" alt="">
+                    <img v-else src="../../assets/images/nv.png" alt="">
+                  </span>
+                  <span>代</span>
+                  <span><img src="../../assets/images/write.png" alt=""></span> 
+                  <div class="text">
+                    <p>手机 ：{{item.phoneNo}}</p>
+                  </div>
+                </div>
+            </li>
+             <li v-for="(item, index) of replaceList" :key="'replaceList' + index" v-if="replaceList[index] !== ''">
+                <div class="close"><img src="../../assets/images/cha.png" alt="" @click="deleteReplace(index)"></div>
+                <div class="box">
+                  <span><img src="../../assets/images/headpic2.jpg" alt=""></span>
+                  <span>{{item.name}}</span>
+                  <span>{{item.sex}}
+                    <img v-if="item.fkGenderId === 4" src="../../assets/images/nan.png" alt="">
                     <img v-else src="../../assets/images/nv.png" alt="">
                   </span>
                   <span>代</span>
@@ -101,13 +117,18 @@ export default {
       meettingId: this.$route.query.meettingId,
       conferenceId: this.$route.query.conferenceId,
       conferenceName: this.$route.query.conferenceName,
-      fkUserId: this.$store.state.userInfo.defaultConference.fkUserId
+      fkUserId: this.$store.state.userInfo.id,
+      flag: true
     }
   },
   created () {
     this.getInfo()
     this.getSexlist()
     this.getJoblist()
+    if (this.meettingId) {
+      this.conferenceId = this.meettingId
+    }
+    // console.log(this.conferenceId)
     // console.log(this.$store.state.replaceList)
   },
   computed: {
@@ -116,6 +137,9 @@ export default {
     },
     userInfo () {
       return this.$store.state.userInfo.defaultConference.fkUserId
+    },
+    nowConferenceId () {
+      return this.$store.state.nowConferenceId
     }
   },
   methods: {
@@ -136,11 +160,27 @@ export default {
         method: 'post',
         url: '/api/conference/enter',
         params: {
-          conferenceId: this.conferenceId,
+          conferenceId: this.nowConferenceId,
           conferenceMemberViews: JSON.stringify(this.dataList)
         }
       }).then((res) => {
-        console.log(res.data.data)
+        // console.log(res.data.data)
+        // this.$router.push({
+        //   name: 'EnrollSuccess',
+        //   query: {
+        //     meettingId: this.conferenceId
+        //   }
+        // })
+        if (this.meettingId) {
+          this.$router.push({
+            name: 'Details',
+            query: {
+              meettingId: this.meettingId
+            }
+          })
+        } else {
+          this.$router.push({name: 'Usereport'})
+        }
       })
       .catch(err => {
         console.log(err)
@@ -148,7 +188,7 @@ export default {
     },
     // 获取下拉列表
     getList (keyword, list) {
-      // let self = this
+      let self = this
       if (list.length) return
       this.axios({
         method: 'get',
@@ -169,6 +209,13 @@ export default {
             // this.$set(this.data,”key”,value’) $set()方法，既可以新增属性,又可以触发视图更新
             this.$set(list, i, singleList)
           }
+          if (keyword === 'POSITION') {
+            // if (this.defaultValue === null || this.defaultValue === 'undefined') {
+            this.defaultValue = list[0].key
+            // }
+          } else if (keyword === 'GENDER') {
+            self.defaultValue1 = list[0].key
+          }
         }
       }).catch(err => {
         console.log(err)
@@ -183,20 +230,8 @@ export default {
       this.getList('GENDER', this.sexList)
     },
     // 删除代报名
-    deleteReplace (id) {
-      // this.membersInfo.splice(index, 1)
-      this.axios({
-        method: 'post',
-        url: '/api/journey/deleteJourneyMember',
-        params: {
-          _method: 'delete',
-          journeyMemberId: this.membersInfo[id].id
-        }
-      }).then(res => {
-        console.log(res.data.data)
-      }).catch(err => {
-        console.log(err)
-      })
+    deleteReplace (index) {
+      this.replaceList.splice(index, 1)
     },
     // 获取页面信息
     getInfo () {
@@ -207,22 +242,43 @@ export default {
         if (res.data.code === 0) {
           this.masterInfo = res.data.data.masterMember
           this.membersInfo = res.data.data.conferenceMembers
-          this.defaultValue = this.masterInfo.fkGenderId
           this.companyname = this.masterInfo.companyName
           this.username = this.masterInfo.name
           this.phone = this.masterInfo.phoneNo
-          this.defaultValue = this.masterInfo.fkPosition
+          // this.defaultValue = this.masterInfo.fkPosition
           this.defaultValue1 = this.masterInfo.fkGenderId
+          // console.log(this.defaultValue)
         }
+      })
+    },
+     // 增加代报名
+    goreplace () {
+      this.$router.push({
+        name: 'ReplaceEroll',
+        query: {
+          meettingId: this.meettingId,
+          conferenceName: this.conferenceName,
+          flag: this.flag
+        }
+      })
+    },
+    // 删除代报名
+    deleteMember (id) {
+      this.axios({
+        method: 'post',
+        url: '/api/conference/deleteConferenceMember',
+        params: {
+          _method: 'delete',
+          memberId: id
+        }
+      }).then(res => {
+        console.log(res.data.data)
+      }).catch(err => {
+        console.log(err)
       })
     },
     finishEdit () {
       this.sub()
-      if (this.meettingId) {
-        this.$router.push({name: 'EnrollSuccess'})
-      } else {
-        this.$router.push({name: 'Usereport'})
-      }
     }
   }
 }

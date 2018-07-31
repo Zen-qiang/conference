@@ -13,9 +13,26 @@
     display: flex;
     div.img{
       flex: 4;
-      img{
-        margin-left: fmt(30);
-        text-align: center;
+      .img1{
+        position: relative;
+        margin: fmt(50) 0 0 fmt(20);
+        // margin-top: fmt(40);
+        width: fmt(160);
+        height: fmt(160);
+        background: #fff;
+        border: fmt(2) solid #fff;
+        border-radius: fmt(80);
+        overflow: hidden;
+        // padding: fmt(2);
+        img{
+          position: absolute;
+          left: fmt(2);
+          top: fmt(2);
+          width: fmt(156);
+          height: fmt(156);
+          // margin-left: fmt(30);
+          text-align: center;
+        }
       }
     }
     div.text{

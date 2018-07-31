@@ -2,11 +2,13 @@
   <div class="personalcenter_container">
     <div class="top">
       <div class="img">
-        <img src="../../assets/images/headpic21.png" alt="">
+        <div class="img1">
+          <img :src="info.profilePhoto" alt="">
+        </div>
       </div>
       <div class="text">
-        <p>JACK 朱</p>
-        <p>天赐服装贸易有限公司</p>
+        <p>{{info.name}}</p>
+        <p>{{info.company.name}}</p>
       </div>
       <div class="settings">
         <img src="../../assets/images/settings.png" alt="" @click="$router.push({'name' : 'PersonalSettings'})">
@@ -14,7 +16,7 @@
     </div>
     <div class="middle">
       <div class="title" @click="$router.push({'name': 'ConferenceCenter'})">
-        <p>adidas春季魅&黑系列上海订货会</p>
+        <p>{{info.defaultConference.subject}}</p>
         <p>切换</p>
       </div>
       <ul>
@@ -53,7 +55,30 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data () {
+    return {
+      info: {}
+    }
+  },
+  created () {
+    this.getInfo()
+  },
+  methods: {
+    getInfo () {
+      this.axios({
+        method: 'get',
+        url: '/api/user/findUserInfoByUserId'
+      }).then(res => {
+        if (res.data.code === 0) {
+          this.info = res.data.data
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

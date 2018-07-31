@@ -35,7 +35,7 @@
                    <span>more</span>
                    <span><img src="../../assets/images/jiantou.png" alt=""></span> -->
               </li>
-              <li v-if="userRole != 'root'">
+              <li v-if="userRole != 'root' && userInfo.number === 0">
                   <span>经销商</span>
                   <span>{{userInfo.companyName}}</span>
               </li>
@@ -51,10 +51,26 @@
               <!-- <p>此次阿迪达斯魅&黑2018秋冬新品延续了品牌产品一贯的优秀品质与颜值，不管是鞋类还是服装类，在设计上都推陈出新，搭配上更注重整体理念，将材质、织法、剪裁、配色等特点融入服饰的款式中，鞋类产品新BOUNCE、BOOST与CLOUDFOAM缓震材质的嵌入，为羽毛球运动的每一步移动提供更好的能量传递与推动，使阿迪达斯羽毛球系列产品的鞋底</p> -->
           </div>
 
-          <div class="btn2" @click="go()" v-if="userRole !=='root'">
-              <img src="../../assets/images/shenqing.png" alt="">
+          <div class="btn2"  v-if="userRole !=='root'">
+            <p v-if="userInfo.number === 0" @click="go()">
+              <span class="itemall"> 
+                <img src="../../assets/images/shenqing.png" alt="">
+                 申请报名
+              </span>
+            </p>         
+            <p v-else>
+              <span class="itemleft white" @click="cancelApply()">
+                <img src="../../assets/images/quxiao.png" alt="">
+                取消报名
+              </span>
+              <span class="itemright" @click="go()">
+                <img src="../../assets/images/shenqing.png" alt="">
+                修改报名
+              </span>
+            </p>
+              <!-- <img src="../../assets/images/shenqing.png" alt="">
               <p v-if="userInfo.number === 0">申请报名</p>
-              <p v-else>修改报名</p>
+              <p v-else>修改报名</p> -->
           </div>
          
    </div>
@@ -88,26 +104,29 @@ export default{
   computed: {
     replaceInfo () {
       return this.$store.state.replaceList
+    },
+    nowConferenceId () {
+      return this.$store.state.nowConferenceId
     }
   },
   methods: {
     go () {
-      if (this.userInfo.number === 0) {
-        this.replaceList = []
-        this.$store.commit('replaceList', this.replaceList)
-        this.$router.push({
-          name: 'ApplyRegist',
-          query: {
-            meettingId: this.conferenceId,
-            meetting: this.meetting
-          }
-        })
-      } else {
+      this.replaceList = []
+      this.$store.commit('replaceList', this.replaceList)
+      if (this.userInfo.number > 0) {
         this.$router.push({
           name: 'EditRegist',
           query: {
             meettingId: this.meettingId,
             conferenceName: this.conferenceName
+          }
+        })
+      } else {
+        this.$router.push({
+          name: 'ApplyRegist',
+          query: {
+            meettingId: this.conferenceId,
+            meetting: this.meetting
           }
         })
       }
@@ -148,6 +167,20 @@ export default{
         if (res.data.code === 0) {
           console.log(res.data.data)
         }
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    // 取消报名
+    cancelApply () {
+      this.axios({
+        method: 'post',
+        url: '/api/conference/withdrawn',
+        params: {
+          conferenceId: this.nowConferenceId
+        }
+      }).then(res => {
+        this.$router.push({name: 'Meetings'})
       }).catch(err => {
         console.log(err)
       })

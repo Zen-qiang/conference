@@ -30,7 +30,7 @@
                   <!-- ../../assets/images/hotel.png -->
                   <img :src="item.photo" alt="">
                 </div>
-                <div class="right" @click="getHotelInfo(item.id)">
+                <div class="right" @click="goHotel(item.id, item.name)">
                   <p><span class="hui">房型：</span> {{item.roomType}}</p>
                   <p><span class="hui">地址：</span>{{item.address}}</p>
                   <p><span class="hui">开始：</span>{{item.startTime | formatDate}} &nbsp; &nbsp; &nbsp;<span class="hui">结束：</span>{{item.endTime | formatDate}}</p>
@@ -44,23 +44,26 @@
          <swiper-item>
           <div class="tab-swiper vux-center">
              <ul class="extra extra1">
-              <li>
+              <li v-if="haveHotelInfo !== null">
                 <div class="top">
-                  <span>如家快捷酒店</span>
+                  <span>{{haveHotelInfo.name}}</span>
                   <span><img src="../../assets/images/address.png" alt=""></span>
                 </div>
                 <div class="left">
                   <img src="../../assets/images/hotel.png" alt="">
                 </div>
                 <div class="right" @click="$router.push({'name' : 'HotelManage'})">
-                  <p><span class="hui">房型：</span> 大床；双人；三人；标间</p>
-                  <p><span class="hui">地址：</span>人民路</p>
-                  <p><span class="hui">开始：</span>2018-12-16 &nbsp; &nbsp; &nbsp;<span class="hui">结束：</span>2018-12-21</p>
+                  <p><span class="hui">房型：</span> {{haveHotelInfo.roomType}}</p>
+                  <p><span class="hui">地址：</span> {{haveHotelInfo.address}}</p>
+                  <p><span class="hui">开始：</span>{{haveHotelInfo.startTime}} &nbsp; &nbsp; &nbsp;<span class="hui">结束：</span>{{haveHotelInfo.endTime}}</p>
                 </div>
-                <div class="bottom" @click="$router.push({'name': 'Haslived'})">
+                <div class="bottom" >
                   <span>入住人员</span>
-                  <img src="../../assets/images/headpic.jpg" alt="">
+                  <img v-for="(item, index) in haveMemberInfo" :key="index" :src="item.photo" alt="">
                 </div>
+              </li>
+              <li v-else style="background:#f2f2f2;border:none">
+                <p style="width:100%;font:17px/60px 微软雅黑;color:#333;text-align:center;">暂时没有数据哦0v0</p>
               </li>
                <x-button @click.native ="$router.push({'name': 'Cars'})">安排接送车辆</x-button>
             </ul>
@@ -103,10 +106,18 @@ export default {
       list: ['安排入住', '已经入住'],
       demo: '安排入住',
       index: 0,
-      hotelsInfo: {}
+      hotelsInfo: {},
+      haveHotelInfo: {},
+      haveMemberInfo: [],
+      accomMemberList: this.$route.query.accomMemberList
     }
   },
+  created () {
+    console.log(this.accomMemberList)
+    this.getInfo()
+  },
   methods: {
+    // 查找酒店
     searchHotel () {
       this.axios({
         method: 'get',
@@ -124,24 +135,20 @@ export default {
         console.log(err)
       })
     },
-    getHotelInfo (id) {
+    // 点击酒店列表
+    goHotel (id, name) {
+      this.$store.commit('hotelId', id)
+      this.$store.commit('hotelName', name)
+      this.$router.push({name: 'HotelManage'})
+    },
+    // 已入住酒店信息
+    getInfo () {
       this.axios({
         method: 'get',
-        url: '/api/accommodation/hotelInfo/' + id,
-        params: {
-          hotelId: id
-        }
+        url: '/api/accommodation/searchHotelRoomReserveMembers'
       }).then(res => {
-        if (res.data.code === 0) {
-          let hotelDetail = res.data.data
-          console.log(res.data.data)
-          this.$router.push({
-            name: 'HotelManage',
-            query: {
-              hotelName: hotelDetail.name
-            }
-          })
-        }
+        this.haveHotelInfo = res.data.data.hotelInfo
+        this.haveMemberInfo = res.data.data.memberInfo
       }).catch(err => {
         console.log(err)
       })

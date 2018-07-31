@@ -36,7 +36,8 @@ export default {
       selectId: [],
       nowIndex: this.$route.query.nowIndex,
       journeyId: this.$route.query.journeyId,
-      statusFlag: true
+      statusFlag: true,
+      addPeopleFlag: this.$route.query.addPeopleFlag
       // journeyInfo: null
     }
   },
@@ -130,7 +131,8 @@ export default {
         this.$router.push({
           name: 'AddJourney',
           query: {
-            userPic: this.userPic.slice(0, 2)
+            userPic: this.userPic.slice(0, 2),
+            addPeopleFlag: this.addPeopleFlag
           }
         })
       }

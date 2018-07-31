@@ -6,25 +6,25 @@
    </div> -->
    <ul>
        <li>
-           <span>姓名</span>
-           <span><input type="text" placeholder="请输入姓名" v-model="userName"></span>
+          <span>姓名</span>
+          <span><input type="text" placeholder="请输入姓名" v-model="userName"></span>
        </li>
         <li>
-            <span>照片</span>
-            <span class="hui"></span>
-            <a href="javascript:;" class="upload">将用于证件打印
-              <input type="file" multiple="multiple" accept="image/*" capture="camera" class="change">
-            </a>           
-            <span><img src="../../assets/images/camera.png" alt=""></span>           
+          <span>照片</span>
+          <span class="hui"></span>
+          <a href="javascript:;" class="upload">将用于证件打印
+            <input type="file" multiple="multiple" accept="image/*" capture="camera" class="change">
+          </a>           
+          <span><img src="../../assets/images/camera.png" alt=""></span>           
         </li>
         <li>
-            <span>手机</span>
-            <span class="hui"><input type="text" placeholder="请输入手机号码" v-model="phone"></span>
+          <span>手机</span>
+          <span class="hui"><input type="text" placeholder="请输入手机号码" v-model="phone"></span>
         </li>
         <li>
-            <group>
-              <selector title="性别" :options="sexList" v-model="defaultValue"></selector>
-            </group>
+          <group>
+            <selector title="性别" :options="sexList" v-model="defaultValue"></selector>
+          </group>
         </li>
    </ul>
    <p class="end" @click="addReplace()">完成</p>
@@ -49,7 +49,12 @@ export default {
       userName: '',
       phone: '',
       meetting: this.$route.query.meetting,
-      fkUserId: this.$store.state.userInfo.defaultConference.fkUserId
+      conferenceId: this.$route.query.meettingId,
+      fkUserId: this.$store.state.userInfo.id,
+      conference: this.$route.query.conference,
+      conferenceName: this.$route.query.conferenceName,
+      meettingId: this.$route.query.meettingId,
+      flag: this.$route.query.flag
     }
   },
   computed: {
@@ -69,12 +74,23 @@ export default {
       }
       // arr.push(arrobj)
       this.$store.commit('replacePeople', arrobj)
-      this.$router.push({
-        name: 'ApplyRegist',
-        query: {
-          meetting: this.meetting
-        }
-      })
+      if (this.flag) {
+        this.$router.push({
+          name: 'EditRegist',
+          query: {
+            conferenceName: this.conferenceName,
+            meettingId: this.meettingId
+          }
+        })
+      } else {
+        this.$router.push({
+          name: 'ApplyRegist',
+          query: {
+            meetting: this.meetting,
+            meettingId: this.meettingId
+          }
+        })
+      }
     },
     // 获取下拉列表
     getList (keyword, list) {

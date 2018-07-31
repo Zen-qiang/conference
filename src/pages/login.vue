@@ -42,9 +42,15 @@ export default {
     return {
       fullHeight: document.documentElement.clientHeight,
       userName: '',
-      password: ''
+      password: '',
+      nowConferenceId: this.$store.state.nowConferenceId
     }
   },
+  // computed: {
+  //   nowConferenceId () {
+  //     return this.$store.state.nowConferenceId
+  //   }
+  // },
   methods: {
     login () {
       this.axios({
@@ -60,6 +66,11 @@ export default {
             name: res.data.data.name,
             roleSet: res.data.data.roleSet
           }
+          if (res.data.data.defaultConference !== null) {
+            this.nowConferenceId = res.data.data.defaultConference.id
+            this.$store.commit('nowConferenceId', this.nowConferenceId)
+          }
+          // console.log(this.nowConferenceId)
           this.$store.commit('userInfo', res.data.data)
           this.$store.commit('currentUser', currentUser)
           this.$router.push({'name': 'Meetings'})

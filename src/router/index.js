@@ -11,6 +11,7 @@ import ReplaceErollOne from '@/pages/conference/replaceErollOne'
 import EnrollSuccess from '@/pages/conference/enrollSuccess'
 import HotelManage from '@/pages/accommodation/hotelManage'
 import AccommodationManage from '@/pages/accommodation/accommodationManage'
+import AccomAdd from '@/pages/accommodation/accomAdd'
 import Haslived from '@/pages/accommodation/haslived'
 import PeopleManage from '@/pages/accommodation/peopleManage'
 import Map from '@/pages/accommodation/map'
@@ -92,7 +93,7 @@ export default new Router({
       component: ReplaceEroll
     },
     {
-      path: '/replaceEroll',
+      path: '/replaceErollOne',
       name: 'ReplaceErollOne',
       component: ReplaceErollOne
     },
@@ -110,6 +111,11 @@ export default new Router({
       path: '/accommodationManage',
       name: 'AccommodationManage',
       component: AccommodationManage
+    },
+    {
+      path: '/accomAdd',
+      name: 'AccomAdd',
+      component: AccomAdd
     },
     {
       path: '/peopleManage',

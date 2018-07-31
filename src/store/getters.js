@@ -8,6 +8,16 @@ export default {
   getReplaceList: state => state.replaceList,
   getUserInfo: state => state.userInfo,
   getnowConferenceId: state => state.nowConferenceId,
-  getJourneyInfo: state => state.journeyInfo
+  getnowConferenceName: state => state.nowConferenceName,
+  getJourneyInfo: state => state.journeyInfo,
+  getHotelId: state => state.hotelId,
+  getHotelName: state => state.hotelName,
+  getAccomMemberList: state => state.accomMemberList,
+  getAccomValue: state => state.accomValue,
+  getRoom: state => state.room,
+  getAccomSelect: state => state.accomSelect,
+  getAccomPic: state => state.accomPic,
+  getAddInfo: state => state.addInfo,
+  getMembersId: state => state.membersId
   // isRoot: state => state.currentUser.roleSet.indexOf('root')
 }

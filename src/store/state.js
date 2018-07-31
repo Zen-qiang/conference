@@ -6,6 +6,16 @@ export default {
   replacePeople: {},
   replaceList: [],
   userInfo: {},
-  nowConferenceId: '',
-  journeyInfo: null
+  nowConferenceId: 0,
+  journeyInfo: null,
+  nowConferenceName: '',
+  hotelId: '',
+  hotelName: '',
+  membersId: [],
+  accomMemberList: [],
+  accomValue: [],
+  accomSelect: {},
+  accomPic: {},
+  addInfo: null,
+  room: []
 }
