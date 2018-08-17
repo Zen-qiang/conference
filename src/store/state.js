@@ -17,5 +17,6 @@ export default {
   accomSelect: {},
   accomPic: {},
   addInfo: null,
-  room: []
+  room: [],
+  addPeopleMembers: []
 }

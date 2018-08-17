@@ -21,22 +21,26 @@
           background: #fff;
           margin-left:40%;
           overflow: hidden;
+        //   padding: fmt(4);
           img{
               position: absolute;
               left: 0;
               top: 0;
               z-index: 2;
+              width: fmt(160);
+              height: fmt(160);
+              object-fit: contain;
           }
           p{
             position: absolute;
-            width: fmt(146);
-            height: fmt(146);
+            width: fmt(160);
+            height: fmt(160);
             background: rgba(0, 0, 0,.6);
-            left: fmt(4);
-            top: fmt(4);
+            // left: fmt(4);
+            // top: fmt(4);
             z-index: 3;
             border-radius: fmt(73);
-            font: fmt(26)/fmt(146) Microsoft Yahei;
+            font: fmt(26)/fmt(160) Microsoft Yahei;
             color: rgba($color: #fff, $alpha: .8);
             font-weight: lighter;
             text-align: center;

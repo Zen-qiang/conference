@@ -3,15 +3,15 @@
         <div class="list list1">
               <div class="inner">
                 <div class="first">
-                  <span>adidas春季魅&黑系列上海订货会</span>
+                  <span>{{currentConference.subject}}</span>
                   <span class="now1">当前会务</span>
                   
                 </div>
                  <div class="last">
-                   <img src="../../assets/images/center1.png" alt="">
-                   <p class="col2"><span class="col1">状态：</span><span>已报名</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="col1">人数：</span><span class="col3">8</span>人</p>
-                   <p class="col2"><span class="col1">地址：</span>上海市陆家嘴碧海青天大厦32F</p>
-                   <p class="col2"><span class="col1">开始：</span>2018-12-16  &nbsp; <span>结束：</span>2018-12-21</p>
+                   <img :src="currentConference.conferenceCoverUrl" alt="">
+                   <p class="col2"><span class="col1">状态：</span> <span></span> <span>{{currentConference.valueDefault}}</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="col1">人数：</span><span class="col3">{{currentConference.peopleNum}}</span>人</p>
+                   <p class="col2"><span class="col1">地址：</span>{{currentConference.address}}</p>
+                   <p class="col2"><span class="col1">开始：</span>{{currentConference.startTime}}  &nbsp; <span>结束：</span>{{currentConference.endTime}}</p>
                  </div>
               </div>
             </div>
@@ -39,6 +39,32 @@ export default {
   components: {
     Timeline,
     TimelineItem
+  },
+  data () {
+    return {
+      currentConference: {}
+    }
+  },
+  created () {
+    this.getInfo()
+  },
+  methods: {
+    getInfo () {
+      this.axios({
+        method: 'get',
+        url: '/api/conference/searchChangeConferenceList',
+        params: {
+          pageNo: 1,
+          pageSize: 100
+        }
+      }).then(res => {
+        if (res.data.code === 0) {
+          this.currentConference = res.data.data.currentConference
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    }
   }
 }
 </script>

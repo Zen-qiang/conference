@@ -18,6 +18,7 @@ export default {
   getAccomSelect: state => state.accomSelect,
   getAccomPic: state => state.accomPic,
   getAddInfo: state => state.addInfo,
-  getMembersId: state => state.membersId
+  getMembersId: state => state.membersId,
+  getAddPeopleMembers: state => state.addPeopleMembers
   // isRoot: state => state.currentUser.roleSet.indexOf('root')
 }

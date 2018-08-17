@@ -26,7 +26,7 @@
         </li> -->
         <li>
           <span>公司</span>
-          <span>{{info.company.name}}</span>
+          <span>{{company.name}}</span>
         </li>
       </ul>
       <div class="bottom" @click="$router.push({name: 'Login'})">
@@ -39,7 +39,8 @@
 export default {
   data () {
     return {
-      info: ''
+      info: {},
+      company: {}
     }
   },
   created () {
@@ -53,6 +54,7 @@ export default {
       }).then(res => {
         if (res.data.code === 0) {
           this.info = res.data.data
+          this.company = this.info.company
         }
       }).catch(err => {
         console.log(err)

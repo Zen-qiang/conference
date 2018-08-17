@@ -8,7 +8,7 @@
       </div>
       <div class="text">
         <p>{{info.name}}</p>
-        <p>{{info.company.name}}</p>
+        <p>{{company.name}}</p>
       </div>
       <div class="settings">
         <img src="../../assets/images/settings.png" alt="" @click="$router.push({'name' : 'PersonalSettings'})">
@@ -16,7 +16,7 @@
     </div>
     <div class="middle">
       <div class="title" @click="$router.push({'name': 'ConferenceCenter'})">
-        <p>{{info.defaultConference.subject}}</p>
+        <p>{{defaultConference.subject}}</p>
         <p>切换</p>
       </div>
       <ul>
@@ -58,7 +58,9 @@
 export default {
   data () {
     return {
-      info: {}
+      info: {},
+      company: {},
+      defaultConference: {}
     }
   },
   created () {
@@ -72,6 +74,8 @@ export default {
       }).then(res => {
         if (res.data.code === 0) {
           this.info = res.data.data
+          this.company = this.info.company
+          this.defaultConference = this.info.defaultConference
         }
       }).catch(err => {
         console.log(err)

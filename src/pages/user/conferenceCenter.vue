@@ -8,7 +8,7 @@
             </div>
             <div class="last">
               <img :src="currentConference.conferenceCoverUrl" alt="">
-              <p class="col2"><span class="col1">状态：</span> <span></span> <span>{{currentConference.valueDefault}}</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="col1">人数：</span><span class="col3">8</span>人</p>
+              <p class="col2"><span class="col1">状态：</span> <span></span> <span>{{currentConference.valueDefault}}</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="col1">人数：</span><span class="col3">{{currentConference.peopleNum}}</span>人</p>
               <p class="col2"><span class="col1">地址：</span>{{currentConference.address}}</p>
               <p class="col2"><span class="col1">开始：</span>{{currentConference.startTime}}  &nbsp; <span>结束：</span>{{currentConference.endTime}}</p>
             </div>
@@ -24,7 +24,7 @@
             </div>
               <div class="last">
                 <img :src="item.conferenceCoverUrl" alt="">
-                <p class="col2"><span class="col1">状态：</span><span></span> <span>{{item.valueDefault}}</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="col1">人数：</span><span class="col3">8</span>人</p>
+                <p class="col2"><span class="col1">状态：</span><span></span> <span>{{item.valueDefault}}</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="col1">人数：</span><span class="col3">{{item.peopleNum}}</span>人</p>
                 <p class="col2"><span class="col1">地址：</span>{{item.address}}</p>
                 <p class="col2"><span class="col1">开始：</span>{{item.startTime}}  &nbsp; <span>结束：</span>{{item.endTime}}</p>
               </div>

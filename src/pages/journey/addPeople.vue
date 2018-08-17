@@ -37,7 +37,8 @@ export default {
       nowIndex: this.$route.query.nowIndex,
       journeyId: this.$route.query.journeyId,
       statusFlag: true,
-      addPeopleFlag: this.$route.query.addPeopleFlag
+      addPeopleFlag: this.$route.query.addPeopleFlag,
+      addPeopleMembers: this.$store.state.addPeopleMembers
       // journeyInfo: null
     }
   },
@@ -78,6 +79,7 @@ export default {
       //   }
       // }
     },
+    // 获得页面信息
     getPeopleInfo () {
       this.axios({
         method: 'get',
@@ -85,7 +87,9 @@ export default {
       }).then(res => {
         if (res.data.code === 0) {
           this.info = res.data.data
-          this.info.members.forEach(element => {
+          this.addPeopleMembers = this.info
+          this.$store.commit('addPeopleMembers', this.addPeopleMembers)
+          this.addPeopleMembers.members.forEach(element => {
             this.$set(element, 'show', true)
           })
           let members = this.info.members
@@ -97,6 +101,7 @@ export default {
         console.log(err)
       })
     },
+    // 添加人员跳转
     addUserpic () {
       let selsects = []
       this.info.members.forEach((el, index) => {

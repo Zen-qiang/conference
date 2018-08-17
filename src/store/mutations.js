@@ -55,6 +55,9 @@ const mutations = {
   },
   membersId: (state, membersId) => {
     state.membersId = membersId
+  },
+  addPeopleMembers: (state, addPeopleMembers) => {
+    state.addPeopleMembers = addPeopleMembers
   }
 }
 

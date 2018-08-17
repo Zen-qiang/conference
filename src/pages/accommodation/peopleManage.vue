@@ -85,6 +85,7 @@ export default {
   created () {
     this.getroomList()
     this.getInfo()
+    console.log(this.accomMemberList.length)
     if (this.accomMemberList.length === 0) {
       this.getInfo()
       this.accomValue = this.defaultValue
@@ -109,6 +110,7 @@ export default {
         }
       }).then(res => {
         if (res.data.code === 0) {
+          console.log('我有做请求0v0')
           this.info = res.data.data
           this.roomCount = this.info.roomCount
           this.$store.commit('room', this.roomCount)

@@ -113,7 +113,7 @@ export default {
     }
   },
   created () {
-    console.log(this.accomMemberList)
+    console.log(this.accomMemberList)``
     this.getInfo()
   },
   methods: {

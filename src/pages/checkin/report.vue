@@ -71,7 +71,7 @@
 
 <script>
 import wx from 'weixin-js-sdk'
-import $ from 'jquery'
+// import $ from 'jquery'
 // import { XDialog, Group, XSwitch, TransferDomDirective as TransferDom } from 'vux'
 export default {
   // directives: {
