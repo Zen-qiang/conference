@@ -7,7 +7,7 @@
    <ul>
        <li>
           <span>姓名</span>
-          <span><input type="text" placeholder="请输入姓名" v-model="userName"></span>
+          <span><input type="text" required placeholder="请输入姓名" v-model="userName"></span>
        </li>
         <li>
           <span>照片</span>
@@ -17,9 +17,10 @@
           </a>           
           <span><img src="../../assets/images/camera.png" alt=""></span>           
         </li>
-        <li>
-          <span>手机</span>
-          <span class="hui"><input type="text" placeholder="请输入手机号码" v-model="phone"></span>
+        <li class="hui">
+          <group>
+            <x-input title="手机" required  ref="mobile" name="mobile" placeholder="请输入手机号码"  v-model="mobile" :max="11" keyboard="number" is-type="china-mobile" placeholder-align="right" text-align="right" :show-clear="false" keyborad="number"></x-input>
+          </group>
         </li>
         <li>
           <group>
@@ -27,17 +28,20 @@
           </group>
         </li>
    </ul>
-   <p class="end" @click="addReplace()">完成</p>
+   <p class="end" @click="addReplace">完成</p>
+   <toast v-model="show" type="text" position="middle">{{$t('message.check')}}</toast>
   </div>
    
 </template>
 
 <script>
-import { Group, Selector } from 'vux'
+import { Group, Selector, XInput, Toast } from 'vux'
 export default {
   components: {
     Group,
-    Selector
+    Selector,
+    XInput,
+    Toast
   },
   created () {
     this.getSexlist()
@@ -47,7 +51,8 @@ export default {
       defaultValue: '',
       sexList: [],
       userName: '',
-      phone: '',
+      mobile: '',
+      show: false,
       meetting: this.$route.query.meetting,
       conferenceId: this.$route.query.meettingId,
       fkUserId: this.$store.state.userInfo.id,
@@ -67,15 +72,15 @@ export default {
       // let arr = []
       let arrobj = {
         name: this.userName,
-        phoneNo: this.phone,
+        phoneNo: this.mobile,
         fkGenderId: this.defaultValue,
         fkMasterId: this.fkUserId, // 当前登陆人ID
         master: false
       }
       // arr.push(arrobj)
-      this.$store.commit('replacePeople', arrobj)
-      if (this.flag) {
-        this.$router.push({
+      if (this.userName && this.$refs.mobile.valid) {
+        this.$store.commit('replacePeople', arrobj)
+        this.$router.replace({
           name: 'EditRegist',
           query: {
             conferenceName: this.conferenceName,
@@ -83,13 +88,7 @@ export default {
           }
         })
       } else {
-        this.$router.push({
-          name: 'ApplyRegist',
-          query: {
-            meetting: this.meetting,
-            meettingId: this.meettingId
-          }
-        })
+        this.show = true
       }
     },
     // 获取下拉列表

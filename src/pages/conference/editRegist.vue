@@ -84,7 +84,9 @@
                 </div>
             </li>
         </ul>
-        <p class="apply" @click="finishEdit()">修改完成</p>
+        <div class="content">
+          <p class="apply" @click="finishEdit()">修改完成</p>
+        </div>
     </div>
 </template>
 
@@ -173,10 +175,7 @@ export default {
         // })
         if (this.meettingId) {
           this.$router.push({
-            name: 'Details',
-            query: {
-              meettingId: this.meettingId
-            }
+            path: '/meetings'
           })
         } else {
           this.$router.push({name: 'Usereport'})

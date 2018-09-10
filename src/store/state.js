@@ -1,6 +1,6 @@
 export default {
   version: '2018-04-04',
-  currentUser: {},
+  // currentUser: {},
   enroll: {},
   selectConferenceMembersId: [],
   replacePeople: {},
@@ -16,7 +16,15 @@ export default {
   accomValue: [],
   accomSelect: {},
   accomPic: {},
-  addInfo: null,
+  allMembers: {},
   room: [],
-  addPeopleMembers: []
+  addPeopleMembers: [],
+  isRoot: false,
+  isUser: false,
+  isAdmin: false,
+  isDriver: false,
+  val: false,
+  firstTime: '',
+  lastTime: '',
+  roomArrs: []
 }

@@ -43,7 +43,7 @@ let webpackConfig = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueLoaderConfig
+        options: vueLoaderConfig,
       },
       {
         test: /\.js$/,

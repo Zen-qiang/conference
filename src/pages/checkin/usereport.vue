@@ -35,7 +35,7 @@
               <img src="../../assets/images/nan.png" alt="">
               <!-- <img v-else src="../../assets/images/nv.png" alt=""> -->
             </span>
-            <span>代</span>
+            <span>代</span>&nbsp;&nbsp;
              <span class="phone">手机</span>
             <div class="text">
               <p>手机 ：{{conferenceMembersInfo[index].phoneNo}}</p>

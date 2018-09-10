@@ -80,9 +80,6 @@
       }
       span:last-child{
         width: fmt(240);
-        position: absolute;
-        left: fmt(400);
-        top: 0;
       }
     }
     li:nth-child(4){
@@ -93,8 +90,8 @@
       padding: 0 fmt(30) 0 fmt(30);
       font:fmt(24)/fmt(40) Microsoft Yahei;
       border-bottom: fmt(2) solid #eee; 
-      span:first-child{
-        float: left;
+      span{
+        display: block;
         width: fmt(360);
         height: fmt(40);
         color: #333;
@@ -104,19 +101,27 @@
           color: #9c9c9c;
         }
       }
-      span:nth-child(2){
-        float: right;
-        width: fmt(100);
-        height: fmt(40);
-        text-align: right;
-        color: #787878;
-        i{
-          font-style: normal;
-          color: #e85e53;
-        }
+      .nav{
+        position: absolute;
+        right: 0;
+        top:fmt(15);
+        width: fmt(50);
+        font-size: fmt(40);
+        color: #0cb4ce;
       }
+      // span:nth-child(2){
+      //   float: right;
+      //   width: fmt(100);
+      //   height: fmt(40);
+      //   text-align: right;
+      //   color: #787878;
+      //   i{
+      //     font-style: normal;
+      //     color: #e85e53;
+      //   }
+      // }
       span:nth-child(3){
-        float: left;
+        display: block;
         width: fmt(560);
         height: fmt(40);
         color: #333;
@@ -133,56 +138,21 @@
       }
     }
     li:nth-child(5){
-       width: 100%;
-       height: fmt(80);
-       border-bottom: fmt(2) solid #eee;
-       span:first-of-type{
-         position: absolute;
-         top: 0;
-         left: fmt(30);
-         font:fmt(24)/fmt(80) Microsoft Yahei;
-         color: #a9a9a9;
-       }
-       img:first-of-type{
-         position: absolute;
-         width: fmt(50);
-         top: fmt(12);
-         right: fmt(124);
-       }
-       span:nth-of-type(2){
-         position: absolute;
-         top: 0;
-         right: fmt(60);
-         font:fmt(24)/fmt(80) Microsoft Yahei;
-         color: #c5c5c5;
-       }
-       img:last-of-type{
-        width: fmt(18);
-        position: absolute;
-        top: fmt(32);
-        right: fmt(30);
-      }
-    }
-    li:nth-child(6){
       width: 100%;
       height: fmt(90);
       border-bottom: fmt(2) solid #eee;
       padding: 0 fmt(30);
-      span:first-child{
-        float: left;
-        font:fmt(24)/fmt(90) Microsoft Yahei;
-        color: #a9a9a9;
-      }
-      span:last-child{
-        float: right;
-        width: fmt(130);
-        height: fmt(44);
+      background: #0cb4ce;
+      span{
+        display: block;
+        width: fmt(260);
+        height: 100%;;
+        padding-top: fmt(20);
         border-radius: fmt(10);
-        font:fmt(24)/fmt(44) Microsoft Yahei;
+        font:fmt(32)/fmt(52) Microsoft Yahei;
         color: #fff;
         text-align: center;
-        background: #0cb4ce;
-        margin-top: fmt(20);
+        margin: 0 auto;
       }
     }
   }

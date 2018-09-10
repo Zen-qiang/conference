@@ -1,7 +1,7 @@
 <template>
 <div id='mynav'>
     <img class='logo' src='../assets/images/logo3.png' alt="">
-    <div id="btn1" @click="down" ref='btn1' v-show="roleSet">
+    <div id="btn1" @click="down" ref='btn1'>
       <img src='../assets/images/list.png' alt="">
     </div>
     <!-- 点击显示 -->
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -74,9 +74,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      roleSet: 'getRoleSet'
-    })
+    // ...mapGetters({
+    //   roleSet: 'getRoleSet'
+    // })
   },
   created () {
   },
@@ -94,7 +94,7 @@ export default {
     },
     // 报名管理
     goReport: function () {
-      if (this.roleSet[0] === 'root') {
+      if (this.$store.state.isAdmin === true) {
         this.$router.push({'name': 'Report'})
       } else {
         this.$router.push({'name': 'Usereport'})
@@ -103,7 +103,7 @@ export default {
     },
     // 派车管理
     goCars: function () {
-      if (this.roleSet[0] === 'root') {
+      if (this.$store.state.isAdmin === true) {
         this.$router.push({'name': 'Drivercenter'})
       } else {
         this.$router.push({'name': 'Cars'})
@@ -112,10 +112,7 @@ export default {
     },
     // 用餐管理
     goDining: function () {
-      console.log(this.$store.state.currentUser.role)
-      console.log(this.userRole)
-      console.log(this.roleSet[0])
-      if (this.roleSet[0] === 'root') {
+      if (this.$store.state.isAdmin === true) {
         this.$router.push({'name': 'DiningOne'})
       } else {
         this.$router.push({'name': 'Diningdetail'})
@@ -124,8 +121,7 @@ export default {
     },
     // 住宿管理
     goAccommodation: function () {
-      console.log(this.$store.state.currentUser.role)
-      if (this.roleSet[0] === 'root') {
+      if (this.$store.state.isAdmin === true) {
         this.$router.push({'name': 'HotellistTwo'})
       } else {
         this.$router.push({'name': 'AccommodationManage'})

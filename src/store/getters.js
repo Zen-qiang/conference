@@ -1,7 +1,7 @@
 export default {
   getCurrentUser: state => state.currentUser,
   getVersion: state => state.version,
-  getRoleSet: state => state.currentUser.roleSet,
+  // getRoleSet: state => state.currentUser.roleSet,
   getEnroll: state => state.Enroll,
   getSelectConferenceMembersId: state => state.selectConferenceMembersId,
   getReplacePeople: state => state.replaceList,

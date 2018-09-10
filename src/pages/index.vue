@@ -10,7 +10,7 @@
           会务管理一条龙服务。<br/>
        </p>
        <!-- <input type="btn" value="立即体验"> -->
-       <div class="btn1" @click="$router.push({'name': 'Login'})" v-show="!roleSet">立即登录</div>
+       <div class="btn1" @click="$router.push({'path': '/login'})">立即登录</div>
     </div>
   </div>
 <!-- </transition> -->
@@ -20,6 +20,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+  name: 'index',
   data () {
     return {
       flag: false
@@ -27,7 +28,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      roleSet: 'getRoleSet'
+      // roleSet: 'getRoleSet'
       // rootRole: 'isRoot'
     })
   }

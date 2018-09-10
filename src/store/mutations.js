@@ -35,6 +35,7 @@ const mutations = {
   hotelName: (state, hotelName) => {
     state.hotelName = hotelName
   },
+  // 要添加到前面展示的人员列表
   accomMemberList: (state, accomMemberList) => {
     state.accomMemberList = accomMemberList
   },
@@ -50,14 +51,39 @@ const mutations = {
   accomPic: (state, accomPic) => {
     state.accomPic = accomPic
   },
-  addInfo: (state, addInfo) => {
-    state.addInfo = addInfo
+  // 所有成员
+  allMembers: (state, addInfo) => {
+    state.allMembers = addInfo
   },
   membersId: (state, membersId) => {
     state.membersId = membersId
   },
   addPeopleMembers: (state, addPeopleMembers) => {
     state.addPeopleMembers = addPeopleMembers
+  },
+  setRoot: (state, flag) => {
+    state.isRoot = flag
+  },
+  setAdmin: (state, flag) => {
+    state.isAdmin = flag
+  },
+  setUser: (state, flag) => {
+    state.isUser = flag
+  },
+  setDriver: (state, flag) => {
+    state.isDriver = flag
+  },
+  setValue: (state, val) => {
+    state.val = val
+  },
+  setStart: (state, first) => {
+    state.firstTime = first
+  },
+  setEnd: (state, last) => {
+    state.lastTime = last
+  },
+  roomArrs: (state, roomArr) => {
+    state.roomArrs = roomArr
   }
 }
 

@@ -17,7 +17,7 @@
           </li>
         </ul>
       </div>
-      <p class="add" @click="addCarsPeople()">添加至车辆</p>
+      <p class="add" @click="addCarsPeople">添加至车辆</p>
     </div>
   </div>
 </template>

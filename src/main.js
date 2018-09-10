@@ -13,13 +13,41 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from './http'
 import wx from 'weixin-js-sdk'
-
+import VueBus from 'vue-bus'
+import VueI18n from 'vue-i18n'
+// import Vuex from 'vuex'
 Vue.prototype.axios = axios
 // 移动端点击延迟解决方案
 // FastClick.attach(document.body)
 Vue.config.productionTip = false
+// Vue.use(Vuex)
+
 Vue.use(ElementUI)
 
+Vue.use(VueBus)
+
+Vue.use(VueI18n)
+
+const messages = {
+  zh: {
+    message: {
+      info: '您输入的账号或密码有误',
+      check: '请仔细核对输信息'
+    }
+  },
+  en: {
+    message: {
+      hello: 'good good study, day day up!'
+    }
+  }
+}
+const i18n = new VueI18n({
+  locale: 'zh',  // 设置默认使用语言
+  messages
+})
+// Vue.i18n.add('en', translationsEn)
+// Vue.i18n.set('en')
+Vue.config.devtools = true
 axios({
   method: 'get',
   url: 'http://101.132.119.127:5566/zmf/getConfig',
@@ -64,6 +92,7 @@ axios({
 
 /* eslint-disable no-new */
 new Vue({
+  i18n,
   router,
   store,
   render: h => h(App)

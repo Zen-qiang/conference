@@ -16,8 +16,8 @@
 
        <div class="cal">
     <group>
-      <calendar  v-model="firstTime" :title="'请选择入住日期'" show-popup-header :popup-header-title="'请选择入住日期'"></calendar>
-      <calendar  v-model="lastTime" :title="'请选择退房日期'" show-popup-header :popup-header-title="'请选择退房日期'"></calendar>
+      <calendar  :value="firstTime" :title="'请选择入住日期'" show-popup-header :popup-header-title="'请选择入住日期'"></calendar>
+      <calendar  :value="lastTime" :title="'请选择退房日期'" show-popup-header :popup-header-title="'请选择退房日期'"></calendar>
     </group>
           <input type="button" value="安排入住" @click="checkin">
        </div> 
@@ -62,9 +62,8 @@ export default {
           img: '/static/image/bo3.jpg'
         }
       ],
-      firstTime: 'TODAY',
-      lastTime: 'TODAY',
-      hotelDetail: {}
+      hotelDetail: {},
+      allMembers: this.$store.state.allMembers
     }
   },
   computed: {
@@ -73,11 +72,31 @@ export default {
     },
     hotelName () {
       return this.$store.state.hotelName
+    },
+    firstTime () {
+      return this.$store.state.firstTime
+    },
+    lastTime () {
+      return this.$store.state.lastTime
     }
   },
   created () {
-    this.getHotelInfo()
+    this.getHotelInfo(this.$store.state.firstTime)
   },
+  /* beforeRouteLeave (to, form, next) {
+    if (form.matched.some(path => path.path === '/hotelManage')) {
+      this.allMembers.forEach((el, index) => {
+        if (el.checked) {
+          el.checked = true
+        } else {
+          el.isChecked = false
+        }
+      })
+      this.$store.commit('allMembers', this.allMembers)
+      this.$store.commit('accomMemberList', [])
+    }
+    next()
+  }, */
   methods: {
     onChange (val) {
       console.log('on-change', val)
@@ -89,11 +108,11 @@ export default {
       console.log('on view change', val, count)
     },
     checkin () {
+      this.$store.commit('allMembers', {})
+      this.$store.commit('accomMemberList', [])
+      // 房型信息清空
       this.$router.push({
         name: 'PeopleManage'
-        // query: {
-        //   hotelName: this.hotelName
-        // }
       })
     },
     // 获取默认信息

@@ -80,20 +80,24 @@
     letter-spacing: fmt(4);
     font-size: fmt(28);
   }
-  .bottom{
-    width: fmt(180);
-    height: fmt(40);
+  .content{
     position: fixed;
     // left: fmt(100);
-    bottom: fmt(80);
-    overflow: hidden;
-    margin: fmt(400) 0 0 fmt(270);
+    bottom: fmt(100);
+  }
+  .bottom{
+    position: fixed;
+    left: fmt(270);
+    bottom: fmt(100);
+    font-size: 0;
+    // margin: fmt(400) 0 0 fmt(270);
     img{
-      float: left;
       width: fmt(60);
+      vertical-align: bottom;
+      margin-right:fmt(30) ;
     }
     p{
-      float: right;
+      display: inline-block;
       font:fmt(32)/fmt(44) Arial;
     }
   }

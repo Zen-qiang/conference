@@ -12,7 +12,7 @@
         <swiper-item>
           <div class="tab-swiper vux-center">
             <group>
-              <x-switch title="自行解决" style="color:#ababab" prevent-default v-model="flag" @on-click="onClick()"></x-switch>
+              <x-switch title="自行解决" style="color:#ababab" prevent-default v-model="flag" @on-click="onClick"></x-switch>
               <selector title="交通类型" v-model="ArriveTrafficValue" :options="trafficList" v-show="!flag"></selector>
               <!-- <cell title="到达城市" value="上海" v-show="!flag"></cell> -->
               <x-input title="到达城市"  v-model="arriveCity" placeholder="请输入到达城市" placeholder-align="right" text-align="right" v-show="!flag"></x-input>
@@ -48,13 +48,13 @@
          <swiper-item>
           <div class="tab-swiper vux-center">
             <group>
-              <x-switch title="自行解决" style="color:#ababab" prevent-default v-model="flag1" @on-click="onClick()"></x-switch>
-              <selector title="交通类型" v-model="DepartTrafficValue" :options="trafficList" v-show="!flag1"></selector>
+              <x-switch title="自行解决" style="color:#ababab" prevent-default v-model="check" @on-click="onCheck"></x-switch>
+              <selector title="交通类型" v-model="DepartTrafficValue" :options="trafficList" v-show="!check"></selector>
               <!-- <cell title="到达城市" value="广州" v-show="!flag" ></cell> -->
-              <x-input title="到达城市"  v-model="departCity" placeholder="请输入到达城市" placeholder-align="right" text-align="right" v-show="!flag1"></x-input>
-              <selector title="到达地点" v-model="stationValue1" :options="stationList1" v-show="!flag1"></selector>
-              <x-input title="到达时间" v-model="departTimeValue" placeholder="请输入到达时间" placeholder-align="right" text-align="right" v-show="!flag1"></x-input>
-              <x-input title="班次号"  v-model="departOrder" placeholder="请输入班次号" placeholder-align="right" text-align="right" v-show="!flag1"></x-input>
+              <x-input title="到达城市"  v-model="departCity" placeholder="请输入到达城市" placeholder-align="right" text-align="right" v-show="!check"></x-input>
+              <selector title="到达地点" v-model="stationValue1" :options="stationList1" v-show="!check"></selector>
+              <x-input title="到达时间" v-model="departTimeValue" placeholder="请输入到达时间" placeholder-align="right" text-align="right" v-show="!check"></x-input>
+              <x-input title="班次号"  v-model="departOrder" placeholder="请输入班次号" placeholder-align="right" text-align="right" v-show="!check"></x-input>
             </group>
             <!-- @click="$router.push({'name' : 'AddPeople'})" -->
             <div class="last" >
@@ -106,7 +106,7 @@ export default {
       stationValue1: '浦东南站',
       stationList1: [{key: '浦东南站', value: '浦东南站'}, {key: '虹桥火车站', value: '虹桥火车站'}],
       flag: false,
-      flag1: false,
+      check: false,
       addressData: ChinaAddressData,
       addressValue: ['广东省', '深圳市', '南山区'],
       userPic: this.$route.query.userPic,
@@ -147,7 +147,6 @@ export default {
       this.stationValue = this.journeyInfo.arrive.arrivePlace
       this.arriveTimeValue = this.journeyInfo.arrive.arriveTime
       this.arriveOrder = this.journeyInfo.arrive.numberOfRuns
-
       this.DepartTrafficValue = this.journeyInfo.depart.fkVehiclesId
       this.departCity = this.journeyInfo.depart.departCity
       this.stationValue1 = this.journeyInfo.depart.departPlace
@@ -158,8 +157,11 @@ export default {
     // console.log(this.$store.state.nowConferenceId)
   },
   methods: {
-    onClick: function () {
+    onClick () {
       this.flag = !this.flag
+    },
+    onCheck () {
+      this.check = !this.check
     },
     // 添加信息跳转
     addMessage () {

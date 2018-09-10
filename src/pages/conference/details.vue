@@ -30,16 +30,16 @@
           <ul>
               <li>
                   <span>报名信息</span>
-                  <span>已报名<i>{{userInfo.number}}</i>人</span>
+                  <span @click="userRole && route()">已报名<i>{{userInfo.number}}</i>人</span>
                    <!-- <span><img src="../../assets/images/headpic.jpg" alt=""></span>
                    <span>more</span>
                    <span><img src="../../assets/images/jiantou.png" alt=""></span> -->
               </li>
-              <li v-if="userRole != 'root' && userInfo.number === 0">
+              <li v-if="userRole == false && userInfo.number === 0">
                   <span>经销商</span>
                   <span>{{userInfo.companyName}}</span>
               </li>
-               <li v-if="userRole != 'root'">
+               <li v-if="userRole == false">
                   <span>报名状态</span>
                   <span class="red">{{userInfo.status}}</span>
               </li>
@@ -51,7 +51,7 @@
               <!-- <p>此次阿迪达斯魅&黑2018秋冬新品延续了品牌产品一贯的优秀品质与颜值，不管是鞋类还是服装类，在设计上都推陈出新，搭配上更注重整体理念，将材质、织法、剪裁、配色等特点融入服饰的款式中，鞋类产品新BOUNCE、BOOST与CLOUDFOAM缓震材质的嵌入，为羽毛球运动的每一步移动提供更好的能量传递与推动，使阿迪达斯羽毛球系列产品的鞋底</p> -->
           </div>
 
-          <div class="btn2"  v-if="userRole !=='root'">
+          <div class="btn2"  v-if="userRole == false">
             <p v-if="userInfo.number === 0" @click="go()">
               <span class="itemall"> 
                 <img src="../../assets/images/shenqing.png" alt="">
@@ -92,7 +92,7 @@ export default{
     }
   },
   created () {
-    this.userRole = this.$store.state.currentUser.roleSet[0]
+    this.userRole = this.$store.state.isAdmin
     // console.log(this.userRole)
     // this.getParams()
     this.getConferenceInfo()
@@ -141,6 +141,7 @@ export default{
         method: 'get',
         url: '/api/conference/info/' + this.conferenceId
       }).then(res => {
+        console.log(res.data)
         if (res.data.code === 0) {
           this.conferenceInfo = res.data.data.conferenceDetails
           this.userInfo = res.data.data.userInfo
@@ -184,6 +185,9 @@ export default{
       }).catch(err => {
         console.log(err)
       })
+    },
+    route () {
+      this.$router.push({path: 'rootMessage'})
     }
   }
 }

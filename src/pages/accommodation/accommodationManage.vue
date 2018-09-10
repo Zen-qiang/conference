@@ -14,10 +14,10 @@
           <div class="tab-swiper vux-center">
             <div class="main">
               <group>
-                <calendar  v-model="firstTime" :title="'请选择起始时间'" show-popup-header :popup-header-title="'请选择起始日期'"></calendar>
+                <calendar  v-model="firstTime" :title="'请选择起始时间' " show-popup-header :popup-header-title="'请选择起始日期'"></calendar>
                 <calendar  v-model="lastTime" :title="'请选择截止时间'" show-popup-header :popup-header-title="'请选择截止日期'"></calendar>
              </group> 
-             <input type="button" value="筛选酒店" @click="searchHotel">
+             <input type="button" value="筛选酒店" @click="searchHotel(firstTime, lastTime)">
           </div>
 
             <ul class="extra" v-for ="(item, index) of hotelsInfo" :key ="index">
@@ -30,7 +30,7 @@
                   <!-- ../../assets/images/hotel.png -->
                   <img :src="item.photo" alt="">
                 </div>
-                <div class="right" @click="goHotel(item.id, item.name)">
+                <div class="right" @click="goHotel(item.id, item.name,firstTime,lastTime)">
                   <p><span class="hui">房型：</span> {{item.roomType}}</p>
                   <p><span class="hui">地址：</span>{{item.address}}</p>
                   <p><span class="hui">开始：</span>{{item.startTime | formatDate}} &nbsp; &nbsp; &nbsp;<span class="hui">结束：</span>{{item.endTime | formatDate}}</p>
@@ -113,18 +113,20 @@ export default {
     }
   },
   created () {
-    console.log(this.accomMemberList)``
+    // console.log(this.accomMemberList)
     this.getInfo()
   },
   methods: {
     // 查找酒店
-    searchHotel () {
+    searchHotel (firstTime, lastTime) {
       this.axios({
         method: 'get',
         url: '/api/accommodation/hotels',
         params: {
-          startTime: String(this.firstTime) + ' ' + '00:00:00',
-          endTime: String(this.lastTime) + ' ' + '00:00:00'
+          startTime: '2018-07-16 00:00:00',
+          // endTime: String(this.lastTime) + ' ' + '00:00:00'
+          endTime: '2018-08-04 00:00:00',
+          meettingId: this.nowConferenceId
         }
       }).then(res => {
         if (res.data.code === 0) {
@@ -136,9 +138,11 @@ export default {
       })
     },
     // 点击酒店列表
-    goHotel (id, name) {
+    goHotel (id, name, firstTime, lastTime) {
       this.$store.commit('hotelId', id)
       this.$store.commit('hotelName', name)
+      this.$store.commit('setStart', firstTime)
+      this.$store.commit('setEnd', lastTime)
       this.$router.push({name: 'HotelManage'})
     },
     // 已入住酒店信息

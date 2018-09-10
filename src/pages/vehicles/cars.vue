@@ -13,7 +13,7 @@
         <swiper-item>
           <div class="tab-swiper vux-center">
             <ul class="ul1 ul3" v-for="(item1, index1) of allList" :key="index1">
-              <li @click="$router.push({'name' : 'Driveradd'})">
+              <li  @click="goWhere">
                 <img :src="item1.vehiclesPhoto" alt="" >
               </li>
               <li>
@@ -23,36 +23,25 @@
               </li>
               <li>
                 <span>车牌号码：{{item1.licensePlateNumber}}</span>
-                <span>{{item1.contact}}</span>
-                <span>手机：{{item1.phoneNo}}</span>
               </li>
               <li>
+                <span class="nav">></span>
                 <span><i>发车时间：</i> {{item1.departTime}}</span>
-                <span><i>{{item1.members.length}}</i>/{{item1.peopleLimit}}人</span>
                 <span><i>发车地点：</i> {{item1.departPlace}}</span>
                 <!-- <span>5.6km</span> -->
               </li>
-              <li  @click="goPassengers(index1)">
-                <span>乘客信息</span>
-                <img v-for="(photo, index) in item1.members" :key="index" :src="photo.photo" v-if="index === 0">
-                <span>{{item1.members.length}}/{{item1.peopleLimit}} </span>
-                <img src="../../assets/images/jiantou.png" alt="">
-              </li>
               <li>
-                <span>报名状态</span>
-                <span @click="enroll(index1)" v-if='item1.canEdit && !item1.isDepart'>立即报名</span>
-                <span v-else class="btn1">立即报名</span>
+                <span @click="enroll(index1)">立即报名</span>
               </li>
             </ul>
           </div>
         </swiper-item>
-           
 
 
          <swiper-item>
           <div class="tab-swiper vux-center">
            <ul class="ul1 ul3" v-for="(item1, index1) of applyList" :key="index1">
-              <li @click="$router.push({'name' : 'Driveradd'})">
+              <li @click="gosomeWhere">
                 <img :src="item1.vehiclesPhoto" alt="" >
               </li>
               <li>
@@ -62,25 +51,23 @@
               </li>
               <li>
                 <span>车牌号码：{{item1.licensePlateNumber}}</span>
-                <span>{{item1.contact}}</span>
-                <span>手机：{{item1.phoneNo}}</span>
               </li>
               <li>
                 <span><i>发车时间：</i> {{item1.departTime}}</span>
-                <span><i>{{item1.members.length}}</i>/{{item1.peopleLimit}}人</span>
+                <span class="nav">></span>
                 <span><i>发车地点：</i> {{item1.departPlace}}</span>
                 <!-- <span>5.6km</span> -->
               </li>
-              <li  @click="goPassengers(index1)">
+              <!-- <li  @click="goPassengers(index1)">
                 <span>乘客信息</span>
                 <img v-for="(photo, index) in item1.members" :key="index" :src="photo.photo" v-if="index === 0">
                 <span>{{item1.members.length}}/{{item1.peopleLimit}} </span>
                 <img src="../../assets/images/jiantou.png" alt="">
-              </li>
-              <li>
+              </li> -->
+              <li v-show = false>
                 <span>报名状态</span>
-                <span @click="enroll(index1)" v-if='item1.canEdit && !item1.isDepart'>立即报名</span>
-                <span v-else class="btn1">立即报名</span>
+                <!-- <span @click="enroll(index1)" v-if='item1.canEdit && !item1.isDepart'>立即报名</span> -->
+                <span  class="btn1">立即报名</span>
               </li>
             </ul>
           </div>
@@ -141,6 +128,14 @@ export default {
           }
         })
       }
+    },
+    gosomeWhere () {
+      this.$store.commit('setValue', false)
+      this.$router.push({name: 'Vehicledetails'})
+    },
+    goWhere () {
+      this.$store.commit('setValue', true)
+      this.$router.push({name: 'Vehicledetails'})
     },
     getInfo (keyword) {
       this.axios({

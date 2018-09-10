@@ -265,6 +265,12 @@
             }
         }
     }
+    .content{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        -webkit-overflow-scrolling: touch;
+    }
     .apply{
         position: fixed;
         bottom: 0;

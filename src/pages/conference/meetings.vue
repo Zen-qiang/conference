@@ -34,7 +34,6 @@ export default{
   },
   created () {
     this.getMeetingStatus()
-    console.log(this.$store.state.currentUser)
     console.log(this.$store.state.version)
   },
   methods: {

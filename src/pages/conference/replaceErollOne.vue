@@ -79,7 +79,6 @@ export default {
       this.getList('GENDER', this.sexList)
     },
     addReplace () {
-
     }
   }
 }

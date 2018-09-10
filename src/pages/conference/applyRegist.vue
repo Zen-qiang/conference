@@ -159,7 +159,7 @@ export default {
         // console.log(res.data.data)
         if (res.data.code === 0) {
           this.$router.push({
-            name: 'EnrollSuccess',
+            name: 'meetings',
             query: {
               meettingId: this.conferenceId
             }

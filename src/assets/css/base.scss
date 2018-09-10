@@ -294,7 +294,7 @@ ul, ol, li {
         top: fmt(20);
       } 
       .weui-cell__bd:after{
-        right: fmt(20);
+        right: fmt(0);
         top: fmt(54);
       }
      }
@@ -307,7 +307,7 @@ ul, ol, li {
     // left: fmt(160);
     // margin-left: fmt(120);
     top: 10px;
-    width: 84px;
+    width: 95px;
     height: 30px;
     font:12px/28px Microsoft Yahei;
     color: #333;
@@ -492,4 +492,9 @@ ul, ol, li {
     
   }
 }
-
+.weui-dialog__hd{
+  padding: 0!important;
+}
+.position>div:nth-of-type(2){
+  bottom: -30px;
+}
