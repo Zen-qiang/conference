@@ -76,7 +76,6 @@ export default {
           this.$router.push({'name': 'Meetings'})
         }
         console.log(res)
-      }).catch(err => {
         console.log(err)
       })
     },
