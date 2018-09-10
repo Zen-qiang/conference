@@ -8,7 +8,7 @@
       <div class="main">
         <ul>
           <li
-            v-for="(item, index) of allMembers"
+            v-for="(item, index) in allMembers"
             :key="index"
             :class="{active: item.isChecked}"
             @click="chooseOrder(item, index, item.isDisabled)"
@@ -58,25 +58,20 @@ export default {
     accomMemberList () {
       return this.$store.state.accomMemberList
     },
-    allMembers: {
-      get () {
-        return this.$store.state.allMembers
-      },
-      set (newValue) {
-        this.$store.state.allMembers = newValue
-      }
+    allMembers () {
+      return this.$store.state.allMembers
     }
   },
   created () {
     // console.log(this.addInfo)
     // this.allMembers = this.getInfo()
     // console.log(this.allMembers)
-    this.getInfo()
-    // if (this.allMembers.length === 0) {
-    //   this.getInfo()
-    // } else {
-    //   this.initMembers()
-    // }
+    // this.getInfo()
+    if (Object.keys(this.allMembers).length === 0) {
+      this.getInfo()
+    } else {
+      this.initMembers()
+    }
     /* this.currentMembers = this.accomMemberList[this.order].members */
     /* this.accomMemberList.forEach((el, accIndex) => {
       // 1.判断有没有人员
@@ -138,9 +133,9 @@ export default {
               el.isDisabled = false
             } else {
                 // 否则选中的就禁用
-              if (el.isChecked) {
-                el.isDisabled = true
-              }
+              // if (el.isChecked) {
+               //  el.isDisabled = true
+              // }
             }
           }
         } else {
@@ -163,15 +158,21 @@ export default {
       }).then(res => {
         if (res.data.code === 0) {
           let info = res.data.data
+          let valueArr = []
+          let idArr = []
           // 放每一条数据
           info.forEach((people, i) => {
-            this.allMembers[String(people.memberId)] = {
+            idArr.push(people.memberId)
+            let value = {
               id: people.memberId,
               name: people.name,
               photo: people.photo,
               isChecked: people.isChecked,
               isDisabled: false
             }
+            valueArr.push(value)
+            //this.allMembers['' + idArr[i] + ''] = valueArr[i]
+            this.$set(this.allMembers,'' + idArr[i] + '',valueArr[i])
           })
           this.$store.commit('allMembers', this.allMembers)
           this.initMembers()
@@ -182,9 +183,10 @@ export default {
     },
     // 点击选人员事件
     chooseOrder (item, index, isDisabled) {
-      if (isDisabled) {
-        return
-      }
+      console.log(222)
+      //if (isDisabled) {
+       // return
+      //}
       // 判断当前人员是否已经分配房间
       /* let isRoom = false
       // for (let i = 0, l = this.currentMembers.length - 1;)
@@ -202,19 +204,19 @@ export default {
       item.isChecked = !item.isChecked
       // 添加或删除当前房间人员，currentMembers
       // 首先判断当前人是否已选中，选中状态下如何禁用，就移除，否则就添加
-      console.log(this.currentMembers)
-      console.log(item)
-      if (item.isChecked) {
-        for (let j of this.currentMembers) {
-          if (item.isDisabled) {
-            delete this.currentMembers[j]
-            console.log(this.currentMembers)
-          } else {
-            this.currentMembers['' + item.id + ''] = this.currentMembers[j]
-            console.log(this.currentMembers)
-          }
-        }
-      }
+      // console.log(this.currentMembers)
+      // console.log(item)
+      // if (item.isChecked) {
+      //   for (let j of this.currentMembers) {
+      //     if (item.isDisabled) {
+      //       delete this.currentMembers[j]
+      //       console.log(this.currentMembers)
+      //     } else {
+      //       this.currentMembers['' + item.id + ''] = this.currentMembers[j]
+      //       console.log(this.currentMembers)
+      //     }
+      //   }
+      // }
     },
     // 点击添加事件
     addAccom () {
