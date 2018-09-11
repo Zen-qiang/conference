@@ -17,7 +17,7 @@ export default {
   accomSelect: {},
   accomPic: {},
   allMembers: {},
-  room: [],
+  room: null,
   addPeopleMembers: [],
   isRoot: false,
   isUser: false,

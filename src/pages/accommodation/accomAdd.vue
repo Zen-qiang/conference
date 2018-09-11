@@ -31,14 +31,14 @@ export default {
   data () {
     return {
       // info: [],
-      isDisabled: false,
+      // isDisabled: false,
       // addInfo: null,
-      singleSelect: [],
-      singlePic: [],
-      order: this.$route.query.index,
+      // singleSelect: [],
+      // singlePic: [],
+      order: this.$route.params.index,
       // infoCheck: [],
-      currentMembers: [],
-      accomValue: []
+      currentMembers: {}
+      // accomValue: []
       // membersId: this.$store.state.membersId
     }
   },
@@ -60,6 +60,9 @@ export default {
     },
     allMembers () {
       return this.$store.state.allMembers
+    },
+    roomArrs () {
+      return this.$store.state.roomArrs
     }
   },
   created () {
@@ -99,25 +102,6 @@ export default {
         this.currentMembers[i].isDisabled = true
       }
     } */
-    // 当前房选中成员
-    // var currentMembers = this.$store.state.accomMemberList[0].members
-    // // 所有成员
-    // for (var i in allMembers) {
-    //   if (allMembers[i].isChecked) {
-    //     for (var j in currentMembers) {
-    //       if (allMembers[i] == currentMembers[j]) {
-    //         // 可选
-    //         allMembers[i].disabled = false
-    //       } else {
-    //         // 禁用
-    //         allMembers[i].disabled = true
-    //       }
-    //     }
-    //   } else {
-    //     // 可选未勾选
-    //     allMembers[i].disabled = false
-    //   }
-    // }
   },
   methods: {
     initMembers () {
@@ -126,17 +110,22 @@ export default {
       for (let i in this.allMembers) {
         // 在自己房间就可以使用，无论是否选中都是可用
         let el = this.allMembers[i]
-        if (this.currentMembers) {
+        if (el.isChecked) {
+          let ifTrue = true
           for (let j in this.currentMembers) {
             let cm = this.currentMembers[j]
             if (el.id === cm.id) {
               el.isDisabled = false
+              ifTrue = false
             } else {
                 // 否则选中的就禁用
               // if (el.isChecked) {
                //  el.isDisabled = true
               // }
             }
+          }
+          if (ifTrue) {
+            el.isDisabled = true
           }
         } else {
           if (el.isChecked) {
@@ -171,8 +160,7 @@ export default {
               isDisabled: false
             }
             valueArr.push(value)
-            //this.allMembers['' + idArr[i] + ''] = valueArr[i]
-            this.$set(this.allMembers,'' + idArr[i] + '',valueArr[i])
+            this.$set(this.allMembers, '' + idArr[i] + '', valueArr[i])
           })
           this.$store.commit('allMembers', this.allMembers)
           this.initMembers()
@@ -183,81 +171,62 @@ export default {
     },
     // 点击选人员事件
     chooseOrder (item, index, isDisabled) {
-      console.log(222)
-      //if (isDisabled) {
-       // return
-      //}
-      // 判断当前人员是否已经分配房间
-      /* let isRoom = false
-      // for (let i = 0, l = this.currentMembers.length - 1;)
-      // console.log(this.currentMembers)
-      this.allMembers.forEach((el, currentIndex) => {
-        if (item.id === el.id && el.room !== this.$route.query.index) {
-          isRoom = true
-          item.isDisabled = true
-        }
-      })
-      if (!isRoom) {
-        item.isDisabled = false
-        item.isChecked ? item.isChecked = false : item.isChecked = true
-      } */
+      // let peopleArr = []
+      if (isDisabled) {
+        return
+      }
+      // 从数组中找出当前房间可以存放最大人员数
+      // 如果超过就不让点击，并且提示
       item.isChecked = !item.isChecked
-      // 添加或删除当前房间人员，currentMembers
-      // 首先判断当前人是否已选中，选中状态下如何禁用，就移除，否则就添加
-      // console.log(this.currentMembers)
-      // console.log(item)
-      // if (item.isChecked) {
-      //   for (let j of this.currentMembers) {
-      //     if (item.isDisabled) {
-      //       delete this.currentMembers[j]
-      //       console.log(this.currentMembers)
-      //     } else {
-      //       this.currentMembers['' + item.id + ''] = this.currentMembers[j]
-      //       console.log(this.currentMembers)
+      // this.roomArrs.forEach((el, i) => {
+      //   // 判断是否是一个房型
+      //   if (this.room === el.id) {
+      //     let max = el.maxPeopleNum
+      //     // 找到当前房型所有checked，进行判断
+      //     for (let m in this.allMembers) {
+      //       if (this.allMembers[m].isChecked && !this.allMembers[m].isDisabled) {
+      //         // console.log(this.allMembers[m])
+      //         peopleArr.push(this.allMembers[m])
+      //         if (peopleArr.length < max) {
+      //           console.log('可以添加')
+      //         } else {
+      //           console.log('超出')
+      //         }
+      //       }
       //     }
       //   }
-      // }
+      // })
+      if (item.isChecked) {
+        // 判断currentMembers是否存在，不存在则新增,存在不做操作
+        if (!this.currentMembers[item.id]) {
+          this.currentMembers[item.id] = {
+            id: item.id,
+            name: item.name,
+            photo: item.photo
+          }
+        }
+      } else {
+        // 判断currentMembers是否存在，存在需要删除，不存在不作操作
+        if (this.currentMembers[item.id]) {
+          delete this.currentMembers[item.id]
+        }
+      }
     },
     // 点击添加事件
     addAccom () {
-      // 定义变量
-      // 获取已经有房间的数组对象(把数组对象传进来)
-      // 这个就是存放房间的那个数组,现在差两步，第一步获取到这个数组，第二部给这个数组赋值
-      console.log(this.$route.query.index)
-      let roomParam = this.$route.query.index
-      let arr = []
-      for (let ele of this.allMembers) {
-        var ifTrue = true
-        if (ele.isChecked) {
-          for (let el of this.currentMembers) {
-            // 当前人已经有房间并且不是自己房间的人，这个人锁死
-            if (el.id === ele.id && el.room !== this.$route.query.index) {
-              ifTrue = false
-              ele.isDisabled = true
-            }
-          }
-          // 如果没有房间
-          if (ifTrue) {
-            // 浅拷贝
-            let obj = {}
-            for (let keys in ele) {
-              obj[keys] = ele[keys]
-            }
-            obj.room = roomParam
-            obj.isDisabled = false
-            this.currentMembers.push(obj)
-            arr.push(obj)
-            console.log(arr)
-          }
-        }
-      }
-      // console.log(this.accomMemberList)
-      this.accomMemberList[this.order].members = arr
-
-      // 将currentMembers数据放到accomMemberList指定房间中
+      // 将allMembers数据放到accomMemberList指定房间中
       // allMembers同步全局选中状态
       // 同步VUEX数据
-
+      /* let newobj = {}
+      for (let m in this.allMembers) {
+        if (this.allMembers[m].isChecked && !this.allMembers[m].isDisabled) {
+          // console.log(this.allMembers[m])
+          newobj['' + this.allMembers[m].id + ''] = this.allMembers[m]
+          this.accomMemberList[this.order].members = newobj
+          this.accomMemberList[this.order].roomType = 9
+        }
+      } */
+      this.accomMemberList[this.order].members = this.currentMembers
       this.$store.commit('accomMemberList', this.accomMemberList)
       this.$store.commit('allMembers', this.allMembers)
       this.$router.push({

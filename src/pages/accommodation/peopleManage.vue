@@ -18,7 +18,7 @@
             <span class="more" v-if="item.members>3">more</span>
             <img
               @click="peopleAdd(index)"
-              v-for="(itemmembers, index1) of item.members" :key="'img' + index1"
+              v-for="(itemmembers, index1) in item.members" :key="'img' + index1"
               v-if="itemmembers.photo !== ''"
               :src="itemmembers.photo"
             >
@@ -87,8 +87,13 @@ export default {
     // accomValue () {
     //   return this.$store.state.accomValue
     // },
-    room () {
-      return this.$store.state.room
+    room: {
+      get () {
+        return this.$store.state.room
+      },
+      set (newValue) {
+        this.$store.state.room = newValue
+      }
     }
   },
   created () {
@@ -125,13 +130,14 @@ export default {
           this.roomCount.forEach((roomsDetail, i) => {
             // 每次新建一个对象，修改不同对象的值
             let roomObj = {}
+            roomObj['id'] = roomsDetail.fkTypeId
             roomObj['value_default'] = roomsDetail.value_default
             roomObj['roomNum'] = roomsDetail.roomNum
+            roomObj['peopleMax'] = roomsDetail.maxPeopleNum
             roomArr.push(roomObj)
           })
           this.roomArrs = roomArr
           this.$store.commit('roomArrs', roomArr)
-
           // 存放每一个对象
           let memberObj = {}
           for (var i = 0, len = this.info.memberList.length; i < len; i++) {
@@ -169,7 +175,7 @@ export default {
     },
     change (val) {
       // 当前房间的id
-      console.log(val)
+      this.room = val
     },
     // 获得下拉列表
     getList (keyword, list) {
@@ -247,7 +253,7 @@ export default {
     peopleAdd (index) {
       this.$router.push({
         name: 'AccomAdd',
-        query: {
+        params: {
           index: index
         }
       })
