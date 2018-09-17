@@ -102,7 +102,9 @@ export default {
           this.isExit(res.data.data.roleSet)
           // console.log(this.$store.state.isRoot)
           this.$store.commit('userInfo', res.data.data)
-          sessionStorage.setItem('name', res.data.data.name)
+          // 设置session口令
+          sessionStorage.setItem('sessionToken', res.data.data.sessionToken)
+          this.$store.commit('sessionToken', res.data.data.sessionToken)
           // this.$store.commit('currentUser', currentUser)
           this.showState = true
           if (this.showState) {

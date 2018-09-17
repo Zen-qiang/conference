@@ -22,20 +22,22 @@
       </div>
       <p class="add" @click="addAccom">添加</p>
     </div>
+    <toast v-model="show" type="text">{{$t('message.add')}}</toast>
   </div> 
 </template>
 
 <script>
+import { Toast } from 'vux'
 export default {
   name: 'accomAdd',
+  components: {
+    Toast
+  },
   data () {
     return {
-      // info: [],
-      // isDisabled: false,
-      // addInfo: null,
-      // singleSelect: [],
-      // singlePic: [],
+      show: false,
       order: this.$route.params.index,
+      maxPeopleNum: this.$route.params.maxPeopleNum,
       // infoCheck: [],
       currentMembers: {}
       // accomValue: []
@@ -60,13 +62,9 @@ export default {
     },
     allMembers () {
       return this.$store.state.allMembers
-    },
-    roomArrs () {
-      return this.$store.state.roomArrs
     }
   },
   created () {
-    // console.log(this.addInfo)
     // this.allMembers = this.getInfo()
     // console.log(this.allMembers)
     // this.getInfo()
@@ -75,33 +73,6 @@ export default {
     } else {
       this.initMembers()
     }
-    /* this.currentMembers = this.accomMemberList[this.order].members */
-    /* this.accomMemberList.forEach((el, accIndex) => {
-      // 1.判断有没有人员
-      // 2.如果有人员就添加
-      // 3.如果没有人员就不添加
-      if (el.members) {
-        for (let ele of el.members) {
-          this.currentMembers.push(ele)
-        }
-      }
-    }) */
-    /* this.allMembers.forEach((el, i) => {
-      this.currentMembers.forEach((cm, j) => {
-        if (el.id === cm.id) {
-          el.isDisabled = false
-        } else {
-          if (el.isChecked) {
-            el.isDisabled = true
-          }
-        }
-      })
-    }) */
-    /* for (let i = 0, l = this.currentMembers.length; i < l; i++) {
-      if (this.currentMembers[i].isChecked) {
-        this.currentMembers[i].isDisabled = true
-      }
-    } */
   },
   methods: {
     initMembers () {
@@ -111,6 +82,7 @@ export default {
         // 在自己房间就可以使用，无论是否选中都是可用
         let el = this.allMembers[i]
         if (el.isChecked) {
+          // 记录状态，避免多次循环出错
           let ifTrue = true
           for (let j in this.currentMembers) {
             let cm = this.currentMembers[j]
@@ -171,31 +143,16 @@ export default {
     },
     // 点击选人员事件
     chooseOrder (item, index, isDisabled) {
-      // let peopleArr = []
       if (isDisabled) {
+        return
+      }
+      if (!item.isChecked && Object.keys(this.currentMembers).length === this.maxPeopleNum) {
+        this.show = true
         return
       }
       // 从数组中找出当前房间可以存放最大人员数
       // 如果超过就不让点击，并且提示
       item.isChecked = !item.isChecked
-      // this.roomArrs.forEach((el, i) => {
-      //   // 判断是否是一个房型
-      //   if (this.room === el.id) {
-      //     let max = el.maxPeopleNum
-      //     // 找到当前房型所有checked，进行判断
-      //     for (let m in this.allMembers) {
-      //       if (this.allMembers[m].isChecked && !this.allMembers[m].isDisabled) {
-      //         // console.log(this.allMembers[m])
-      //         peopleArr.push(this.allMembers[m])
-      //         if (peopleArr.length < max) {
-      //           console.log('可以添加')
-      //         } else {
-      //           console.log('超出')
-      //         }
-      //       }
-      //     }
-      //   }
-      // })
       if (item.isChecked) {
         // 判断currentMembers是否存在，不存在则新增,存在不做操作
         if (!this.currentMembers[item.id]) {
@@ -211,30 +168,27 @@ export default {
           delete this.currentMembers[item.id]
         }
       }
+      // this.roomArrs.forEach((el, i) => {
+      //   // 判断是否是一个房型
+      //   if (this.room === el.id) {
+      //     let max = el.peopleMax
+      //     console.log(max)
+      //     // 找到当前房型所有checked，进行判断
+      //     if (max < Object.keys(this.currentMembers).length) {
+      //       return
+      //     }
+      //   }
+      // })
     },
     // 点击添加事件
     addAccom () {
-      // 将allMembers数据放到accomMemberList指定房间中
+      // 将currentMembers数据放到accomMemberList指定房间中
       // allMembers同步全局选中状态
       // 同步VUEX数据
-      /* let newobj = {}
-      for (let m in this.allMembers) {
-        if (this.allMembers[m].isChecked && !this.allMembers[m].isDisabled) {
-          // console.log(this.allMembers[m])
-          newobj['' + this.allMembers[m].id + ''] = this.allMembers[m]
-          this.accomMemberList[this.order].members = newobj
-          this.accomMemberList[this.order].roomType = 9
-        }
-      } */
       this.accomMemberList[this.order].members = this.currentMembers
       this.$store.commit('accomMemberList', this.accomMemberList)
       this.$store.commit('allMembers', this.allMembers)
-      this.$router.push({
-        name: 'PeopleManage',
-        query: {
-          index: this.order
-        }
-      })
+      this.$router.replace({name: 'PeopleManage'})
     }
   }
 }

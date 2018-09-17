@@ -56,7 +56,7 @@
                 <div class="box">
                   <span><img :src="item.photo" alt=""></span>
                   <span>{{item.name}}</span>
-                  <span>{{item.fkGenderId}}
+                  <span>
                     <img v-if="item.fkGenderId === 4" src="../../assets/images/nan.png" alt="">
                     <img v-else src="../../assets/images/nv.png" alt="">
                   </span>

@@ -26,6 +26,7 @@ const mutations = {
   nowConferenceName: (state, nowConferenceName) => {
     state.nowConferenceName = nowConferenceName
   },
+  // 行程信息
   journeyInfo: (state, journeyInfo) => {
     state.journeyInfo = journeyInfo
   },
@@ -84,6 +85,16 @@ const mutations = {
   },
   roomArrs: (state, roomArr) => {
     state.roomArrs = roomArr
+  },
+  test: (state, test) => {
+    state.test = test
+  },
+  sessionToken: (state, sessionToken) => {
+    state.sessionToken = sessionToken
+  },
+  // 存放已经报名行程的人
+  member: (state, member) => {
+    state.member = member
   }
 }
 

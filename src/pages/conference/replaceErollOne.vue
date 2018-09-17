@@ -3,7 +3,7 @@
    <ul>
        <li>
            <span>姓名</span>
-           <span><input type="text" placeholder="请输入姓名"></span>
+           <span><input type="text" placeholder="请输入姓名" v-model="userName"></span>
        </li>
         <li>
             <span>照片</span>
@@ -11,35 +11,53 @@
             <span><img src="../../assets/images/camera.png" alt=""></span>
         </li>
         <li>
-            <span>手机</span>
-            <span class="hui"><input type="text" placeholder="请输入手机号码"></span>
+          <span>手机</span>
+          <group>
+            <x-input title="手机" required  ref="mobile" name="mobile" placeholder="请输入手机号码"  v-model="mobile" :max="11" keyboard="number" is-type="china-mobile" placeholder-align="right" text-align="right" :show-clear="false" keyborad="number"></x-input>
+          </group>
         </li>
         <li>
-            <group>
-              <selector title="性别" :options="sexList" v-model="defaultValue"></selector>
-            </group>
+          <group>
+            <selector title="性别" :options="sexList" v-model="defaultValue"></selector>
+          </group>
         </li>
    </ul>
    <p class="end" @click="addReplace()">完成</p>
+  <toast v-model="show" type="text" position="middle">{{$t('message.check')}}</toast>
   </div>
    
 </template>
 
 <script>
-import { Group, Selector } from 'vux'
+import { Group, Selector, XInput, Toast } from 'vux'
 export default {
   components: {
     Group,
-    Selector
+    Selector,
+    XInput,
+    Toast
   },
   data () {
     return {
       defaultValue: '',
-      sexList: []
+      sexList: [],
+      show: false,
+      userName: '',
+      meetting: this.$route.query.meetting,
+      conferenceId: this.$route.query.meettingId,
+      fkUserId: this.$store.state.userInfo.id,
+      conference: this.$route.query.conference,
+      conferenceName: this.$route.query.conferenceName,
+      meettingId: this.$route.query.meettingId
     }
   },
   created () {
     this.getSexlist()
+  },
+  computed: {
+    userInfo () {
+      return this.$store.state.userInfo.defaultConference.fkUserId
+    }
   },
   methods: {
     // 获取下拉列表
@@ -79,6 +97,25 @@ export default {
       this.getList('GENDER', this.sexList)
     },
     addReplace () {
+      let arrobj = {
+        name: this.userName,
+        phoneNo: this.mobile,
+        fkGenderId: this.defaultValue,
+        fkMasterId: this.fkUserId // 当前登陆人ID
+      }
+      // arr.push(arrobj)
+      if (this.userName && this.$refs.mobile.valid) {
+        this.$store.commit('replacePeople', arrobj)
+        this.$router.replace({
+          name: 'AddPeople',
+          params: {
+            conferenceName: this.conferenceName,
+            meettingId: this.meettingId
+          }
+        })
+      } else {
+        this.show = true
+      }
     }
   }
 }

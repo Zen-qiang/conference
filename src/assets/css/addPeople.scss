@@ -21,12 +21,8 @@
       border-bottom: fmt(2) solid #ddd;
       padding: 0 fmt(30) 0 fmt(20);
       font: fmt(28)/fmt(92) Microsoft Yahei;
-      span:first-of-type{
+      span{
         float: left;
-        color: #a6a6a6;
-      }
-      span:last-of-type{
-        float: right;
         color: #43bed3;
       }
     }

@@ -11,48 +11,47 @@
           <span v-show="flag" class="red" @click="flag = !flag">编辑</span>
           <span v-show="!flag" class="blue" @click="flag = !flag">完成</span>
         </span>
-        <img src="../../assets/images/jia2.png" alt="" class="pic" @click="$router.push({'name' : 'AddPeople'})">
+        <img src="../../assets/images/jia2.png" alt="" class="pic" @click="go">
       </ul>
-    <ul class="divTab" v-show="nowIndex===0">
-       <li class="box" 
-           v-for ="(item, index) of arriveList" 
-           :key ="index"
-           >
-         <div class="content" @click="editInfo(item.id)">
-           <div class="left">
-             <!-- ../../assets/images/headpic11.png -->
-            <img :src="item.photo" alt="">
+      <div class="outer">
+        <ul class="divTab" v-show="nowIndex===0">
+          <li class="box" 
+              v-for ="(item, index) of arriveList" 
+              :key ="index"
+              >
+            <div class="content" @click="editInfo(item.id)">
+              <div class="left">
+                <!-- ../../assets/images/headpic11.png -->
+                <img :src="item.photo" alt="">
+              </div>
+              <div class="center">
+                <p>{{item.week}}</p>
+                <p></p>
+                <img src="../../assets/images/sanjiaoxing.png" alt="">
+                <p>{{item.numberOfRuns}}</p>
+              </div>
+              <div class="right">
+                <p>{{item.city}}</p>
+                <p>{{item.place}}</p>
+                <p>{{item.hour}}</p>
+                <p>预计到达 {{item.hour}}</p>
+              </div>
           </div>
-          <div class="center">
-            <p>{{item.week}}</p>
-            <p></p>
-            <img src="../../assets/images/sanjiaoxing.png" alt="">
-            <p>{{item.numberOfRuns}}</p>
+            <div class="xia" @click="checkothers(item.id, item.membersSize)">
+            <span>同行人员 &nbsp;</span>
+            <span><i>{{item.membersSize}}</i>人</span>
+            <span><img :src="item.members.length?item.members[0].photo:''" alt=""></span>
+            <!-- <span v-if="item.members.length">
+              <img :src="item.members[0].photo" alt="">
+            </span>
+            <span v-else>
+              <img src="" alt="">
+            </span> -->
+            <span>more</span>
           </div>
-          <div class="right">
-            <p>{{item.city}}</p>
-            <p>{{item.place}}</p>
-            <p>{{item.hour}}</p>
-            <p>预计到达 {{item.hour}}</p>
-          </div>
-       </div>
-        <div class="xia" @click="checkothers(item.id, item.membersSize)">
-         <span>其他成员 &nbsp;</span>
-         <span><i>{{item.membersSize}}</i>人</span>
-         <span><img :src="item.members.length?item.members[0].photo:''" alt=""></span>
-         <!-- <span v-if="item.members.length">
-           <img :src="item.members[0].photo" alt="">
-         </span>
-         <span v-else>
-           <img src="" alt="">
-         </span> -->
-         <span>more</span>
-      </div>
-      <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="deleteInfo(item.id, index)">
-     </li>      
-     <x-button @click.native="out">管理我的专车</x-button>
-    </ul>
-    
+          <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag" @click="deleteInfo(item.id, index)">
+        </li> 
+        </ul>
     <ul class="divTab divTab2" v-show="nowIndex===1">
       <li class="box" 
           v-if='nextFirstFlag'
@@ -76,15 +75,16 @@
           </div>
        </div>
       <div class="xia" @click="checkothers(item.id, item.membersSize)">
-        <span>其他成员 &nbsp;</span>
+        <span>同行人员 &nbsp;</span>
         <span><i>{{item.membersSize}}</i>人</span>
         <span><img :src="item.members.length?item.members[0].photo:''" alt=""></span>
         <span>more</span>
       </div>
       <img src="../../assets/images/cuo2.png" alt="" class="img1" v-show="!flag"  @click="deleteInfo(item.id, index)">
       </li>
-      <x-button @click.native="out">管理我的专车</x-button>
     </ul>
+  </div>
+    <x-button @click.native="out">管理我的专车</x-button>
   </div>
 </template>
 
@@ -102,7 +102,8 @@ export default {
       firstFlag: 'true',
       secondFlag: 'true',
       nextFirstFlag: 'true',
-      arriveList: [],
+      arriveList: {},
+      statusFlag: true,
       departList: [],
       arriveMemberNum: '',
       departMenmberNum: ''
@@ -119,11 +120,27 @@ export default {
     out: function () {
       this.$router.push({'name': 'Cars'})
     },
+    // 添加进入行程
+    go () {
+      this.$store.commit('journeyInfo', {})
+      this.$router.push({
+        name: 'AddJourney',
+        params: {
+          statusFlag: this.statusFlag,
+          nowIndex: this.nowIndex
+        }
+      })
+    },
+    // 编辑进入行程
     editInfo (id) {
+      this.$store.commit('journeyInfo', {})
+      console.log(id)
       if (!this.flag) {
         this.$router.push({
-          name: 'EditJourney',
-          query: {
+          name: 'AddJourney',
+          params: {
+            // 表示是由编辑进来的
+            statusFlag: !this.statusFlag,
             journeyId: id,
             nowIndex: this.nowIndex
           }
@@ -166,7 +183,7 @@ export default {
       } else {
         this.$router.push({
           name: 'Checkothers',
-          query: {
+          params: {
             journeyId: id
           }
         })

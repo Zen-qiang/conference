@@ -6,6 +6,7 @@
  */
 import axios from 'axios'
 import qs from 'querystring'
+import store from './store'
 // import { Toast } from 'mint-ui'
 axios.defaults.retry = 1
 axios.defaults.retryDelay = 3000
@@ -26,6 +27,8 @@ axios.interceptors.request.use(
     if (config.method === 'post' || config.method === 'put') {
       config.data = qs.stringify(config.data)
     }
+    // 设置请求头
+    config.headers['session-token'] = store.getters.getSessionToken
     // Indicator.open({
     //   spinnerType: 'fading-circle'
     // })

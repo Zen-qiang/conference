@@ -17,8 +17,8 @@ export default {
   accomSelect: {},
   accomPic: {},
   allMembers: {},
-  room: null,
-  addPeopleMembers: [],
+  room: [],
+  // addPeopleMembers: {},
   isRoot: false,
   isUser: false,
   isAdmin: false,
@@ -26,5 +26,8 @@ export default {
   val: false,
   firstTime: '',
   lastTime: '',
-  roomArrs: []
+  roomArrs: [],
+  test: {},
+  sessionToken: '',
+  member: []
 }

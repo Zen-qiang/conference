@@ -6,7 +6,7 @@
        <span @click="$router.push({'name': 'HotelManage'})">{{hotelName}}</span> 
     </div>
     <div class="second">
-      <span v-for="(item, index) of this.roomArrs" :key="'room' + index">{{item.value_default}}:{{item.roomNum}}</span>
+      <span v-for="(item, index) of this.roomArrs" :key="'room' + index">{{item.value}}:{{item.roomNum}}</span>
     </div>
     <ul>
       <li v-for="(item, index) of accomMemberList" :key="'member' + index">
@@ -53,8 +53,10 @@ export default {
       roomCount: [],
       isActive: false,
       info: {},
-      order: this.$route.query.index,
-      accomValue: this.$store.state.accomValue
+      roomTypeObj: {},
+      maxPeopleNum: 0,
+      room: null,
+      order: this.$route.query.index
     }
   },
   computed: {
@@ -67,11 +69,11 @@ export default {
     nowConferenceId () {
       return this.$store.state.nowConferenceId
     },
-    accomMemberList () {
-      return this.$store.state.accomMemberList
-    },
     accomPic () {
       return this.$store.state.accomPic
+    },
+    accomValue () {
+      return this.$store.state.accomValue
     },
     membersId () {
       return this.$store.state.membersId
@@ -84,23 +86,29 @@ export default {
         this.$store.state.roomArrs = newValue
       }
     },
+    accomMemberList: {
+      get () {
+        return this.$store.state.accomMemberList
+      },
+      set (newValue) {
+        this.$store.state.accomMemberList = newValue
+      }
+    },
     // accomValue () {
     //   return this.$store.state.accomValue
     // },
-    room: {
-      get () {
-        return this.$store.state.room
-      },
-      set (newValue) {
-        this.$store.state.room = newValue
-      }
+    test () {
+      return this.$store.state.test
     }
   },
   created () {
     // console.log(this.accomMemberList)
-    this.getroomList()
+    // this.getroomList()
     if (this.accomMemberList.length === 0) {
       this.getInfo()
+    } else {
+      this.roomlist = this.roomArrs
+      this.roomTypeObj = this.test
     }
   },
   methods: {
@@ -122,49 +130,55 @@ export default {
           // 所有房型
           this.roomCount = res.data.data.roomCount
           this.info = res.data.data
-          // console.log(this.roomCount)
-          // this.$store.commit('room', this.roomCount)
-          // console.log(this.info.memberList)
           // 获取数据库中已经选中的值
           // 初始化下拉列表
           this.roomCount.forEach((roomsDetail, i) => {
             // 每次新建一个对象，修改不同对象的值
             let roomObj = {}
             roomObj['id'] = roomsDetail.fkTypeId
-            roomObj['value_default'] = roomsDetail.value_default
+            roomObj['key'] = roomsDetail.fkTypeId
+            roomObj['value'] = roomsDetail.value_default
             roomObj['roomNum'] = roomsDetail.roomNum
             roomObj['peopleMax'] = roomsDetail.maxPeopleNum
             roomArr.push(roomObj)
+            this.roomTypeObj[roomsDetail.fkTypeId] = roomObj
+            this.$set(this.roomlist, i, roomArr[i])
           })
-          this.roomArrs = roomArr
+          // console.log(this.roomTypeObj)
+          this.roomlist = roomArr
+          this.$store.commit('test', this.roomTypeObj)
           this.$store.commit('roomArrs', roomArr)
+          if (!this.info.memberList.length) {
+            this.accomMemberList = []
+          } else {
           // 存放每一个对象
-          let memberObj = {}
-          for (var i = 0, len = this.info.memberList.length; i < len; i++) {
-            // console.log(this.info.memberList[i])
-            room = this.info.memberList[i].roomType
-            for (let j = 0, n = this.info.memberList[i].members.length; j < n; j++) {
-              // this.info.memberList[i].members[j].isChecked = true
-              // console.log(this.info.memberList[i].members)
-              arr.push(this.info.memberList[i].members[j].memberId)
-              let value = {
-                id: this.info.memberList[i].members[j].memberId,
-                name: this.info.memberList[i].members[j].name,
-                photo: this.info.memberList[i].members[j].photo
+            let memberObj = {}
+            for (var i = 0, len = this.info.memberList.length; i < len; i++) {
+              // console.log(this.info.memberList[i])
+              room = this.info.memberList[i].roomType
+              for (let j = 0, n = this.info.memberList[i].members.length; j < n; j++) {
+                // this.info.memberList[i].members[j].isChecked = true
+                // console.log(this.info.memberList[i].members)
+                arr.push(this.info.memberList[i].members[j].memberId)
+                let value = {
+                  id: this.info.memberList[i].members[j].memberId,
+                  name: this.info.memberList[i].members[j].name,
+                  photo: this.info.memberList[i].members[j].photo
+                }
+                valueArr.push(value)
+                memberObj['' + arr[j] + ''] = valueArr[j]
               }
-              valueArr.push(value)
-              memberObj['' + arr[j] + ''] = valueArr[j]
             }
+            // 最外面的对象
+            var json = {}
+            json['members'] = memberObj
+            json['roomType'] = room
+            this.accomMemberList.push(json)
+            for (let i = 0; i < this.accomMemberList.length; i++) {
+              this.accomValue.push(this.accomMemberList[i].roomType)
+            }
+            this.$store.commit('accomValue', this.accomValue)
           }
-          // 最外面的对象
-          var json = {}
-          json['members'] = memberObj
-          json['roomType'] = room
-          this.accomMemberList.push(json)
-          for (let i = 0; i < this.accomMemberList.length; i++) {
-            this.accomValue.push(this.accomMemberList[i].roomType)
-          }
-          this.$store.commit('accomValue', this.accomValue)
           // console.log(this.accomMemberList)
           // this.$store.commit('accomMemberList', this.accomMemberList)
           // console.log(this.accomMemberList)
@@ -176,6 +190,7 @@ export default {
     change (val) {
       // 当前房间的id
       this.room = val
+      this.maxPeopleNum = this.roomTypeObj[val].peopleMax
     },
     // 获得下拉列表
     getList (keyword, list) {
@@ -215,8 +230,9 @@ export default {
     addNewList () {
       console.log(this.accomMemberList)
       this.accomMemberList.push({members: {}, roomType: 9})
+      this.$store.commit('accomValue', [])
       this.$store.commit('accomMemberList', this.accomMemberList)
-      for (var i = 0; i < this.accomMemberList.length; i++) {
+      for (let i = 0; i < this.accomMemberList.length; i++) {
         this.accomValue.push(this.accomMemberList[i].roomType)
       }
       this.$store.commit('accomValue', this.accomValue)
@@ -224,37 +240,15 @@ export default {
     },
     // 删除房型
     deleteAccom (index) {
-      // let reserveIds = []
-      // this.accomMemberList[index].members.forEach((el, index2) => {
-      //   reserveIds.push(el.reserveId)
-      // })
-      // let params = {
-      //   _method: 'delete',
-      //   reserveId: reserveIds,
-      //   fkRoomTypeId: this.accomMemberList[index].roomType,
-      //   hotelId: this.hotelId
-      // }
-      // console.log(params)
-      // this.axios({
-      //   method: 'post',
-      //   url: '/api/accommodation/deleteReserveById',
-      //   params: params
-      // }).then(res => {
-      //   if (res.data.code === 0) {
-      //     console.log(res.data.data)
-      //   }
-      // }).catch(err => {
-      //   console.log(err)
-      // })
       this.accomMemberList.splice(index, 1)
-      // this.$store.commit('accomMemberList', this.accomMemberList)
     },
     // 添加成员
     peopleAdd (index) {
       this.$router.push({
         name: 'AccomAdd',
         params: {
-          index: index
+          index: index,
+          maxPeopleNum: this.maxPeopleNum
         }
       })
     },
@@ -264,47 +258,35 @@ export default {
       let arr = []
       if (this.accomMemberList.length) {
         for (var i = 0; i < this.accomMemberList.length; i++) {
-          this.accomMemberList[i].members.forEach((el, index) => {
+          for (let j in this.accomMemberList[i].members) {
+            let el = this.accomMemberList[i].members[j]
+            this.membersId.push(this.accomMemberList[i].members[j].id)
             let obj = {
               fkHotelId: this.hotelId,
-              fkRoomTypeId: this.accomMemberList[i].roomType,
+              fkRoomTypeId: this.room,
               fkMemberId: el.id,
               fkConferenceId: this.nowConferenceId
             }
             arr.push(obj)
-          })
+          }
         }
-      // console.log(arr)
       }
-      // 判断不同房间是否有相同的成员
-      // let ids = []
-      // arr.forEach((el, index) => {
-      //   ids.push(el.fkMemberId)
-      // })
-      // var narr = arr.sort()
-      // for (var a = 0; a < arr.length; i++) {
-      //   if (narr[a] === narr[a + 1]) {
-      //     console.log('数组重复内容：' + narr[a])
-      //   }
-      // }
-      // console.log(ids)
-      // let newarr = JSON.stringify(arr)
-      // // console.log(newarr)
-      // this.axios({
-      //   method: 'post',
-      //   url: '/api/accommodation/saveAccommodation',
-      //   params: {
-      //     hotelRoomReserveList: newarr,
-      //     memberIds: this.membersId,
-      //     hotelId: this.hotelId,
-      //     isMustUpdate: false
-      //   }
-      // }).then(res => {
-      //   console.log(res.data.data)
-      //   this.$router.push({name: 'HotelManage'})
-      // }).catch(err => {
-      //   console.log(err)
-      // })
+      let string = JSON.stringify(arr)
+      this.axios({
+        method: 'post',
+        url: '/api/accommodation/saveAccommodation',
+        params: {
+          hotelRoomReserveList: string,
+          memberIds: this.membersId,
+          hotelId: this.hotelId,
+          isMustUpdate: true
+        }
+      }).then(res => {
+        console.log(res.data.data)
+        this.$router.push({name: 'HotelManage'})
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }
 }

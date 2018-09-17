@@ -6,20 +6,18 @@
         <p>{{info.userName}}</p>
         <p>{{info.companyName}}</p>
       </div>
-      <p class="modify" @click="goEdit()">修改</p>
     </div>
 
     <ul>
       <div class="firstli">
-          <span class="hui">其他成员</span>
+          <span class="hui">同行人员</span>
           <span class="hui">{{info.membersSize}}</span>
       </div>
       <li v-for="(item, index) of membersInfo" :key="index">
-          <div class="close"><img src="../../assets/images/cha.png" alt="" @click="deleteMember(item.journeyMemberId)"></div>
           <div class="box">
             <span><img :src="item.photo" alt=""></span>
             <span>{{item.name}}</span>
-            <span>{{item.valueDefault}} <img src="../../assets/images/nan.png" alt=""></span>
+            <span><img :src="src" alt=""></span>
             <span>代</span>
             <div class="text">
               <p>手机 ：{{item.phoneNo}}</p>
@@ -38,9 +36,10 @@
 export default {
   data () {
     return {
-      journeyId: this.$route.query.journeyId,
+      journeyId: this.$route.params.journeyId,
       info: {},
-      membersInfo: []
+      membersInfo: [],
+      src: ''
     }
   },
   created () {
@@ -68,34 +67,16 @@ export default {
           console.log(res.data.data)
           this.info = res.data.data
           this.membersInfo = this.info.membersInfo
+          this.membersInfo.forEach(el => {
+            if (el.valueDefault === '女') {
+              this.src = '../../static/image/nv.png'
+            } else {
+              this.src = '../../static/image/nan.png'
+            }
+          })
         }
       }).catch(err => {
         console.log(err)
-      })
-    },
-    // 删除代报名
-    deleteMember (id) {
-      this.axios({
-        method: 'post',
-        url: '/api/journey/deleteJourneyMember',
-        params: {
-          _method: 'delete',
-          journeyMemberId: id
-        }
-      }).then(res => {
-        console.log(res.data.data)
-      }).catch(err => {
-        console.log(err)
-      })
-    },
-    // 修改
-    goEdit () {
-      this.$router.push({
-        name: 'EditRegist',
-        query: {
-          conferenceId: this.nowConferenceId,
-          conferenceName: this.nowConferenceName
-        }
       })
     }
   }

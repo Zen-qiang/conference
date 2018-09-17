@@ -96,7 +96,7 @@ export default{
     // console.log(this.userRole)
     // this.getParams()
     this.getConferenceInfo()
-    this.chooseConference()
+    // this.chooseConference()
   },
   watch: {
     '$route': 'getParams'

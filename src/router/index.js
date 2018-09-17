@@ -463,7 +463,7 @@ let router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requireAuth)) { // 判断该路由是否需要登录权限
-    if (sessionStorage.getItem('name')) { // 判断当前的name是否存在
+    if (sessionStorage.getItem('sessionToken')) { // 判断当前的name是否存在
       next()
     } else {
       next({
