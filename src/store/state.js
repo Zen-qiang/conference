@@ -7,7 +7,24 @@ export default {
   replaceList: [],
   userInfo: {},
   nowConferenceId: 0,
-  journeyInfo: null,
+  journeyInfo: {
+    arrive: {
+      'fkVehiclesId': null,
+      'arriveCity': null,
+      'arrivePlace': null,
+      'arriveTime': null,
+      'numberOfRuns': null,
+      'people': null
+    },
+    depart: {
+      'fkVehiclesId': null,
+      'departCity': null,
+      'departPlace': null,
+      'departTime': null,
+      'numberOfRuns': null,
+      'people': null
+    }
+  },
   nowConferenceName: '',
   hotelId: '',
   hotelName: '',
@@ -29,5 +46,6 @@ export default {
   roomArrs: [],
   test: {},
   sessionToken: '',
-  member: []
+  member: [],
+  registList: []
 }

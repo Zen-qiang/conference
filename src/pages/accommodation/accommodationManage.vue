@@ -123,9 +123,9 @@ export default {
         method: 'get',
         url: '/api/accommodation/hotels',
         params: {
-          startTime: '2018-07-16 00:00:00',
-          // endTime: String(this.lastTime) + ' ' + '00:00:00'
-          endTime: '2018-08-04 00:00:00',
+          startTime: String(this.firstTime) + ' ' + '00:00:00',
+          endTime: String(this.lastTime) + ' ' + '00:00:00',
+          // endTime: '2018-08-04 00:00:00',
           meettingId: this.nowConferenceId
         }
       }).then(res => {

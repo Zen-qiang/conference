@@ -36,6 +36,8 @@ export default {
       info: [],
       userPic: [],
       currentMember: [],
+      flag: this.$route.params.flag,
+      check: this.$route.params.check,
       addPeopleMembers: {},
       journeyId: this.$route.params.journeyId,
       nowIndex: this.$route.params.nowIndex,
@@ -134,7 +136,16 @@ export default {
     },
     // 获得页面信息
     getPeopleInfo () {
-      console.log(this.journeyInfo.arrive.arriveTime)
+      let appointTime = null
+      if (this.journeyInfo.length === 0) {
+        appointTime = null
+      } else {
+        appointTime = this.journeyInfo.arrive.arriveTime
+      }
+      // console.log(this.journeyInfo.arrive.arriveTime)
+      // if (this.flag) {
+      //   this.$set(this.journeyInfo, 'arrive', null)
+      // }
       if (this.nowIndex === 0) {
         this.axios({
           // params是添加到url的请求字符串中，用于get请求。
@@ -142,7 +153,7 @@ export default {
           method: 'get',
           url: '/api/journey/searchAddJourneyMembersInfo',
           params: {
-            appointTime: this.journeyInfo.arrive.arriveTime
+            appointTime: appointTime
           }
         }).then(res => {
           if (res.data.code === 0) {
@@ -175,7 +186,7 @@ export default {
           method: 'get',
           url: '/api/journey/searchAddJourneyMembersInfo',
           params: {
-            appointTime: this.journeyInfo.depart.departTime
+            appointTime: this.journeyInfo.depart.departTime ? this.journeyInfo.depart.departTime : null
           }
         }).then(res => {
           if (res.data.code === 0) {
@@ -221,7 +232,7 @@ export default {
       }
       console.log(selsects)
       // console.log(this.journeyInfo)
-      if (this.journeyInfo) {
+      if (Object.keys(this.journeyInfo).length > 0) {
         // console.log(this.journeyInfo.from)
         // 给不同的行程的人添加不同的id
         if (this.nowIndex === 0) {
@@ -233,13 +244,34 @@ export default {
           this.$store.commit('journeyInfo', this.journeyInfo)
         }
       }
+      // 自行解决
+      if (this.flag) {
+        let list = {
+          arrive: {
+            'people': []
+          },
+          depart: {
+            'people': []
+          }
+        }
+        this.$store.commit('journeyInfo', list)
+        if (this.nowIndex === 0) {
+          this.journeyInfo.arrive.people = selsects
+          this.$store.commit('journeyInfo', list)
+        } else {
+          this.journeyInfo.depart.people = selsects
+          this.$store.commit('journeyInfo', this.journeyInfo)
+        }
+      }
       this.$router.replace({
         name: 'AddJourney',
         params: {
           addPeopleFlag: this.addPeopleFlag,
           nowIndex: this.nowIndex,
           statusFlag: true,
-          journeyId: this.journeyId
+          journeyId: this.journeyId,
+          flag: this.flag,
+          check: this.check
         }
       })
     }

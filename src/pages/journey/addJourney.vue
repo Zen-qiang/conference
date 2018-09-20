@@ -18,7 +18,7 @@
               <x-input title="到达城市" required v-model="arriveCity" placeholder="请输入到达城市" placeholder-align="right" text-align="right" v-show="!flag"></x-input>
               <!-- <x-address title="地址选择" v-model="addressValue" raw-value :list="addressData" value-text-align="left"></x-address> -->
               <x-input title="到达地点" required v-model="stationValue" placeholder="请输入到达地点" placeholder-align="right" text-align="right" v-show="!flag"></x-input>
-              <calendar :title="'到达时间'" required v-model="arriveTimeValue" v-show="!flag" show-popup-header :popup-header-title="'请选择到站时间'"></calendar>
+              <calendar :title="'到达时间'" required v-model="arriveTimeValue" v-show="!flag" show-popup-header :popup-header-title="'请选择到站时间'"  @on-change="onChange"></calendar>
               <x-input title="班次号" required placeholder="请输入班次号" v-model="arriveTrafic" placeholder-align="right" text-align="right" v-show="!flag"></x-input>
             </group>
             <div class="last">
@@ -54,7 +54,7 @@
               <!-- <cell title="到达城市" value="广州" v-show="!flag" ></cell> -->
               <x-input title="到达城市" required v-model="departCity" placeholder="请输入到达城市" placeholder-align="right" text-align="right" v-show="!check"></x-input>
               <x-input title="到达地点" required v-model="stationValue1" placeholder="请输入到达地点" placeholder-align="right" text-align="right" v-show="!check"></x-input>
-              <calendar :title="'到达时间'" required v-model="departTimeValue" v-show="!check" show-popup-header :popup-header-title="'请选择到站时间'"></calendar>
+              <calendar :title="'到达时间'" required v-model="departTimeValue" v-show="!check" show-popup-header :popup-header-title="'请选择到站时间'" @on-change="onChange"></calendar>
              <x-input title="班次号"  v-model="departOrder" placeholder="请输入班次号" placeholder-align="right" required text-align="right" v-show="!check"></x-input>
             </group>
             <!-- @click="$router.push({'name' : 'AddPeople'})" -->
@@ -106,8 +106,8 @@ export default {
       DepartTrafficValue: '',
       trafficList: [],
       nowIndex: this.$route.params.nowIndex,
-      flag: false,
-      check: false,
+      flag: this.$route.params.flag,
+      check: this.$route.params.check,
       stationValue: '',
       stationValue1: '',
       journeyId: this.$route.params.journeyId,
@@ -156,20 +156,29 @@ export default {
     // console.log(Object.keys(this.journeyInfo).length)
     if (this.statusFlag) {
       if (Object.keys(this.journeyInfo).length > 0) {
-        this.ArriveTrafficValue = this.journeyInfo.arrive.fkVehiclesId
-        this.arriveCity = this.journeyInfo.arrive.arriveCity
-        this.stationValue = this.journeyInfo.arrive.arrivePlace
-        this.arriveTimeValue = this.journeyInfo.arrive.arriveTime
-        this.arriveTrafic = this.journeyInfo.arrive.numberOfRuns
-        this.DepartTrafficValue = this.journeyInfo.depart.fkVehiclesId
-        this.departCity = this.journeyInfo.depart.departCity
-        this.stationValue1 = this.journeyInfo.depart.departPlace
-        this.departTimeValue = this.journeyInfo.depart.departTime
-        this.departOrder = this.journeyInfo.depart.numberOfRuns
+        // 自行解决打开不用这些信息
+        if (!this.flag) {
+          this.ArriveTrafficValue = this.journeyInfo.arrive.fkVehiclesId
+          this.arriveCity = this.journeyInfo.arrive.arriveCity
+          this.stationValue = this.journeyInfo.arrive.arrivePlace
+          this.arriveTimeValue = this.journeyInfo.arrive.arriveTime
+          this.arriveTrafic = this.journeyInfo.arrive.numberOfRuns
+          this.DepartTrafficValue = this.journeyInfo.depart.fkVehiclesId
+          this.departCity = this.journeyInfo.depart.departCity
+          this.stationValue1 = this.journeyInfo.depart.departPlace
+          this.departTimeValue = this.journeyInfo.depart.departTime
+          this.departOrder = this.journeyInfo.depart.numberOfRuns
+        }
+        // console.log(this.member)
+        var _self = this
         if (this.journeyInfo.arrive.people.length > 0) {
-          this.member = this.journeyInfo.arrive.people
+          _self.$nextTick(function () {
+            this.member = this.journeyInfo.arrive.people
+          })
         } else if (this.journeyInfo.depart.people.length > 0) {
-          this.member = this.journeyInfo.depart.people
+          _self.$nextTick(function () {
+            this.member = this.journeyInfo.depart.people
+          })
         }
       }
     } else {
@@ -190,6 +199,17 @@ export default {
     },
     onCheck () {
       this.check = !this.check
+    },
+    // 时间改变时触发
+    onChange (val) {
+      if (val && this.statusFlag) {
+        this.member = []
+        // this.$store.commit('arrive', [])
+        // 只想修改people，但是mutation里面没有，会报错
+        this.$store.commit('people', [])
+      } else if (val) {
+        this.member = []
+      }
     },
     // 获得交通类型
     getList (keyword, list) {
@@ -221,6 +241,7 @@ export default {
         console.log(err)
       })
     },
+    // 编辑进来直接请求接口
     getStatus () {
       let self = this
       if (this.nowIndex === 0) {
@@ -288,6 +309,11 @@ export default {
         this.From = 'Depart'
       }
       // if (!this.journeyInfo) {
+      // if (this.index === 0) {
+      //   this.journeyList = {
+      //     from
+      //   }
+      // }
       this.journeyList = {
         from: this.From,
         arrive: {
@@ -320,6 +346,10 @@ export default {
       } else {
         this.$store.commit('member', [])
       }
+       // 自行解决
+      if (this.flag) {
+        this.$store.commit('journeyInfo', [])
+      }
       // 分别传递到达和返回的时间
       if (this.nowIndex === 0) {
         this.$router.push({
@@ -327,6 +357,8 @@ export default {
           params: {
             journeyId: this.journeyId,
             // appointTime: this.arriveTimeValue,
+            flag: this.flag,
+            check: this.check,
             nowIndex: this.nowIndex,
             statusFlag: this.statusFlag
           }
@@ -337,6 +369,8 @@ export default {
           params: {
             journeyId: this.journeyId,
             // appointTime: this.departTimeValue,
+            flag: this.flag,
+            check: this.check,
             nowIndex: this.nowIndex,
             statusFlag: this.statusFlag
           }
@@ -402,8 +436,8 @@ export default {
         arrivePeople = arrIds
         departPeople = departIds
       }
-      console.log(arrivePeople)
-      if (this.nowIndex === 0 && this.arriveCity && this.arriveTimeValue && this.arriveTrafic) {
+      // console.log(arrivePeople)
+      if (this.nowIndex === 0 && this.arriveCity && this.arriveTimeValue && this.arriveTrafic && this.member.length > 0) {
         this.axios({
           method: 'post',
           url: '/api/journey/addJourney',
@@ -421,8 +455,51 @@ export default {
         }).catch(err => {
           console.log(err)
         })
-      } else if (this.nowIndex === 1 && this.departCity && this.departTimeValue && this.departOrder) {
-        console.log(this.nowIndex)
+      } else if (this.nowIndex === 1 && this.departCity && this.departTimeValue && this.departOrder && this.member.length > 0) {
+        // console.log(this.nowIndex)
+        this.axios({
+          method: 'post',
+          url: '/api/journey/addJourney',
+          data: {
+            journey: departJourney,
+            journeyId: this.journeyId ? this.journeyId : null,
+            'departMemberIds[]': departPeople
+          },
+          params: {
+            _method: 'put'
+          }
+        }).then(res => {
+          // console.log(res.data.data)
+          this.$router.push({name: 'JourneyManage'})
+        }).catch(err => {
+          console.log(err)
+        })
+      } else {
+        this.show2 = true
+      }
+
+      // 自行解决保存数据   这里接口不对
+      if (this.flag || this.check) {
+        if (this.nowIndex === 0) {
+          this.axios({
+            method: 'post',
+            url: '/api/journey/addJourney',
+            data: {
+              journey: arriveJourney,
+              journeyId: this.journeyId ? this.journeyId : null,
+              'memberIds[]': arrivePeople
+            },
+            params: {
+              _method: 'put'
+            }
+          }).then(res => {
+            // console.log(res.data.data)
+            this.$router.push({name: 'JourneyManage'})
+          }).catch(err => {
+            console.log(err)
+          })
+        }
+      } else if (this.nowIndex === 1) {
         this.axios({
           method: 'post',
           url: '/api/journey/addJourney',

@@ -64,7 +64,7 @@ export default {
   },
   computed: {
     userInfo () {
-      return this.$store.state.userInfo.defaultConference.fkUserId
+      return this.$store.state.userInfo
     }
   },
   methods: {
@@ -80,13 +80,23 @@ export default {
       // arr.push(arrobj)
       if (this.userName && this.$refs.mobile.valid) {
         this.$store.commit('replacePeople', arrobj)
-        this.$router.replace({
-          name: 'EditRegist',
-          query: {
-            conferenceName: this.conferenceName,
-            meettingId: this.meettingId
-          }
-        })
+        if (this.userInfo.number > 0) {
+          this.$router.replace({
+            name: 'EditRegist',
+            query: {
+              conferenceName: this.conferenceName,
+              meettingId: this.meettingId
+            }
+          })
+        } else {
+          this.$router.replace({
+            name: 'ApplyRegist',
+            query: {
+              conferenceName: this.conferenceName,
+              meettingId: this.meettingId
+            }
+          })
+        }
       } else {
         this.show = true
       }

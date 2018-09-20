@@ -34,10 +34,10 @@
                 <span>照片</span>
                 <!-- <span class="hui">将用于证件打印</span> -->
 
-                <!-- <a href="javascript:;" class="upload">将用于证件打印
+                <a href="javascript:;" class="upload">将用于证件打印
                   <input type="file" multiple="multiple" accept="image/*" capture="camera" class="change">
-               </a> -->
-                <el-upload
+               </a>s
+                <!-- <el-upload
                   class="avatar-uploader"
                   action="https://jsonplaceholder.typicode.com/posts/"
                   :show-file-list="false"
@@ -45,7 +45,7 @@
                   :before-upload="beforeAvatarUpload">
                   <img v-if="imageUrl" :src="imageUrl" class="avatar">
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
+                </el-upload> -->
 
                 <!-- <span class="cam" v-if="!imageUrl"><img src="../../assets/images/camera.png" alt=""></span> -->
             </li>
@@ -113,8 +113,6 @@ export default {
       list: '',
       singleList: {},
       keyword: '',
-      replaceList: this.$store.state.replaceList,
-      imageUrl: '',
       meetting: this.$route.query.meetting,
       dataList: []
     }
@@ -122,8 +120,14 @@ export default {
   created () {
     this.getSexlist()
     this.getJoblist()
-    console.log(this.conferenceId)
+    // console.log(this.conferenceId)
     this.companyname = this.userInfo.company.name
+    if (this.registList.length > 0) {
+      this.defaultValue1 = this.registList.fkGenderId
+      this.username = this.registList.name
+      this.defaultValue = this.registList.fkPosition
+      this.phone = this.registList.phoneNo
+    }
   },
   computed: {
     replaceInfo () {
@@ -131,12 +135,18 @@ export default {
     },
     userInfo () {
       return this.$store.state.userInfo
+    },
+    replaceList () {
+      return this.$store.state.replaceList
+    },
+    registList () {
+      return this.$store.state.registList
     }
   },
   methods: {
     // 提交报名列表
     sub () {
-      console.log(this.username)
+      // console.log(this.username)
       this.dataList.push({
         'fkGenderId': this.defaultValue1,
         'fkUserId': this.userInfo.id,
@@ -145,6 +155,7 @@ export default {
         'phoneNo': this.phone,
         'fkPosition': this.defaultValue
       })
+      this.$store.commit('registList', this.dataList)
       for (var i in this.replaceList) {
         this.dataList.push(this.replaceList[i])
       }
@@ -224,21 +235,21 @@ export default {
           meettingId: this.conferenceId
         }
       })
-    },
-    handleAvatarSuccess (res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw)
-    },
-    beforeAvatarUpload (file) {
-      const isJPG = file.type === 'image/jpeg'
-      const isLt2M = file.size / 1024 / 1024 < 2
-      if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 格式!')
-      }
-      if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!')
-      }
-      return isJPG && isLt2M
     }
+    // handleAvatarSuccess (res, file) {
+    //   this.imageUrl = URL.createObjectURL(file.raw)
+    // },
+    // beforeAvatarUpload (file) {
+    //   const isJPG = file.type === 'image/jpeg'
+    //   const isLt2M = file.size / 1024 / 1024 < 2
+    //   if (!isJPG) {
+    //     this.$message.error('上传头像图片只能是 JPG 格式!')
+    //   }
+    //   if (!isLt2M) {
+    //     this.$message.error('上传头像图片大小不能超过 2MB!')
+    //   }
+    //   return isJPG && isLt2M
+    // }
   }
 }
 </script>

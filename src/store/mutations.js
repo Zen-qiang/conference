@@ -30,6 +30,16 @@ const mutations = {
   journeyInfo: (state, journeyInfo) => {
     state.journeyInfo = journeyInfo
   },
+  people: (state, val) => {
+    // let {people, arriveTime} =  state.journeyInfo.arrive
+    // people = val
+    // state.journeyInfo.arrive.people = val
+    // state.journeyInfo.depart.people = val
+  },
+  time: (state, val) => {
+    state.journeyInfo.arrive.arriveTime = val
+    state.journeyInfo.depart.departTime = val
+  },
   hotelId: (state, hotelId) => {
     state.hotelId = hotelId
   },
@@ -95,6 +105,9 @@ const mutations = {
   // 存放已经报名行程的人
   member: (state, member) => {
     state.member = member
+  },
+  registList: (state, registList) => {
+    state.registList = registList
   }
 }
 

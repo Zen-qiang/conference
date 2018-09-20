@@ -18,7 +18,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 // 添加凭证
 axios.defaults.withCredentials = true
 
-axios.defaults.baseURL = 'http://101.132.134.137:5300'
+axios.defaults.baseURL = 'http://192.168.3.41:5300'
 
 // http请求拦截器
 axios.interceptors.request.use(
